@@ -29,16 +29,16 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
 
   return (
     <nav className="fixed top-0 left-0 w-full z-40 bg-[#EFF4F9]/90 backdrop-blur-md border-b border-black/10 transition-all" aria-label="Main Navigation">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative">
         {/* Logo - Linked to Hero */}
         <a 
           href="#hero" 
           onClick={handleScrollTo('hero')}
-          className="flex items-center gap-3 group relative z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded-lg p-1"
+          className="flex items-center gap-2 group relative z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded-lg p-1"
           aria-label="Little Giant Society Home"
         >
           {/* Logo Container */}
-          <div className="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden rounded-full">
+          <div className="relative w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden rounded-full">
             {/* Logo Image */}
             <img 
               src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
@@ -57,11 +57,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
             </div>
           </div>
 
-          <span className="text-xl font-bold tracking-tight uppercase">Little Giant Society</span>
+          <span className="text-lg font-bold tracking-tight uppercase">Little Giant Society</span>
         </a>
 
         {/* Centered Desktop Nav */}
-        <div className="hidden md:flex items-center gap-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.id;
             return (

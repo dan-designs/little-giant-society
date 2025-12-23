@@ -7,6 +7,7 @@ import MobileNavControls from './components/MobileNavControls';
 import DonateModal from './components/DonateModal';
 import EventsModal from './components/EventsModal';
 import ContactModal from './components/ContactModal';
+import PolicyModal, { PolicyType } from './components/PolicyModal';
 import Model3D from './components/Model3D';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { MAP_SECTIONS } from './constants';
@@ -16,6 +17,18 @@ const CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/plan-1_qyrmng.avif",
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/plan-3_nkstly.avif",
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/plan-2_rclxza.avif"
+];
+
+const BUS_IMAGES = [
+  "https://res.cloudinary.com/datad8tms/image/upload/v1766450517/sticker-bus_difkyk.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1766451468/TY_s8zbue.png",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1766451468/Installed_q7npit.png"
+];
+
+const BUS_LABELS = [
+  "Sticker Bus @ Supply",
+  "Sticker Bus @ First Friday 1",
+  "Sticker Bus at First Friday 2"
 ];
 
 const PARTNER_LOGOS = [
@@ -63,24 +76,49 @@ const TEAM_MEMBERS = [
     name: "Ben White",
     role: "Secretary/Marketing Director",
     modelSrc: "https://little-giant-society.sirv.com/Ben.glb",
-    blurb: "Benjamin White, a Richmond, Virginia native, works as a commercial photographer, continually looking for new avenues to progress his vision through the lens. Utilizing digital & film mediums, Ben focuses on commercial portrait, product, and event photography."
+    blurb: "Benjamin White, a Richmond, Virginia native, works as a commercial photographer, continually looking for new avenues to progress his vision through the lens. Utilizing digital and film mediums, Ben focuses on commercial portrait, product, and event photography."
   }
 ];
 
 const EVENTS_DATA: any[] = [];
 
+// Custom Left-Facing School Bus Profile Icon
+const CustomBusProfileIcon = ({ size = 24, className = "" }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+    className={className}
+  >
+    {/* Body */}
+    <path d="M1 12 L3 7 L21 7 C22.1 7 23 7.9 23 9 L23 18 L21 18 C21 19.66 19.66 21 18 21 C16.34 21 15 19.66 15 18 L10 18 C10 19.66 8.66 21 7 21 C5.34 21 4 19.66 4 18 L1 18 Z" />
+    {/* Windows */}
+    <path d="M4 8 L6 11 H9 V8 H4 Z" fill="white" fillOpacity="0.2"/>
+    <path d="M10 8 V11 H14 V8 H10 Z" fill="white" fillOpacity="0.2"/>
+    <path d="M15 8 V11 H19 V8 H15 Z" fill="white" fillOpacity="0.2"/>
+  </svg>
+);
+
 const Website: React.FC = () => {
   // Define section IDs in the order they appear on the page for correct scroll spying
-  const sectionIds = ['hero', 'mission', 'proposal', 'about', 'sponsors', 'events', 'footer'];
+  const sectionIds = ['hero', 'mission', 'proposal', 'sticker-bus', 'about', 'sponsors', 'events', 'footer'];
   const activeSection = useScrollSpy(sectionIds, -200);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [activePolicy, setActivePolicy] = useState<PolicyType | null>(null);
 
-  // Carousel State
+  // Carousel State for The Park
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  // Carousel State for Sticker Bus
+  const [busImageIndex, setBusImageIndex] = useState(0);
+  const [isBusPlaying, setIsBusPlaying] = useState(true);
+
+  // Main Carousel Effect
   useEffect(() => {
     let timer: ReturnType<typeof setInterval>;
     if (isPlaying) {
@@ -89,17 +127,36 @@ const Website: React.FC = () => {
       }, 5000);
     }
     return () => clearInterval(timer);
-  }, [isPlaying, currentImageIndex]); // Added currentImageIndex to reset timer on manual interaction
+  }, [isPlaying, currentImageIndex]);
 
+  // Bus Carousel Effect
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isBusPlaying) {
+      timer = setInterval(() => {
+        setBusImageIndex((prev) => (prev + 1) % BUS_IMAGES.length);
+      }, 5000);
+    }
+    return () => clearInterval(timer);
+  }, [isBusPlaying, busImageIndex]);
+
+  // Main Carousel Handlers
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
   };
-
   const handlePrev = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? CAROUSEL_IMAGES.length - 1 : prev - 1));
   };
-
   const togglePlay = () => setIsPlaying(!isPlaying);
+
+  // Bus Carousel Handlers
+  const handleBusNext = () => {
+    setBusImageIndex((prev) => (prev + 1) % BUS_IMAGES.length);
+  };
+  const handleBusPrev = () => {
+    setBusImageIndex((prev) => (prev === 0 ? BUS_IMAGES.length - 1 : prev - 1));
+  };
+  const toggleBusPlay = () => setIsBusPlaying(!isBusPlaying);
 
   const handleScrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -127,10 +184,17 @@ const Website: React.FC = () => {
       {/* Contact Modal */}
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
 
+      {/* Policy Modal */}
+      <PolicyModal 
+        isOpen={!!activePolicy} 
+        onClose={() => setActivePolicy(null)} 
+        type={activePolicy || 'privacy'} 
+      />
+
       <main className="relative z-10">
         
         {/* 1. HERO SECTION */}
-        <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-8 md:pt-28 md:pb-12 relative border-b border-black snap-start scroll-mt-0">
+        <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-8 md:pt-28 md:pb-12 relative border-b border-black scroll-mt-0">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
             
             {/* TEXT CONTENT (Right on Desktop, Top on Mobile) */}
@@ -182,7 +246,7 @@ const Website: React.FC = () => {
         </section>
 
         {/* 2. MISSION SECTION */}
-        <section id="mission" className="min-h-screen flex items-center px-6 py-16 md:py-24 bg-white border-b border-black snap-start scroll-mt-20">
+        <section id="mission" className="min-h-screen flex items-center px-6 py-16 md:py-24 bg-white border-b border-black scroll-mt-20">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             
             {/* Logo Placeholder - Updated to correct Logo */}
@@ -199,18 +263,18 @@ const Website: React.FC = () => {
             </h2>
             
             <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-10 md:mb-16">
-              Little Giant Society's main purpose is to cultivate & scale RVA's thriving arts community by providing essential support, resources, and training for emerging talent and established artists.
+              Little Giant Society's main purpose is to cultivate and scale Richmond's thriving arts community by providing essential support, resources, and training for emerging talent and established artists.
             </p>
 
             {/* 3 Rectangles */}
             <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-left w-full">
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
-                 <h3 className="text-xl font-bold mb-4 uppercase">Improve Access</h3>
-                 <p className="text-zinc-600">Create safe spaces that will benefit both artists and the city.</p>
+                 <h3 className="text-xl font-bold mb-4 uppercase">Open the Gates</h3>
+                 <p className="text-zinc-600">Created 3rd spaces that create a mutually beneficial creative community.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
-                 <h3 className="text-xl font-bold mb-4 uppercase">Maintain Growth</h3>
-                 <p className="text-zinc-600">Ensure RVA's street art scene has a place to gather and grow.</p>
+                 <h3 className="text-xl font-bold mb-4 uppercase">Cultivate the Soil</h3>
+                 <p className="text-zinc-600">Ensure Richmond's street art scene has a place to gather and grow.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
                  <h3 className="text-xl font-bold mb-4 uppercase">Give back</h3>
@@ -222,7 +286,7 @@ const Website: React.FC = () => {
         </section>
 
         {/* 3. PROPOSAL SECTION (The Art Park) */}
-        <section id="proposal" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-zinc-900 text-white relative overflow-hidden snap-start scroll-mt-20">
+        <section id="proposal" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-zinc-900 text-white relative overflow-hidden scroll-mt-20">
           
           <div className="max-w-7xl mx-auto w-full relative z-10">
             {/* Main Content Grid */}
@@ -336,7 +400,7 @@ const Website: React.FC = () => {
                     <span className="text-white font-bold">Our vision with this first major initiative is to</span> create a public arts park with the goal of it becoming a cultural landmark in the city. It will be free and open to any artist who live in or are visiting Richmond and we believe that this type of project is ~35 years overdue. The city government constantly presents itself as an "Arts Forward City" and it's time to get our leaders to put their money where their mouth is.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    This project ties in perfectly with Richmond's Public Arts Master Plan & can set forth a new, more future focused Richmond. We believe that Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
+                    This project ties in perfectly with Richmond's Public Arts Master Plan and can set forth a new, more future focused Richmond. We believe that Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
                   </p>
                   <p className="mb-8 break-inside-avoid">
                     A park with free, interactive walls will become a place where a father takes his son on the weekend to paint something together, a Girl Scout troop can make a design together and paint in order to earn a badge, a space where teens and young adults can hang out and paint without getting into any trouble, a place where local and international artists alike can spend a weekend mingling and painting. Ultimately, we strive to create an outdoor third Place where all are welcome, where the art is constantly changing and growing in a way that it becomes not only a training ground for future muralists but also a tourist destination that reflects Richmonders and our culture.
@@ -355,8 +419,148 @@ const Website: React.FC = () => {
           </div>
         </section>
 
+        {/* 3.5 STICKER BUS SECTION (Duplicated from The Park) */}
+        {/* Changed bg from zinc-500 to zinc-950 to be darker than art park (900) but lighter than team (black) */}
+        <section id="sticker-bus" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-zinc-950 text-white relative overflow-hidden scroll-mt-20 border-t border-zinc-900">
+          
+          <div className="max-w-7xl mx-auto w-full relative z-10">
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+               <div className="space-y-6 md:space-y-8">
+                  <div className="flex items-center gap-2 text-[#FACC15] font-bold uppercase tracking-widest drop-shadow-md">
+                    <CustomBusProfileIcon size={20} className="drop-shadow-md" />
+                    <span>The Sticker Bus</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">
+                    The Sticker Bus
+                  </h2>
+                  <ul className="space-y-4 text-zinc-100 text-lg md:text-xl leading-relaxed">
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">200+ Artists:</strong> Plastered head-to-tailpipe in work from Shepard Fairey, RxSkulls, and the global scene.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">Sealed Forever:</strong> Every slap is coated in automotive clear coat to survive the streets.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">Built to Drive:</strong> Fully mobile, AC-blasting, and ready to haul art to the people.</span>
+                    </li>
+                  </ul>
+               </div>
+
+               {/* Carousel */}
+               <div className="aspect-square w-full rounded-2xl overflow-hidden relative group">
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={busImageIndex}
+                      src={BUS_IMAGES[busImageIndex]} 
+                      alt={`Render view ${busImageIndex + 1}`} 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="absolute inset-0 w-full h-full object-cover" 
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Controls Overlay - Gradient for visibility */}
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
+
+                  {/* Bottom Controls Row */}
+                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-20">
+                    
+                    {/* Left: Play/Pause, Nav Buttons & Indicators */}
+                    <div className="flex items-center gap-6">
+                      
+                      {/* Controls Group */}
+                      <div className="flex items-center gap-3">
+                          <button 
+                            onClick={toggleBusPlay}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label={isBusPlaying ? "Pause Slideshow" : "Play Slideshow"}
+                          >
+                            {isBusPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                          </button>
+
+                          <button 
+                            onClick={handleBusPrev}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label="Previous Image"
+                          >
+                            <ChevronLeft size={22} />
+                          </button>
+
+                          <button 
+                            onClick={handleBusNext}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label="Next Image"
+                          >
+                            <ChevronRight size={22} />
+                          </button>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="w-px h-6 bg-white/20"></div>
+
+                      {/* Indicators */}
+                      <div className="flex gap-2" role="tablist" aria-label="Slideshow indicators">
+                        {BUS_IMAGES.map((_, idx) => (
+                          <button
+                            key={idx} 
+                            onClick={() => setBusImageIndex(idx)}
+                            className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${idx === busImageIndex ? 'w-8 bg-white/40' : 'w-1.5 bg-white/40 hover:bg-white/60'}`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                            aria-selected={idx === busImageIndex}
+                            role="tab"
+                          >
+                             {/* Animated Progress Bar (Only visible when active) */}
+                             {idx === busImageIndex && (
+                               <motion.div 
+                                 initial={{ width: "0%" }}
+                                 animate={{ width: isBusPlaying ? "100%" : "0%" }}
+                                 transition={{ duration: 5, ease: "linear" }}
+                                 className="absolute top-0 left-0 h-full bg-white"
+                               />
+                             )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right: Label */}
+                    <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
+                       <span className="font-mono text-xs uppercase tracking-wider text-white">
+                         {BUS_LABELS[busImageIndex]}
+                       </span>
+                    </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Extended Detailed Copy */}
+            <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
+               <div className="text-base md:text-lg text-zinc-100 leading-relaxed md:columns-2 gap-16">
+                  <p className="mb-8 break-inside-avoid">
+                    <span className="text-white font-bold">Art takes many forms, but few are as dynamic [or mobile] as Richmond’s new "Sticker Bus."</span> Masterminded by artist Ian Hess and the non-profit Little Giants Society, this project transforms a surplus school bus purchased at auction into a rolling, community-powered installation.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    The concept was born from the "Hello My Name Is" exhibition, a showcase where over 200 artists [including street art icons like Shepard Fairey and RxSkulls] transformed standard shipping labels into miniature masterpieces which were sold to raise funds for the Little Giants Society's Art Park Prohect.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    Taking that creative energy to the streets, the bus is now being covered entirely in stickers donated by artists and community members from around the globe. The design acts as a curated collage, anchored by a custom skull piece on the hood by Richmond artist Noah Scalin.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    Once the sticker application is complete, the bus will be sealed in a professional automotive finish to preserve the work against the elements. However, the Sticker Bus is designed to be used, not just viewed. With a reliable engine and new tires, the vehicle has become a Richmond icon serving as a mobile pop-up for First Fridays that will one day provide transportation to the proposed Manchester Art Park.
+                  </p>
+               </div>
+            </div>
+          </div>
+        </section>
+
         {/* 4. ABOUT / TEAM SECTION */}
-        <section id="about" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-black text-white border-b border-zinc-800 snap-start scroll-mt-20 overflow-hidden relative">
+        <section id="about" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-black text-white border-b border-zinc-800 scroll-mt-20 overflow-hidden relative">
           
           {/* Background Grid Pattern */}
           <div className="absolute inset-0 opacity-20 pointer-events-none" 
@@ -404,7 +608,7 @@ const Website: React.FC = () => {
         </section>
 
         {/* 5. SPONSORS SECTION */}
-        <section id="sponsors" className="min-h-screen flex flex-col items-center justify-center px-6 py-16 md:py-24 bg-white snap-start scroll-mt-20">
+        <section id="sponsors" className="min-h-screen flex flex-col items-center justify-center px-6 py-16 md:py-24 bg-white scroll-mt-20">
           <div className="max-w-7xl mx-auto w-full space-y-16 md:space-y-32">
             
             {/* PARTNERS BLOCK (Top - 5 Logos) */}
@@ -465,7 +669,7 @@ const Website: React.FC = () => {
         </section>
 
         {/* 6. EVENTS SECTION */}
-        <section id="events" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-[#EFF4F9] border-b border-black snap-start scroll-mt-20">
+        <section id="events" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-[#D6E8FC] border-b border-black scroll-mt-20">
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-end justify-between mb-10 md:mb-16 border-b-2 border-black/10 pb-8">
                <div>
@@ -515,7 +719,7 @@ const Website: React.FC = () => {
         </section>
 
         {/* FOOTER */}
-        <footer id="footer" className="bg-[#050810] py-12 md:py-20 px-6 snap-start text-white">
+        <footer id="footer" className="bg-[#050810] py-12 md:py-20 px-6 text-white">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
             <div className="col-span-2">
                <div className="flex items-center gap-3 mb-6">
@@ -538,7 +742,7 @@ const Website: React.FC = () => {
                   <span className="font-bold uppercase tracking-widest text-white">Little Giant Society</span>
                </div>
                <p className="max-w-xs text-zinc-400 mb-8">
-                 A 501(c)(3) non-profit organization dedicated to public art and urban renewal.
+                 A 501(c)3 Non-Profit creating Richmond’s 1st Public Art Park & dedicated to essential creative support.
                </p>
                <div className="flex gap-4">
                  <label htmlFor="footer-email" className="sr-only">Email Address</label>
@@ -573,12 +777,13 @@ const Website: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-sm text-zinc-500">
-             <span>© 2024 Little Giant Society. All rights reserved.</span>
-             <div className="flex gap-6 mt-4 md:mt-0">
-               <a href="#" className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Privacy Policy</a>
-               <a href="#" className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Terms of Service</a>
+          <div className="max-w-7xl mx-auto mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col items-center text-sm text-zinc-500 gap-4">
+             <div className="flex gap-6">
+               <button onClick={() => setActivePolicy('privacy')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Privacy Policy</button>
+               <button onClick={() => setActivePolicy('terms')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Terms of Service</button>
+               <button onClick={() => setActivePolicy('cookie')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Cookie Policy</button>
              </div>
+             <span>© 2024 Little Giant Society. All rights reserved.</span>
           </div>
         </footer>
 

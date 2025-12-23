@@ -24,11 +24,12 @@ interface StylizedMapContentProps {
 const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, onPinClick }) => {
   const pins = [
     { id: 'hero', x: 150, y: 220, label: 'THE FAN' },
-    { id: 'mission', x: 400, y: 500, label: 'BELLE ISLE' },
+    { id: 'mission', x: 400, y: 540, label: 'BELLE ISLE' },
     { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
-    { id: 'about', x: 520, y: 230, label: 'SUPPLY' },
-    { id: 'events', x: 560, y: 200, label: 'GALLERY 5' },
-    { id: 'sponsors', x: 820, y: 250, label: 'DOWNTOWN' },
+    { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
+    { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
+    { id: 'events', x: 560, y: 225, label: 'GALLERY 5' },
+    { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' }, // Moved left 12px (808 -> 796)
   ];
 
   return (
@@ -51,14 +52,31 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
       />
 
       {/* BELLE ISLE */}
-      <ellipse cx="400" cy="500" rx="70" ry="35" fill="#D4E6CB" opacity="0.9"/>
+      <ellipse cx="400" cy="540" rx="70" ry="35" fill="#D4E6CB" opacity="0.9"/>
 
       {/* MAJOR ARTERIES */}
-      <path d="M0,250 L1200,180" stroke="#E0E0E0" strokeWidth="10"/>
+      {/* Broad Street */}
+      <path d="M0,257 L1200,187" stroke="#E0E0E0" strokeWidth="10"/>
       <path d="M850,0 L800,900" stroke="#E0E0E0" strokeWidth="12"/>
 
-      {/* MANCHESTER BRIDGE */}
-      <path d="M620,200 L580,800" stroke="#333333" strokeWidth="16"/>
+      {/* MANCHESTER BRIDGE (Dark Line) - Extended from top to bottom */}
+      <path d="M633,0 L573,900" stroke="#333333" strokeWidth="16"/>
+
+      {/* FALL LINE TRAIL (Green Line) - Reversed path direction to flip text */}
+      <path 
+        id="fallLinePath"
+        d="M350,0 L350,160 L720,160 Q680,350 640,540 L620,900" 
+        stroke="#36D36E" 
+        strokeWidth="18" 
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <text fontSize="13" fontWeight="900" fill="#064E3B" dy="5" letterSpacing="3px" style={{ pointerEvents: 'none', textTransform: 'uppercase' }}>
+        <textPath href="#fallLinePath" startOffset="0" spacing="auto">
+          Fall Line Trail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fall Line Trail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fall Line Trail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fall Line Trail &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fall Line Trail
+        </textPath>
+      </text>
 
       {/* FLOOD WALL */}
       <path d="M450,650 C550,680 650,670 750,620" stroke="#777777" strokeWidth="8" strokeDasharray="15 8"/>
@@ -120,16 +138,56 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
               </>
             )}
 
-            {/* Pin Body - Consistent Sizes */}
-            <circle 
-              r={pinRadius} 
-              fill={displayColor} 
-              className="transition-all duration-300"
-            />
-            
-            {/* Center Dot (White) */}
-            {isActive && (
-              <circle r={8} fill="white" className="transition-all duration-300" />
+            {/* Render Custom Icons or Standard Pins */}
+            {pin.id === 'sticker-bus' ? (
+              <g transform="translate(-16, -16)">
+                <svg 
+                  width="32" 
+                  height="32" 
+                  viewBox="0 0 24 24" 
+                  fill={isActive ? '#FACC15' : '#333'} 
+                  stroke={isActive ? '#27272a' : 'none'}
+                  strokeWidth={isActive ? 1.5 : 0}
+                  className="transition-all duration-300"
+                >
+                   {/* Custom Left-Facing Bus Profile */}
+                   <path d="M1 12 L3 7 L21 7 C22.1 7 23 7.9 23 9 L23 18 L21 18 C21 19.66 19.66 21 18 21 C16.34 21 15 19.66 15 18 L10 18 C10 19.66 8.66 21 7 21 C5.34 21 4 19.66 4 18 L1 18 Z" />
+                   <path d="M4 8 L6 11 H9 V8 H4 Z" fill="white" fillOpacity="0.2"/>
+                   <path d="M10 8 V11 H14 V8 H10 Z" fill="white" fillOpacity="0.2"/>
+                   <path d="M15 8 V11 H19 V8 H15 Z" fill="white" fillOpacity="0.2"/>
+                </svg>
+              </g>
+            ) : pin.id === 'sponsors' ? (
+              <g transform="translate(0, 5) scale(0.7)"> 
+                 {/* Government Building Icon - Replaces Dot */}
+                 {/* Centered visually roughly around 0,0 */}
+                 <path 
+                    d="M-20,20 L20,20 L20,10 L14,10 L14,-5 L22,-5 L0,-25 L-22,-5 L-14,-5 L-14,10 L-20,10 Z" 
+                    fill={displayColor}
+                    className="transition-all duration-300"
+                 />
+                 <path 
+                    d="M-8,10 L-8,-5 M0,10 L0,-5 M8,10 L8,-5" 
+                    stroke="white"
+                    strokeWidth="3" 
+                    strokeOpacity={isActive ? 0.9 : 0.4}
+                    strokeLinecap="round"
+                 />
+              </g>
+            ) : (
+              <>
+                {/* Pin Body - Consistent Sizes */}
+                <circle 
+                  r={pinRadius} 
+                  fill={displayColor} 
+                  className="transition-all duration-300"
+                />
+                
+                {/* Center Dot (White) */}
+                {isActive && (
+                  <circle r={8} fill="white" className="transition-all duration-300" />
+                )}
+              </>
             )}
 
             {/* Label Container */}

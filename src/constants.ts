@@ -7,11 +7,12 @@ export interface MapViewConfig {
 // Map dimensions are 1200x900 based on the provided SVG
 export const MAP_SECTIONS: Record<string, MapViewConfig> = {
   hero: { x: 150, y: 220, scale: 1.4 },       // THE FAN (Home)
-  mission: { x: 400, y: 500, scale: 1.4 },    // BELLE ISLE (Mission)
+  mission: { x: 400, y: 540, scale: 1.4 },    // BELLE ISLE (Mission) - Moved Down
   proposal: { x: 590, y: 660, scale: 1.4 },   // THE PARK (The Proposal)
-  about: { x: 520, y: 230, scale: 1.4 },      // SUPPLY (Team)
-  sponsors: { x: 820, y: 250, scale: 1.4 },   // DOWNTOWN (Partners/Sponsors)
-  events: { x: 560, y: 200, scale: 1.4 },     // GALLERY 5 (Events)
+  'sticker-bus': { x: 390, y: 241, scale: 1.4 }, // THE BUS (Sticker Bus) - Moved down to 241
+  about: { x: 490, y: 237, scale: 1.4 },      // SUPPLY (Team)
+  sponsors: { x: 796, y: 250, scale: 1.4 },   // DOWNTOWN (Partners/Sponsors) - Moved left to 796
+  events: { x: 560, y: 225, scale: 1.4 },     // GALLERY 5 (Events) - Moved down to 225
   footer: { x: 600, y: 450, scale: 0.8 },     // Center wide view
 };
 
@@ -19,6 +20,7 @@ export const NAV_LINKS = [
   { id: 'hero', label: 'Home' },
   { id: 'mission', label: 'Mission' },
   { id: 'proposal', label: 'The Park' },
+  { id: 'sticker-bus', label: 'Sticker Bus' },
   { id: 'about', label: 'The Team' },
   { id: 'sponsors', label: 'Partners' },
   { id: 'events', label: 'Events' },
