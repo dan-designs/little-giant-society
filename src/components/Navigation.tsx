@@ -34,11 +34,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
         <a 
           href="#hero" 
           onClick={handleScrollTo('hero')}
-          className="flex items-center gap-2 group relative z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded-lg p-1"
+          className="flex items-center gap-2 group md:relative z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded-lg p-1"
           aria-label="Little Giant Society Home"
         >
           {/* Logo Container */}
-          <div className="relative w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden rounded-full">
+          <div className="relative w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden rounded-full shrink-0">
             {/* Logo Image */}
             <img 
               src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
@@ -57,7 +57,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
             </div>
           </div>
 
-          <span className="text-lg font-bold tracking-tight uppercase">Little Giant Society</span>
+          <span className="font-bold tracking-tight uppercase absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-max md:static md:transform-none md:w-auto text-[22px] md:text-lg">
+            Little Giant Society
+          </span>
         </a>
 
         {/* Centered Desktop Nav */}

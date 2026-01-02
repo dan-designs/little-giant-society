@@ -31,17 +31,20 @@ const MobileNavControls: React.FC<MobileNavControlsProps> = ({ activeSection, se
     }
   };
 
+  // Shared button style classes
+  // Surface: #EFF4F9
+  // Border: #C9CDD1 (16% darker)
+  const buttonBaseClass = "w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all focus:outline-none focus:ring-4 focus:ring-[#105CB3]/50";
+  const activeClass = "bg-[#EFF4F9] border-[#C9CDD1] text-black hover:bg-white shadow-md active:translate-y-1 active:shadow-sm";
+  const disabledClass = "bg-zinc-100 border-zinc-200 text-zinc-300 shadow-none cursor-not-allowed";
+
   // Only render on screens smaller than lg
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 lg:hidden">
       <button
         onClick={handlePrev}
         disabled={isFirst}
-        className={`w-14 h-14 rounded-full flex items-center justify-center border-2 border-black transition-all active:translate-y-1 active:shadow-none focus:outline-none focus:ring-4 focus:ring-[#105CB3]/50 ${
-          isFirst 
-            ? 'bg-zinc-100 text-zinc-300 border-zinc-200 shadow-none cursor-not-allowed' 
-            : 'bg-white text-black hover:bg-zinc-50 shadow-[0px_4px_20px_rgba(0,0,0,0.2)]'
-        }`}
+        className={`${buttonBaseClass} ${isFirst ? disabledClass : activeClass}`}
         aria-label="Scroll to Previous Section"
       >
         <ChevronUp size={28} strokeWidth={3} />
@@ -50,11 +53,7 @@ const MobileNavControls: React.FC<MobileNavControlsProps> = ({ activeSection, se
       <button
         onClick={handleNext}
         disabled={isLast}
-        className={`w-14 h-14 rounded-full flex items-center justify-center border-2 border-black transition-all active:translate-y-1 active:shadow-none focus:outline-none focus:ring-4 focus:ring-[#105CB3]/50 ${
-          isLast 
-            ? 'bg-zinc-100 text-zinc-300 border-zinc-200 shadow-none cursor-not-allowed' 
-            : 'bg-[#105CB3] text-white hover:bg-[#0c4a91] shadow-[0px_4px_20px_rgba(0,0,0,0.25)]'
-        }`}
+        className={`${buttonBaseClass} ${isLast ? disabledClass : activeClass}`}
         aria-label="Scroll to Next Section"
       >
         <ChevronDown size={28} strokeWidth={3} />

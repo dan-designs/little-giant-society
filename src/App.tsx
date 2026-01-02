@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MapPin, Calendar, Users, Handshake, ChevronLeft, ChevronRight, Play, Pause, Quote } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, Users, Handshake, ChevronLeft, ChevronRight, Play, Pause, Quote, DoorOpen, Sprout, HandHeart } from 'lucide-react';
 import Navigation from './components/Navigation';
 import MiniMap from './components/MiniMap';
 import MobileNavControls from './components/MobileNavControls';
@@ -8,6 +8,7 @@ import DonateModal from './components/DonateModal';
 import EventsModal from './components/EventsModal';
 import ContactModal from './components/ContactModal';
 import PolicyModal, { PolicyType } from './components/PolicyModal';
+import SubscribeModal, { SubscribeStatus } from './components/SubscribeModal';
 import Model3D from './components/Model3D';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { MAP_SECTIONS } from './constants';
@@ -19,6 +20,13 @@ const CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/plan-2_rclxza.avif"
 ];
 
+const PARK_LABELS = [
+  "ParkRender",
+  "Loc. 1",
+  "Plan",
+  "Loc. 2"
+];
+
 const BUS_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766450517/sticker-bus_difkyk.jpg",
   "https://res.cloudinary.com/datad8tms/image/upload/v1766451468/TY_s8zbue.png",
@@ -26,9 +34,9 @@ const BUS_IMAGES = [
 ];
 
 const BUS_LABELS = [
-  "Sticker Bus @ Supply",
-  "Sticker Bus @ First Friday 1",
-  "Sticker Bus at First Friday 2"
+  "SB Supply",
+  "SB FF 1",
+  "SB FF 2"
 ];
 
 const PARTNER_LOGOS = [
@@ -105,9 +113,13 @@ const Website: React.FC = () => {
   // Define section IDs in the order they appear on the page for correct scroll spying
   const sectionIds = ['hero', 'mission', 'proposal', 'sticker-bus', 'about', 'sponsors', 'events', 'footer'];
   const activeSection = useScrollSpy(sectionIds, -200);
+  
+  // Modals
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
+  const [subscribeStatus, setSubscribeStatus] = useState<SubscribeStatus>('loading');
   const [activePolicy, setActivePolicy] = useState<PolicyType | null>(null);
 
   // Carousel State for The Park
@@ -165,6 +177,34 @@ const Website: React.FC = () => {
     }
   };
 
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    setSubscribeStatus('loading');
+    setIsSubscribeModalOpen(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xykzjjyz", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setSubscribeStatus('success');
+        form.reset();
+      } else {
+        setSubscribeStatus('error');
+      }
+    } catch (error) {
+      setSubscribeStatus('error');
+    }
+  };
+
   return (
     <div className="min-h-screen relative selection:bg-[#105CB3] selection:text-white">
       <Navigation activeSection={activeSection} onDonateClick={() => setIsDonateModalOpen(true)} />
@@ -184,6 +224,13 @@ const Website: React.FC = () => {
       {/* Contact Modal */}
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
 
+      {/* Subscribe Modal */}
+      <SubscribeModal 
+        isOpen={isSubscribeModalOpen} 
+        onClose={() => setIsSubscribeModalOpen(false)} 
+        status={subscribeStatus} 
+      />
+
       {/* Policy Modal */}
       <PolicyModal 
         isOpen={!!activePolicy} 
@@ -194,7 +241,7 @@ const Website: React.FC = () => {
       <main className="relative z-10">
         
         {/* 1. HERO SECTION */}
-        <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-8 md:pt-28 md:pb-12 relative border-b border-black scroll-mt-0">
+        <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-8 md:pt-28 md:pb-12 relative scroll-mt-0">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
             
             {/* TEXT CONTENT (Right on Desktop, Top on Mobile) */}
@@ -269,15 +316,24 @@ const Website: React.FC = () => {
             {/* 3 Rectangles */}
             <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-left w-full">
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
-                 <h3 className="text-xl font-bold mb-4 uppercase">Open the Gates</h3>
+                 <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
+                   <DoorOpen size={24} className="shrink-0" />
+                   <span>Open the Gates</span>
+                 </h3>
                  <p className="text-zinc-600">Created 3rd spaces that create a mutually beneficial creative community.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
-                 <h3 className="text-xl font-bold mb-4 uppercase">Cultivate the Soil</h3>
+                 <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
+                   <Sprout size={24} className="shrink-0" />
+                   <span>Cultivate the Soil</span>
+                 </h3>
                  <p className="text-zinc-600">Ensure Richmond's street art scene has a place to gather and grow.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
-                 <h3 className="text-xl font-bold mb-4 uppercase">Give back</h3>
+                 <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
+                   <HandHeart size={24} className="shrink-0" />
+                   <span>Give back</span>
+                 </h3>
                  <p className="text-zinc-600">Provide training, lessons, and after-school programs to usher in the next generation.</p>
               </div>
             </div>
@@ -386,153 +442,7 @@ const Website: React.FC = () => {
                     {/* Right: Label */}
                     <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
                        <span className="font-mono text-xs uppercase tracking-wider text-white">
-                         Reference 0{currentImageIndex + 1}
-                       </span>
-                    </div>
-                  </div>
-               </div>
-            </div>
-
-            {/* Extended Detailed Copy */}
-            <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
-               <div className="text-base md:text-lg text-zinc-300 leading-relaxed md:columns-2 gap-16">
-                  <p className="mb-8 break-inside-avoid">
-                    <span className="text-white font-bold">Our vision with this first major initiative is to</span> create a public arts park with the goal of it becoming a cultural landmark in the city. It will be free and open to any artist who live in or are visiting Richmond and we believe that this type of project is ~35 years overdue. The city government constantly presents itself as an "Arts Forward City" and it's time to get our leaders to put their money where their mouth is.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    This project ties in perfectly with Richmond's Public Arts Master Plan and can set forth a new, more future focused Richmond. We believe that Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    A park with free, interactive walls will become a place where a father takes his son on the weekend to paint something together, a Girl Scout troop can make a design together and paint in order to earn a badge, a space where teens and young adults can hang out and paint without getting into any trouble, a place where local and international artists alike can spend a weekend mingling and painting. Ultimately, we strive to create an outdoor third Place where all are welcome, where the art is constantly changing and growing in a way that it becomes not only a training ground for future muralists but also a tourist destination that reflects Richmonders and our culture.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    International and domestic trends have proven that cities where a Public Arts Park has been constructed see general reductions in crime, vandalism, destruction of local businesses and homes, while also creating a space for new artists to emerge, careers to be made, and promote a public image that welcomes new blood and talent to these cities.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    According to Mural Arts of Philadelphia's comprehensive study (muralarts.org), Richmond is #4 in the nation for Public Arts. Other cities such as New York, Los Angeles, Portland, and more all recognize this. With this recognition from other cities we humbly ask "why can't WE realize this?!" We feel that this represents a categorical failure of our city to capitalize on its reputation because currently, artists don't see Richmond as a place to prosper, but more like a stepping stone and for decades we have seen exodus of talent and it's time to do something about this.
-                  </p>
-                  <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#105CB3] pl-6 italic">
-                    This is why we are proposing a Public Arts Park (to be officially named by the public) and installed underneath the Manchester Bridge on the south side of the river, adjacent to the Flood Wall. Working alongside architect Katie Cortez, we have formally proposed this project to every single relevant department in the entire city and have gained support by the sitting Mayor, Danny Avula. NOW IS THE TIME!
-                  </p>
-               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3.5 STICKER BUS SECTION (Duplicated from The Park) */}
-        {/* Changed bg from zinc-500 to zinc-950 to be darker than art park (900) but lighter than team (black) */}
-        <section id="sticker-bus" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-zinc-950 text-white relative overflow-hidden scroll-mt-20 border-t border-zinc-900">
-          
-          <div className="max-w-7xl mx-auto w-full relative z-10">
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-               <div className="space-y-6 md:space-y-8">
-                  <div className="flex items-center gap-2 text-[#FACC15] font-bold uppercase tracking-widest drop-shadow-md">
-                    <CustomBusProfileIcon size={20} className="drop-shadow-md" />
-                    <span>The Sticker Bus</span>
-                  </div>
-                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">
-                    The Sticker Bus
-                  </h2>
-                  <ul className="space-y-4 text-zinc-100 text-lg md:text-xl leading-relaxed">
-                    <li className="flex items-start gap-3">
-                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
-                        <span><strong className="text-white">200+ Artists:</strong> Plastered head-to-tailpipe in work from Shepard Fairey, RxSkulls, and the global scene.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
-                        <span><strong className="text-white">Sealed Forever:</strong> Every slap is coated in automotive clear coat to survive the streets.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
-                        <span><strong className="text-white">Built to Drive:</strong> Fully mobile, AC-blasting, and ready to haul art to the people.</span>
-                    </li>
-                  </ul>
-               </div>
-
-               {/* Carousel */}
-               <div className="aspect-square w-full rounded-2xl overflow-hidden relative group">
-                  <AnimatePresence mode="wait">
-                    <motion.img 
-                      key={busImageIndex}
-                      src={BUS_IMAGES[busImageIndex]} 
-                      alt={`Render view ${busImageIndex + 1}`} 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="absolute inset-0 w-full h-full object-cover" 
-                    />
-                  </AnimatePresence>
-                  
-                  {/* Controls Overlay - Gradient for visibility */}
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
-
-                  {/* Bottom Controls Row */}
-                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-20">
-                    
-                    {/* Left: Play/Pause, Nav Buttons & Indicators */}
-                    <div className="flex items-center gap-6">
-                      
-                      {/* Controls Group */}
-                      <div className="flex items-center gap-3">
-                          <button 
-                            onClick={toggleBusPlay}
-                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
-                            aria-label={isBusPlaying ? "Pause Slideshow" : "Play Slideshow"}
-                          >
-                            {isBusPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
-                          </button>
-
-                          <button 
-                            onClick={handleBusPrev}
-                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
-                            aria-label="Previous Image"
-                          >
-                            <ChevronLeft size={22} />
-                          </button>
-
-                          <button 
-                            onClick={handleBusNext}
-                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
-                            aria-label="Next Image"
-                          >
-                            <ChevronRight size={22} />
-                          </button>
-                      </div>
-
-                      {/* Divider */}
-                      <div className="w-px h-6 bg-white/20"></div>
-
-                      {/* Indicators */}
-                      <div className="flex gap-2" role="tablist" aria-label="Slideshow indicators">
-                        {BUS_IMAGES.map((_, idx) => (
-                          <button
-                            key={idx} 
-                            onClick={() => setBusImageIndex(idx)}
-                            className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${idx === busImageIndex ? 'w-8 bg-white/40' : 'w-1.5 bg-white/40 hover:bg-white/60'}`}
-                            aria-label={`Go to slide ${idx + 1}`}
-                            aria-selected={idx === busImageIndex}
-                            role="tab"
-                          >
-                             {/* Animated Progress Bar (Only visible when active) */}
-                             {idx === busImageIndex && (
-                               <motion.div 
-                                 initial={{ width: "0%" }}
-                                 animate={{ width: isBusPlaying ? "100%" : "0%" }}
-                                 transition={{ duration: 5, ease: "linear" }}
-                                 className="absolute top-0 left-0 h-full bg-white"
-                               />
-                             )}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right: Label */}
-                    <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
-                       <span className="font-mono text-xs uppercase tracking-wider text-white">
-                         {BUS_LABELS[busImageIndex]}
+                         {PARK_LABELS[currentImageIndex]}
                        </span>
                     </div>
                   </div>
@@ -653,7 +563,7 @@ const Website: React.FC = () => {
             </div>
 
             {/* Quote Block */}
-            <div className="p-8 md:p-12 bg-black text-white rounded-3xl text-center relative overflow-hidden">
+            <div className="hidden p-8 md:p-12 bg-black text-white rounded-3xl text-center relative overflow-hidden">
                <div className="relative z-10">
                  <Quote size={48} className="mx-auto mb-6 text-zinc-600" />
                  <h3 className="text-2xl md:text-4xl font-bold mb-8 max-w-3xl mx-auto leading-tight">
@@ -673,7 +583,7 @@ const Website: React.FC = () => {
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-end justify-between mb-10 md:mb-16 border-b-2 border-black/10 pb-8">
                <div>
-                 <div className="flex items-center gap-2 text-zinc-600 font-bold uppercase tracking-widest mb-4">
+                 <div className="flex items-center gap-2 text-zinc-900 font-bold uppercase tracking-widest mb-4">
                     <Calendar size={20} />
                     <span>Events</span>
                   </div>
@@ -744,16 +654,21 @@ const Website: React.FC = () => {
                <p className="max-w-xs text-zinc-400 mb-8">
                  A 501(c)3 Non-Profit creating Richmond’s 1st Public Art Park & dedicated to essential creative support.
                </p>
-               <div className="flex gap-4">
+               <form 
+                  onSubmit={handleSubscribe}
+                  className="flex gap-4"
+               >
                  <label htmlFor="footer-email" className="sr-only">Email Address</label>
                  <input 
                     id="footer-email"
                     type="email" 
+                    name="email"
+                    required
                     placeholder="Enter your email" 
                     className="bg-transparent border-b border-white/40 py-2 focus:outline-none w-full max-w-xs placeholder-zinc-500 text-white focus:border-white transition-colors" 
                   />
-                 <button className="font-bold uppercase tracking-wider text-sm hover:underline text-white focus:outline-none focus:underline">Subscribe</button>
-               </div>
+                 <button type="submit" className="font-bold uppercase tracking-wider text-sm hover:underline text-white focus:outline-none focus:underline">Subscribe</button>
+               </form>
             </div>
             <div>
               <h4 className="font-bold uppercase tracking-widest mb-6 text-white">Sitemap</h4>
