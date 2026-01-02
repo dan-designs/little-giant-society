@@ -451,6 +451,152 @@ const Website: React.FC = () => {
 
             {/* Extended Detailed Copy */}
             <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
+               <div className="text-base md:text-lg text-zinc-300 leading-relaxed md:columns-2 gap-16">
+                  <p className="mb-8 break-inside-avoid">
+                    <span className="text-white font-bold">Our vision with this first major initiative is to</span> create a public arts park with the goal of it becoming a cultural landmark in the city. It will be free and open to any artist who live in or are visiting Richmond and we believe that this type of project is ~35 years overdue. The city government constantly presents itself as an "Arts Forward City" and it's time to get our leaders to put their money where their mouth is.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    This project ties in perfectly with Richmond's Public Arts Master Plan and can set forth a new, more future focused Richmond. We believe that Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    A park with free, interactive walls will become a place where a father takes his son on the weekend to paint something together, a Girl Scout troop can make a design together and paint in order to earn a badge, a space where teens and young adults can hang out and paint without getting into any trouble, a place where local and international artists alike can spend a weekend mingling and painting. Ultimately, we strive to create an outdoor third Place where all are welcome, where the art is constantly changing and growing in a way that it becomes not only a training ground for future muralists but also a tourist destination that reflects Richmonders and our culture.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    International and domestic trends have proven that cities where a Public Arts Park has been constructed see general reductions in crime, vandalism, destruction of local businesses and homes, while also creating a space for new artists to emerge, careers to be made, and promote a public image that welcomes new blood and talent to these cities.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    According to Mural Arts of Philadelphia's comprehensive study (muralarts.org), Richmond is #4 in the nation for Public Arts. Other cities such as New York, Los Angeles, Portland, and more all recognize this. With this recognition from other cities we humbly ask "why can't WE realize this?!" We feel that this represents a categorical failure of our city to capitalize on its reputation because currently, artists don't see Richmond as a place to prosper, but more like a stepping stone and for decades we have seen exodus of talent and it's time to do something about this.
+                  </p>
+                  <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#105CB3] pl-6 italic">
+                    This is why we are proposing a Public Arts Park (to be officially named by the public) and installed underneath the Manchester Bridge on the south side of the river, adjacent to the Flood Wall. Working alongside architect Katie Cortez, we have formally proposed this project to every single relevant department in the entire city and have gained support by the sitting Mayor, Danny Avula. NOW IS THE TIME!
+                  </p>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3.5 STICKER BUS SECTION (Duplicated from The Park) */}
+        {/* Changed bg from zinc-500 to zinc-950 to be darker than art park (900) but lighter than team (black) */}
+        <section id="sticker-bus" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-zinc-950 text-white relative overflow-hidden scroll-mt-20 border-t border-zinc-900">
+          
+          <div className="max-w-7xl mx-auto w-full relative z-10">
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+               <div className="space-y-6 md:space-y-8">
+                  <div className="flex items-center gap-2 text-[#FACC15] font-bold uppercase tracking-widest drop-shadow-md">
+                    <CustomBusProfileIcon size={20} className="drop-shadow-md" />
+                    <span>The Sticker Bus</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">
+                    The Sticker Bus
+                  </h2>
+                  <ul className="space-y-4 text-zinc-100 text-lg md:text-xl leading-relaxed">
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">200+ Artists:</strong> Plastered head-to-tailpipe in work from Shepard Fairey, RxSkulls, and the global scene.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">Sealed Forever:</strong> Every slap is coated in automotive clear coat to survive the streets.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="text-[#FACC15] mt-2.5 w-2 h-2 rounded-full bg-[#FACC15] shrink-0 drop-shadow-sm"></span>
+                        <span><strong className="text-white">Built to Drive:</strong> Fully mobile, AC-blasting, and ready to haul art to the people.</span>
+                    </li>
+                  </ul>
+               </div>
+
+               {/* Carousel */}
+               <div className="aspect-square w-full rounded-2xl overflow-hidden relative group">
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={busImageIndex}
+                      src={BUS_IMAGES[busImageIndex]} 
+                      alt={`Render view ${busImageIndex + 1}`} 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="absolute inset-0 w-full h-full object-cover" 
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Controls Overlay - Gradient for visibility */}
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
+
+                  {/* Bottom Controls Row */}
+                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-20">
+                    
+                    {/* Left: Play/Pause, Nav Buttons & Indicators */}
+                    <div className="flex items-center gap-6">
+                      
+                      {/* Controls Group */}
+                      <div className="flex items-center gap-3">
+                          <button 
+                            onClick={toggleBusPlay}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label={isBusPlaying ? "Pause Slideshow" : "Play Slideshow"}
+                          >
+                            {isBusPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                          </button>
+
+                          <button 
+                            onClick={handleBusPrev}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label="Previous Image"
+                          >
+                            <ChevronLeft size={22} />
+                          </button>
+
+                          <button 
+                            onClick={handleBusNext}
+                            className="text-white hover:text-[#FACC15] transition-colors focus:outline-none focus:text-[#FACC15] focus-visible:ring-2"
+                            aria-label="Next Image"
+                          >
+                            <ChevronRight size={22} />
+                          </button>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="w-px h-6 bg-white/20"></div>
+
+                      {/* Indicators */}
+                      <div className="flex gap-2" role="tablist" aria-label="Slideshow indicators">
+                        {BUS_IMAGES.map((_, idx) => (
+                          <button
+                            key={idx} 
+                            onClick={() => setBusImageIndex(idx)}
+                            className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${idx === busImageIndex ? 'w-8 bg-white/40' : 'w-1.5 bg-white/40 hover:bg-white/60'}`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                            aria-selected={idx === busImageIndex}
+                            role="tab"
+                          >
+                             {/* Animated Progress Bar (Only visible when active) */}
+                             {idx === busImageIndex && (
+                               <motion.div 
+                                 initial={{ width: "0%" }}
+                                 animate={{ width: isBusPlaying ? "100%" : "0%" }}
+                                 transition={{ duration: 5, ease: "linear" }}
+                                 className="absolute top-0 left-0 h-full bg-white"
+                               />
+                             )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right: Label */}
+                    <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
+                       <span className="font-mono text-xs uppercase tracking-wider text-white">
+                         {BUS_LABELS[busImageIndex]}
+                       </span>
+                    </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Extended Detailed Copy */}
+            <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
                <div className="text-base md:text-lg text-zinc-100 leading-relaxed md:columns-2 gap-16">
                   <p className="mb-8 break-inside-avoid">
                     <span className="text-white font-bold">Art takes many forms, but few are as dynamic [or mobile] as Richmond’s new "Sticker Bus."</span> Masterminded by artist Ian Hess and the non-profit Little Giants Society, this project transforms a surplus school bus purchased at auction into a rolling, community-powered installation.
@@ -561,20 +707,7 @@ const Website: React.FC = () => {
                    ))}
                 </div>
             </div>
-
-            {/* Quote Block */}
-            <div className="hidden p-8 md:p-12 bg-black text-white rounded-3xl text-center relative overflow-hidden">
-               <div className="relative z-10">
-                 <Quote size={48} className="mx-auto mb-6 text-zinc-600" />
-                 <h3 className="text-2xl md:text-4xl font-bold mb-8 max-w-3xl mx-auto leading-tight">
-                   "Little Giant Society isn't just building a park; they are building the future identity of Richmond."
-                 </h3>
-                 <cite className="not-italic text-zinc-400 font-medium">
-                   — Sarah Jenkins, City Planner
-                 </cite>
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div>
-            </div>
+            
           </div>
         </section>
 
@@ -583,7 +716,7 @@ const Website: React.FC = () => {
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-end justify-between mb-10 md:mb-16 border-b-2 border-black/10 pb-8">
                <div>
-                 <div className="flex items-center gap-2 text-zinc-900 font-bold uppercase tracking-widest mb-4">
+                 <div className="flex items-center gap-2 text-zinc-600 font-bold uppercase tracking-widest mb-4">
                     <Calendar size={20} />
                     <span>Events</span>
                   </div>
