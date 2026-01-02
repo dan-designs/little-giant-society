@@ -24,7 +24,7 @@ interface StylizedMapContentProps {
 const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, onPinClick }) => {
   const pins = [
     { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' }, // Changed from THE FAN
-    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' }, // Moved further up to 90
+    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' }, // Moved above Team (490,237) and above Fall Line
     { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
     { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
     { id: 'about', x: 490, y: 237, label: 'SUPPLY' },

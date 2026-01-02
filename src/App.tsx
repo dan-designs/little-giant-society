@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MapPin, Calendar, Users, Hammer, Quote, Box, Handshake, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, Users, Handshake, ChevronLeft, ChevronRight, Play, Pause, Quote } from 'lucide-react';
 import Navigation from './components/Navigation';
 import MiniMap from './components/MiniMap';
 import MobileNavControls from './components/MobileNavControls';
