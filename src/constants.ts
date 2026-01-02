@@ -7,7 +7,7 @@ export interface MapViewConfig {
 // Map dimensions are 1200x900 based on the provided SVG
 export const MAP_SECTIONS: Record<string, MapViewConfig> = {
   hero: { x: 150, y: 220, scale: 1.4 },       // THE FAN (Home)
-  mission: { x: 400, y: 540, scale: 1.4 },    // BELLE ISLE (Mission) - Moved Down
+  mission: { x: 490, y: 90, scale: 1.4 },     // THE ARTS DISTRICT (Mission) - Moved Up to 90
   proposal: { x: 590, y: 660, scale: 1.4 },   // THE PARK (The Proposal)
   'sticker-bus': { x: 390, y: 241, scale: 1.4 }, // THE BUS (Sticker Bus) - Moved down to 241
   about: { x: 490, y: 237, scale: 1.4 },      // SUPPLY (Team)

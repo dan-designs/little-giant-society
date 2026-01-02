@@ -23,13 +23,13 @@ interface StylizedMapContentProps {
 
 const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, onPinClick }) => {
   const pins = [
-    { id: 'hero', x: 150, y: 220, label: 'THE FAN' },
-    { id: 'mission', x: 400, y: 540, label: 'BELLE ISLE' },
+    { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' }, // Changed from THE FAN
+    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' }, // Moved further up to 90
     { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
     { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
     { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
     { id: 'events', x: 560, y: 225, label: 'GALLERY 5' },
-    { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' }, // Moved left 12px (808 -> 796)
+    { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' },
   ];
 
   return (
@@ -45,14 +45,25 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
 
       {/* THE JAMES RIVER */}
       <path 
+        id="jamesRiverPath"
         d="M-50,300 C200,350 300,550 500,550 C700,550 900,450 1250,500" 
         stroke="#A0C4D3" 
         strokeWidth="140" 
         strokeLinecap="round"
       />
+      {/* James River Label */}
+      <text fontSize="12" fontWeight="bold" fill="#789FAD" letterSpacing="4px" style={{ pointerEvents: 'none', textTransform: 'uppercase', opacity: 0.9, fontFamily: "'Space Grotesk', sans-serif" }}>
+        <textPath href="#jamesRiverPath" startOffset="50%" textAnchor="middle">
+          James River
+        </textPath>
+      </text>
 
       {/* BELLE ISLE */}
       <ellipse cx="400" cy="540" rx="70" ry="35" fill="#D4E6CB" opacity="0.9"/>
+      {/* Static Belle Isle Label */}
+      <g transform="translate(400, 540)" style={{ pointerEvents: 'none' }}>
+        <text y="4" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#3A5A35" letterSpacing="0.5px" fontFamily="'Space Grotesk', sans-serif" opacity="0.9">BELLE ISLE</text>
+      </g>
 
       {/* MAJOR ARTERIES */}
       {/* Broad Street */}
