@@ -30,6 +30,7 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
     { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
     { id: 'events', x: 560, y: 225, label: 'GALLERY 5' },
     { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' },
+    { id: 'news', x: 920, y: 380, label: 'LITTLE GIANT NEWS' },
   ];
 
   return (
@@ -98,7 +99,11 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
         
         // Colors
         const textActiveColor = '#105CB3'; // Keep text blue
-        const pinActiveColor = '#388AE8'; // New pin color
+        
+        // Custom active color logic for News and Partners as requested
+        const isDarkerPin = pin.id === 'news' || pin.id === 'sponsors';
+        const pinActiveColor = isDarkerPin ? '#105CB3' : '#388AE8';
+        
         const pulseColor = '#C77517';
         
         // Unified display color logic
@@ -171,7 +176,6 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
             ) : pin.id === 'sponsors' ? (
               <g transform="translate(0, 5) scale(0.7)"> 
                  {/* Government Building Icon - Replaces Dot */}
-                 {/* Centered visually roughly around 0,0 */}
                  <path 
                     d="M-20,20 L20,20 L20,10 L14,10 L14,-5 L22,-5 L0,-25 L-22,-5 L-14,-5 L-14,10 L-20,10 Z" 
                     fill={displayColor}
@@ -184,6 +188,14 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
                     strokeOpacity={isActive ? 0.9 : 0.4}
                     strokeLinecap="round"
                  />
+              </g>
+            ) : pin.id === 'news' ? (
+              <g transform="translate(-12, -12)">
+                 <foreignObject width="24" height="24">
+                   <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                     <span className="material-symbols-outlined" style={{ fontSize: '24px', color: displayColor }}>newspaper</span>
+                   </div>
+                 </foreignObject>
               </g>
             ) : (
               <>
