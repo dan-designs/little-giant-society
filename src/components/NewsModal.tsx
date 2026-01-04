@@ -46,20 +46,20 @@ const NewsModal: React.FC<NewsModalProps> = ({ isOpen, onClose, newsItem }) => {
 
           {/* Centered Wrapper */}
           <div 
-            className="fixed inset-0 z-[101] flex items-center justify-center px-[48px] py-[48px]"
+            className="fixed inset-0 z-[101] flex items-center justify-center px-4 py-4 md:px-[48px] md:py-[48px]"
             onClick={onClose}
             role="dialog"
             aria-modal="true"
             aria-labelledby="news-modal-title"
           >
-            {/* Modal Card - Full screen minus 48px margins */}
+            {/* Modal Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white w-full h-full rounded-2xl shadow-2xl overflow-hidden flex flex-col relative border border-white/20"
+              className="bg-white w-full md:max-w-5xl h-full rounded-2xl shadow-2xl overflow-hidden flex flex-col relative border border-white/20"
             >
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-black/5 bg-[#EFF4F9] shrink-0">

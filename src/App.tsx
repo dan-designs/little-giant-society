@@ -22,7 +22,7 @@ const CAROUSEL_IMAGES = [
 ];
 
 const PARK_LABELS = [
-  "ParkRender",
+  "Render",
   "Loc. 1",
   "Plan",
   "Loc. 2"
