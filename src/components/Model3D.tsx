@@ -114,30 +114,25 @@ const Model3D: React.FC<Model3DProps> = ({ src, alt }) => {
   }, []);
 
   return (
-    <>
-      <div aria-hidden="true" style={{ width: '100%', height: '100%' }}>
-        {/* @ts-ignore */}
-        <model-viewer
-          ref={viewerRef}
-          src={src}
-          alt={alt}
-          auto-rotate="false"
-          camera-controls
-          disable-zoom
-          interaction-prompt="none"
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            backgroundColor: 'transparent',
-            '--poster-color': 'transparent' 
-          } as React.CSSProperties}
-          camera-orbit="45deg 75deg auto"
-        >
-        {/* @ts-ignore */}
-        </model-viewer>
-      </div>
-      <span className="sr-only">{alt}</span>
-    </>
+    // @ts-ignore
+    <model-viewer
+      ref={viewerRef}
+      src={src}
+      alt={alt}
+      auto-rotate="false"
+      camera-controls
+      disable-zoom
+      interaction-prompt="none"
+      style={{ 
+        width: '100%', 
+        height: '100%', 
+        backgroundColor: 'transparent',
+        '--poster-color': 'transparent' 
+      } as React.CSSProperties}
+      camera-orbit="45deg 75deg auto"
+    >
+    {/* @ts-ignore */}
+    </model-viewer>
   );
 };
 
