@@ -965,7 +965,7 @@ const Website: React.FC = () => {
                                  initial={{ width: "0%" }}
                                  animate={{ width: isBusPlaying ? "100%" : "0%" }}
                                  transition={{ duration: 5, ease: "linear" }}
-                                 className="absolute top-0 left-0 h-full bg-white"
+                                 className="absolute top-0 left-0 h-full bg-[#FACC15]"
                                />
                              )}
                           </button>
@@ -980,24 +980,6 @@ const Website: React.FC = () => {
                        </span>
                     </div>
                   </div>
-               </div>
-            </div>
-
-            {/* Extended Detailed Copy */}
-            <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
-               <div className="text-base md:text-lg text-zinc-100 leading-relaxed md:columns-2 gap-16">
-                  <p className="mb-8 break-inside-avoid">
-                    <span className="text-white font-bold">Art takes many forms, but few are as dynamic [or mobile] as Richmond’s new "Sticker Bus."</span> Masterminded by artist Ian Hess and the non-profit Little Giants Society, this project transforms a surplus school bus purchased at auction into a rolling, community-powered installation.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    The concept was born from the "Hello My Name Is" exhibition, a showcase where over 200 artists [including street art icons like Shepard Fairey and RxSkulls] transformed standard shipping labels into miniature masterpieces which were sold to raise funds for the Little Giants Society's Art Park project.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    Taking that creative energy to the streets, the bus is now being covered entirely in stickers donated by artists and community members from around the globe. The design acts as a curated collage, anchored by a custom skull piece on the hood by Richmond artist Noah Scalin.
-                  </p>
-                  <p className="mb-8 break-inside-avoid">
-                    Once the sticker application is complete, the bus will be sealed in a professional automotive finish to preserve the work against the elements. However, the Sticker Bus is designed to be used, not just viewed. With a reliable engine and new tires, the vehicle has become a Richmond icon serving as a mobile pop-up for First Fridays that will one day provide transportation to and from the Manchester Art Park.
-                  </p>
                </div>
             </div>
           </div>
@@ -1226,8 +1208,10 @@ const Website: React.FC = () => {
           </div>
         </section>
 
-        {/* FOOTER */}
-        <footer id="footer" className="bg-[#050810] py-12 md:py-20 px-6 text-white">
+      </main>
+
+      {/* FOOTER - Moved outside main landmark */}
+      <footer id="footer" aria-label="Site Footer" className="bg-[#050810] py-12 md:py-20 px-6 text-white relative z-10">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
             <div className="col-span-2">
                <div className="flex items-center gap-3 mb-6">
@@ -1312,7 +1296,6 @@ const Website: React.FC = () => {
           </div>
         </footer>
 
-      </main>
     </div>
   );
 };

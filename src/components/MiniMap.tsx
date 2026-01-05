@@ -296,130 +296,132 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {isVisible ? (
-        <motion.div 
-          key="minimap"
-          initial={{ opacity: 0, scale: 0.5, originY: 1, originX: 1 }}
-          animate={{ opacity: 1, scale: 0.75 }} // Note: This animation scale is independent of our internal resizeScale
-          exit={{ opacity: 0, scale: 0.5 }}
-          className="fixed bottom-8 right-8 z-50 hidden lg:block origin-bottom-right"
-        >
-          {/* Outer Device Frame - Dynamic Size */}
-          <div 
-            style={{ width: currentWidth, height: currentHeight }}
-            className="bg-white rounded-xl shadow-2xl border-4 border-black overflow-hidden relative group transition-all duration-75 ease-out"
+    <aside aria-label="Mini Map">
+      <AnimatePresence mode="wait">
+        {isVisible ? (
+          <motion.div 
+            key="minimap"
+            initial={{ opacity: 0, scale: 0.5, originY: 1, originX: 1 }}
+            animate={{ opacity: 1, scale: 0.75 }} // Note: This animation scale is independent of our internal resizeScale
+            exit={{ opacity: 0, scale: 0.5 }}
+            className="fixed bottom-8 right-8 z-50 hidden lg:block origin-bottom-right"
           >
-            
-            {/* Map Container */}
-            <motion.div
-              key={dragKey}
-              className="absolute origin-top-left cursor-grab active:cursor-grabbing"
-              drag
-              dragConstraints={{
-                left: minX,
-                right: maxX,
-                top: minY,
-                bottom: maxY
-              }}
-              dragElastic={0.05}
-              animate={{
-                x: targetX,
-                y: targetY,
-                scale: currentScale,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 45,
-                damping: 25,
-                mass: 1.2
-              }}
-            >
-              <StylizedMapContent activeSection={activeSection} onPinClick={onSectionSelect} />
-            </motion.div>
-
-            {/* Overlay UI */}
-            <div className="absolute inset-0 pointer-events-none border-[6px] border-black/5 rounded-lg z-20"></div>
-            
-            {/* RESIZE HANDLE - Top Left */}
+            {/* Outer Device Frame - Dynamic Size */}
             <div 
-               onMouseDown={handleResizeStart}
-               className="absolute top-0 left-0 z-40 cursor-nwse-resize w-12 h-12 group"
-               title="Drag to resize map"
+              style={{ width: currentWidth, height: currentHeight }}
+              className="bg-white rounded-xl shadow-2xl border-4 border-black overflow-hidden relative group transition-all duration-75 ease-out"
             >
-                {/* Visual Triangle */}
-                <div className="absolute top-0 left-0 w-0 h-0 border-t-[48px] border-r-[48px] border-t-white border-r-transparent drop-shadow-sm transition-colors group-hover:border-t-zinc-100"></div>
-                {/* Icon */}
-                <div className="absolute top-1.5 left-1.5 text-zinc-400 group-hover:text-black transition-colors">
-                    <Maximize2 size={16} className="-rotate-90" />
-                </div>
-            </div>
-            
-            {/* CONTROLS STACK - Bottom Left */}
-            <div className="absolute bottom-4 left-4 z-30 flex flex-col gap-2">
-                 {/* Snap Button */}
-                <button 
-                    onClick={handleSnapToLocation}
-                    className="w-11 h-11 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
-                    title="Snap to Current Location"
-                >
-                    <LocateFixed size={20} />
-                </button>
-                {/* Zoom In */}
-                <button 
-                    onClick={handleZoomIn}
-                    className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
-                    title="Zoom In"
-                >
-                    <Plus size={20} />
-                </button>
-                {/* Zoom Out */}
-                <button 
-                    onClick={handleZoomOut}
-                    className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
-                    title="Zoom Out"
-                >
-                    <Minus size={20} />
-                </button>
-            </div>
+              
+              {/* Map Container */}
+              <motion.div
+                key={dragKey}
+                className="absolute origin-top-left cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={{
+                  left: minX,
+                  right: maxX,
+                  top: minY,
+                  bottom: maxY
+                }}
+                dragElastic={0.05}
+                animate={{
+                  x: targetX,
+                  y: targetY,
+                  scale: currentScale,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 45,
+                  damping: 25,
+                  mass: 1.2
+                }}
+              >
+                <StylizedMapContent activeSection={activeSection} onPinClick={onSectionSelect} />
+              </motion.div>
 
-            {/* Hint - Top Right */}
-            <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-white/90 backdrop-blur px-4 py-2 rounded-md text-sm font-black uppercase tracking-widest text-zinc-600 border border-black/10 shadow-sm">
-                Drag to pan
-            </div>
+              {/* Overlay UI */}
+              <div className="absolute inset-0 pointer-events-none border-[6px] border-black/5 rounded-lg z-20"></div>
+              
+              {/* RESIZE HANDLE - Top Left */}
+              <div 
+                 onMouseDown={handleResizeStart}
+                 className="absolute top-0 left-0 z-40 cursor-nwse-resize w-12 h-12 group"
+                 title="Drag to resize map"
+              >
+                  {/* Visual Triangle */}
+                  <div className="absolute top-0 left-0 w-0 h-0 border-t-[48px] border-r-[48px] border-t-white border-r-transparent drop-shadow-sm transition-colors group-hover:border-t-zinc-100"></div>
+                  {/* Icon */}
+                  <div className="absolute top-1.5 left-1.5 text-zinc-400 group-hover:text-black transition-colors">
+                      <Maximize2 size={16} className="-rotate-90" />
+                  </div>
+              </div>
+              
+              {/* CONTROLS STACK - Bottom Left */}
+              <div className="absolute bottom-4 left-4 z-30 flex flex-col gap-2">
+                   {/* Snap Button */}
+                  <button 
+                      onClick={handleSnapToLocation}
+                      className="w-11 h-11 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
+                      title="Snap to Current Location"
+                  >
+                      <LocateFixed size={20} />
+                  </button>
+                  {/* Zoom In */}
+                  <button 
+                      onClick={handleZoomIn}
+                      className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
+                      title="Zoom In"
+                  >
+                      <Plus size={20} />
+                  </button>
+                  {/* Zoom Out */}
+                  <button 
+                      onClick={handleZoomOut}
+                      className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
+                      title="Zoom Out"
+                  >
+                      <Minus size={20} />
+                  </button>
+              </div>
 
-            {/* Collapse Button - Bottom Right */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsVisible(false);
-              }}
-              className="absolute bottom-4 right-4 z-30 w-11 h-11 bg-white text-zinc-600 border-2 border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 hover:text-black hover:border-zinc-300 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
-              aria-label="Hide Mini Map"
-            >
-              <X size={20} />
-            </button>
+              {/* Hint - Top Right */}
+              <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-white/90 backdrop-blur px-4 py-2 rounded-md text-sm font-black uppercase tracking-widest text-zinc-600 border border-black/10 shadow-sm">
+                  Drag to pan
+              </div>
 
-            <div className="sr-only" aria-live="polite">
-               Current Location: {locationLabel}
+              {/* Collapse Button - Bottom Right */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsVisible(false);
+                }}
+                className="absolute bottom-4 right-4 z-30 w-11 h-11 bg-white text-zinc-600 border-2 border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 hover:text-black hover:border-zinc-300 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
+                aria-label="Hide Mini Map"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="sr-only" aria-live="polite">
+                 Current Location: {locationLabel}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      ) : (
-        <motion.button
-          key="show-map-btn"
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          onClick={() => setIsVisible(true)}
-          className="fixed bottom-8 right-8 z-50 hidden lg:flex bg-[#105CB3] text-white px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-[#0c4a91] transition-colors items-center justify-center gap-3 shadow-2xl border-4 border-white/10 active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-300"
-          aria-label="Show Mini Map"
-        >
-          <MapIcon size={20} />
-          <span>Show Map</span>
-        </motion.button>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        ) : (
+          <motion.button
+            key="show-map-btn"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={() => setIsVisible(true)}
+            className="fixed bottom-8 right-8 z-50 hidden lg:flex bg-[#105CB3] text-white px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-[#0c4a91] transition-colors items-center justify-center gap-3 shadow-2xl border-4 border-white/10 active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            aria-label="Show Mini Map"
+          >
+            <MapIcon size={20} />
+            <span>Show Map</span>
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </aside>
   );
 };
 

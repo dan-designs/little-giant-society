@@ -108,7 +108,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6">
+        <nav aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6">
           {NAV_LINKS.map((link) => {
              const isActive = activeSection === link.id;
              return (
@@ -130,7 +130,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
           >
             Donate Now <Heart size={18} className="fill-current" />
           </button>
-        </div>
+        </nav>
       )}
     </header>
   );

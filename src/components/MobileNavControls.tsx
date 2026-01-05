@@ -40,7 +40,7 @@ const MobileNavControls: React.FC<MobileNavControlsProps> = ({ activeSection, se
 
   // Only render on screens smaller than lg
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 lg:hidden">
+    <nav aria-label="Mobile Page Controls" className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 lg:hidden">
       <button
         onClick={handlePrev}
         disabled={isFirst}
@@ -58,7 +58,7 @@ const MobileNavControls: React.FC<MobileNavControlsProps> = ({ activeSection, se
       >
         <ChevronDown size={28} strokeWidth={3} />
       </button>
-    </div>
+    </nav>
   );
 };
 
