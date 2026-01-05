@@ -1244,8 +1244,10 @@ const Website: React.FC = () => {
               <ul className="space-y-4 text-zinc-400">
                 <li><a href="#hero" className="hover:text-white transition-colors focus:text-white">Home</a></li>
                 <li><a href="#mission" className="hover:text-white transition-colors focus:text-white">Mission</a></li>
+                <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white">The Park</a></li>
+                <li><a href="#sticker-bus" className="hover:text-white transition-colors focus:text-white">Sticker Bus</a></li>
                 <li><a href="#about" className="hover:text-white transition-colors focus:text-white">Team</a></li>
-                <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white">The Proposal</a></li>
+                <li><a href="#sponsors" className="hover:text-white transition-colors focus:text-white">Partners</a></li>
                 <li><a href="#news" className="hover:text-white transition-colors focus:text-white">News</a></li>
                 <li><a href="#events" className="hover:text-white transition-colors focus:text-white">Events</a></li>
               </ul>
