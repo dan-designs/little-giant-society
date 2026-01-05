@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
 
   return (
     <header id="main-header" className="fixed top-0 left-0 w-full z-40 bg-[#EFF4F9]/90 backdrop-blur-md border-b border-black/10 transition-all">
-      <nav className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative" aria-label="Main Navigation">
+      <nav id="desktop-nav" className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative" aria-label="Main Navigation">
         {/* Logo - Linked to Hero */}
         <a 
           href="#hero" 
@@ -108,7 +108,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6">
+        <nav id="mobile-nav" aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6">
           {NAV_LINKS.map((link) => {
              const isActive = activeSection === link.id;
              return (

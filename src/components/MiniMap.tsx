@@ -296,7 +296,7 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
   };
 
   return (
-    <aside aria-label="Mini Map">
+    <aside id="mini-map" aria-label="Mini Map">
       <AnimatePresence mode="wait">
         {isVisible ? (
           <motion.div 
