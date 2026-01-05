@@ -681,21 +681,21 @@ const Website: React.FC = () => {
                    <DoorOpen size={24} className="shrink-0" />
                    <span>Open the Gates</span>
                  </h3>
-                 <p className="text-zinc-600">Created 3rd spaces that create a mutually beneficial creative community.</p>
+                 <p className="text-zinc-600">Building inclusive Third Spaces that empower the creative community to collaborate and connect.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
                  <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
                    <Sprout size={24} className="shrink-0" />
                    <span>Cultivate the Soil</span>
                  </h3>
-                 <p className="text-zinc-600">Ensure Richmond's street art scene has a place to gather and grow.</p>
+                 <p className="text-zinc-600">Securing a dedicated sanctuary for Richmond’s street art scene to gather and evolve.</p>
               </div>
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
                  <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
                    <HandHeart size={24} className="shrink-0" />
                    <span>Give back</span>
                  </h3>
-                 <p className="text-zinc-600">Provide training, lessons, and after-school programs to usher in the next generation.</p>
+                 <p className="text-zinc-600">Providing mentorship and programs that equip local youth to lead the next generation of art.</p>
               </div>
             </div>
 
@@ -717,7 +717,7 @@ const Website: React.FC = () => {
                     The Art Park<br/>Project
                   </h2>
                   <p className="text-lg md:text-xl text-zinc-300 leading-relaxed">
-                    With support from the city government, we are well on our way to creating a free Public Arts Park under the Manchester Bridge, This hub will reduce crime, boost tourism, and retain talent by reinforcing Richmond's status as a premier Arts City.
+                    With support from the city government, we are well on our way to creating a free Public Arts Park under the Manchester Bridge. This hub will reduce crime, boost tourism, and retain talent by reinforcing Richmond's status as a premier Arts City.
                   </p>
                </div>
 
@@ -814,22 +814,22 @@ const Website: React.FC = () => {
             <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
                <div className="text-base md:text-lg text-zinc-300 leading-relaxed md:columns-2 gap-16">
                   <p className="mb-8 break-inside-avoid">
-                    <span className="text-white font-bold">Our vision with this first major initiative is to</span> create a public arts park with the goal of it becoming a cultural landmark in the city. It will be free and open to any artist who lives in or is visiting Richmond (we believe that this type of project is ~35 years overdue.) The city government constantly presents itself as an "Arts Forward City" and it's time to get our leaders to put their money where their mouth is.
+                    <span className="text-white font-bold">Our vision with this first major initiative is to</span> create a public arts park with the goal of it becoming a cultural landmark in the city. It will be free and open to any artist who lives in or is visiting Richmond (we believe that this type of project is ~35 years overdue). The city government constantly presents itself as an "Arts Forward City," and it's time to get our leaders to put their money where their mouth is.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    This project ties in perfectly with Richmond's Public Arts Master Plan and can set forth a new, more future focused Richmond. We believe that Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
+                    This project ties in perfectly with Richmond's Public Arts Master Plan and can set forth a new, more future-focused Richmond. Richmond is in a position to become a defining Arts city on the East Coast. When people think of the Arts in the United States, we want them to think of Richmond.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    A park with free, interactive walls will become a place where a father takes his son on the weekend to paint something together, a Girl Scout troop can make a design together and paint in order to earn a badge, a space where teens and young adults can hang out and paint without getting into any trouble, a place where local and international artists alike can spend a weekend mingling and painting. Ultimately, we strive to create an outdoor third Place where all are welcome, where the art is constantly changing and growing in a way that it becomes not only a training ground for future muralists but also a tourist destination that reflects Richmonders and our culture.
+                    A park with free, interactive walls will become a place where a father takes his son on the weekend to paint something together, a Girl Scout troop can make a design together and paint to earn a badge, a space where teens and young adults can hang out and paint without getting into any trouble, a place where local and international artists alike can spend a weekend mingling and painting. Ultimately, we strive to create an outdoor third Place where all are welcome, where the art is constantly changing and growing in a way that it becomes not only a training ground for future muralists but also a tourist destination that reflects Richmonders and our culture.
                   </p>
                   <p className="mb-8 break-inside-avoid">
                     International and domestic trends have proven that cities where a Public Arts Park has been constructed see general reductions in crime, vandalism, destruction of local businesses and homes, while also creating a space for new artists to emerge, careers to be made, and it promotes a public image that welcomes new blood and talent to these cities.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    According to Mural Arts of Philadelphia's comprehensive study (muralarts.org), Richmond is #4 in the nation for Public Arts. Other cities such as New York, Los Angeles, Portland, and more all recognize this. With this recognition from other cities we humbly ask "why can't our city officials realize this?!" We feel that this represents a categorical failure of our city to capitalize on its reputation because currently, artists don't see Richmond as a place to prosper, but more like a stepping stone and for decades we have seen exodus of talent and it's time to do something about this.
+                    According to Mural Arts of Philadelphia's comprehensive study (muralarts.org), Richmond is #4 in the nation for Public Arts. Other cities such as New York, Los Angeles, Portland, and more all recognize this. With this recognition from different towns, we humbly ask, "Why can't our city officials realize this?!" We feel that this represents a categorical failure of our city to capitalize on its reputation because currently, artists don't see Richmond as a place to prosper, but more like a stepping stone, and for decades, we have seen an exodus of talent, and it's time to do something about this.
                   </p>
                   <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#105CB3] pl-6 italic">
-                    This is why we are proposing a Public Arts Park (to be officially named by the public) and installed underneath the Manchester Bridge on the south side of the river, adjacent to the Flood Wall. Working alongside architect Katie Cortez, we have formally proposed this project to every single relevant department in the entire city and have gained support by the sitting Mayor, Danny Avula. NOW IS THE TIME!
+                    This is why we are proposing a Public Arts Park (to be officially named by the public) and installed underneath the Manchester Bridge on the south side of the river, adjacent to the Flood Wall. Working alongside architect Katie Cortez, we have formally proposed this project to every single relevant department in the entire city and have gained support from the sitting Mayor, Danny Avula. NOW IS THE TIME!
                   </p>
                </div>
             </div>
@@ -969,7 +969,7 @@ const Website: React.FC = () => {
                     Taking that creative energy to the streets, the bus is now being covered entirely in stickers donated by artists and community members from around the globe. The design acts as a curated collage, anchored by a custom skull piece on the hood by Richmond artist Noah Scalin.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    Once the sticker application is complete, the bus will be sealed in a professional automotive finish to preserve the work against the elements. However, the Sticker Bus is designed to be used, not just viewed. With a reliable engine and new tires, the vehicle has become a Richmond icon serving as a mobile pop-up for First Fridays that will one day provide transportation to the proposed Manchester Art Park.
+                    Once the sticker application is complete, the bus will be sealed in a professional automotive finish to preserve the work against the elements. However, the Sticker Bus is designed to be used, not just viewed. With a reliable engine and new tires, the vehicle has become a Richmond icon serving as a mobile pop-up for First Fridays that will one day provide transportation to and from the Manchester Art Park.
                   </p>
                </div>
             </div>
@@ -1014,7 +1014,7 @@ const Website: React.FC = () => {
                       <h3 className="text-2xl font-bold uppercase tracking-tight">{member.name}</h3>
                       {/* Applied specific blue color #77B3F7 to the role */}
                       <p className="text-[#77B3F7] font-medium text-sm uppercase tracking-wider mb-4">{member.role}</p>
-                      <p className="text-zinc-400 text-[1rem] leading-relaxed text-left">
+                      <p className="text-zinc-300 text-[1rem] leading-relaxed text-left px-2">
                         {member.blurb}
                       </p>
                    </div>
@@ -1039,9 +1039,9 @@ const Website: React.FC = () => {
                    </h2>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
+                <div className="flex flex-wrap justify-center gap-4 md:gap-8">
                    {PARTNER_LOGOS.map((logo, i) => (
-                     <div key={i} className="group aspect-[4/3] bg-[#105CB3] flex items-center justify-center transition-all duration-500 hover:bg-blue-950 hover:shadow-lg border border-transparent hover:border-black/5 rounded-lg p-1">
+                     <div key={i} className="group w-[calc(50%-0.5rem)] md:w-[calc(20%-1.6rem)] aspect-[4/3] bg-[#105CB3] flex items-center justify-center transition-all duration-500 hover:bg-blue-950 hover:shadow-lg border border-transparent hover:border-black/5 rounded-lg p-1">
                         <img src={logo} alt={`Partner Logo ${i + 1}`} className="w-full h-full object-contain transition-all duration-500" />
                      </div>
                    ))}
