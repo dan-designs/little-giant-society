@@ -85,7 +85,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
               {/* Content */}
               <div className="p-6 md:p-8 overflow-y-auto">
-                 <form onSubmit={handleSubmit} className="space-y-6">
+                 <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact Form">
                     <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-zinc-500">Name</label>

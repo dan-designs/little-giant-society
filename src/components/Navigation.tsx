@@ -28,8 +28,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-40 bg-[#EFF4F9]/90 backdrop-blur-md border-b border-black/10 transition-all" aria-label="Main Navigation">
-      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative">
+    <header id="main-header" className="fixed top-0 left-0 w-full z-40 bg-[#EFF4F9]/90 backdrop-blur-md border-b border-black/10 transition-all">
+      <nav className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative" aria-label="Main Navigation">
         {/* Logo - Linked to Hero */}
         <a 
           href="#hero" 
@@ -104,7 +104,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile Menu */}
       {isOpen && (
@@ -132,7 +132,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
           </button>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 

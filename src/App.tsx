@@ -154,7 +154,7 @@ The city of Richmond said that it is considering the project.
 
 He said he’s also shopped his idea to the Department of Public Utilities and the Public Arts Commission.
 
-For Hess, the lack of support is frustrating but it isn’t new in the arts community. Richmond mixed media artist, Todd Hale, earned a bachelor’s degree in painting and printmaking from Virginia Commonwealth University in 1996.
+For Hess, the lack of support is frustrating but it isn’t new in the arts community. Richmond mixed media artist, Todd Hale, earned a bachelors degree in painting and printmaking from Virginia Commonwealth University in 1996.
 
 After graduation, Hale moved into an apartment above what was formerly Artspace, a gallery instrumental in starting the First Friday Art Walk in Richmond. Hale chose the location specifically because of its connection to Richmond’s growing art scene.
 
@@ -599,7 +599,7 @@ const Website: React.FC = () => {
         newsItem={selectedNews}
       />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         
         {/* 1. HERO SECTION */}
         <section id="hero" className="min-h-screen flex flex-col justify-center px-6 pt-24 pb-8 md:pt-28 md:pb-12 relative scroll-mt-0">
@@ -709,7 +709,8 @@ const Website: React.FC = () => {
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                <div className="space-y-6 md:space-y-8">
-                  <div className="flex items-center gap-2 text-[#105CB3] font-bold uppercase tracking-widest">
+                  {/* Updated color for accessibility: #105CB3 -> #2994FF */}
+                  <div className="flex items-center gap-2 text-[#2994FF] font-bold uppercase tracking-widest">
                     <MapPin size={20} />
                     <span>The Park</span>
                   </div>
@@ -1103,7 +1104,8 @@ const Website: React.FC = () => {
                     <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#105CB3] mb-4">
                         <span className="bg-white/50 px-2 py-1 rounded">{item.date}</span>
                         <span className="text-zinc-400">•</span>
-                        <span className="text-zinc-500">{item.author}</span>
+                        {/* Updated color for accessibility: text-zinc-500 -> text-zinc-800 */}
+                        <span className="text-zinc-800">{item.author}</span>
                     </div>
 
                     <h3 className="text-2xl font-bold mb-4 text-black group-hover:text-[#105CB3] transition-colors leading-tight">
@@ -1152,7 +1154,7 @@ const Website: React.FC = () => {
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-end justify-between mb-10 md:mb-16 border-b-2 border-black/10 pb-8">
                <div>
-                 <div className="flex items-center gap-2 text-zinc-600 font-bold uppercase tracking-widest mb-4">
+                 <div className="flex items-center gap-2 text-zinc-700 font-bold uppercase tracking-widest mb-4">
                     <Calendar size={20} />
                     <span>Events</span>
                   </div>
@@ -1190,8 +1192,9 @@ const Website: React.FC = () => {
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center py-24 border-2 border-dashed border-black/10 rounded-2xl bg-white/50">
-                    <Calendar size={48} className="text-zinc-300 mb-4" />
-                    <p className="text-xl font-bold text-zinc-400 uppercase tracking-widest">No Upcoming Events</p>
+                    <Calendar size={48} className="text-zinc-700 mb-4" />
+                    {/* Updated color for accessibility: text-zinc-400 -> text-zinc-700 */}
+                    <p className="text-xl font-bold text-zinc-700 uppercase tracking-widest">No Upcoming Events</p>
                 </div>
             )}
           </div>
@@ -1220,28 +1223,33 @@ const Website: React.FC = () => {
                   </div>
                   <span className="font-bold uppercase tracking-widest text-white">Little Giant Society</span>
                </div>
-               <p className="max-w-xs text-zinc-400 mb-8">
+               {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
+               <p className="max-w-xs text-zinc-300 mb-8">
                  A 501(c)3 Non-Profit creating Richmond’s 1st Public Art Park & dedicated to essential creative support.
                </p>
                <form 
                   onSubmit={handleSubscribe}
                   className="flex gap-4"
+                  aria-label="Newsletter Subscription"
                >
                  <label htmlFor="footer-email" className="sr-only">Email Address</label>
+                 {/* Updated placeholder color: placeholder-zinc-500 -> placeholder-zinc-400 */}
                  <input 
                     id="footer-email"
                     type="email" 
                     name="email"
                     required
                     placeholder="Enter your email" 
-                    className="bg-transparent border-b border-white/40 py-2 focus:outline-none w-full max-w-xs placeholder-zinc-500 text-white focus:border-white transition-colors" 
+                    className="bg-transparent border-b border-white/40 py-2 focus:outline-none w-full max-w-xs placeholder-zinc-400 text-white focus:border-white transition-colors" 
                   />
                  <button type="submit" className="font-bold uppercase tracking-wider text-sm hover:underline text-white focus:outline-none focus:underline">Subscribe</button>
                </form>
             </div>
             <div>
-              <h4 className="font-bold uppercase tracking-widest mb-6 text-white">Sitemap</h4>
-              <ul className="space-y-4 text-zinc-400">
+              {/* Corrected heading hierarchy: h4 -> h3 */}
+              <h3 className="font-bold uppercase tracking-widest mb-6 text-white">Sitemap</h3>
+              {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
+              <ul className="space-y-4 text-zinc-300">
                 <li><a href="#hero" className="hover:text-white transition-colors focus:text-white">Home</a></li>
                 <li><a href="#mission" className="hover:text-white transition-colors focus:text-white">Mission</a></li>
                 <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white">The Park</a></li>
@@ -1253,8 +1261,10 @@ const Website: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold uppercase tracking-widest mb-6 text-white">Connect</h4>
-              <ul className="space-y-4 text-zinc-400">
+              {/* Corrected heading hierarchy: h4 -> h3 */}
+              <h3 className="font-bold uppercase tracking-widest mb-6 text-white">Connect</h3>
+              {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
+              <ul className="space-y-4 text-zinc-300">
                 <li><a href="https://www.instagram.com/little.giant.society/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors focus:text-white" aria-label="Instagram">Instagram</a></li>
                 <li>
                   <button onClick={() => setIsContactModalOpen(true)} className="hover:text-white transition-colors focus:text-white text-left">
@@ -1264,11 +1274,13 @@ const Website: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col items-center text-sm text-zinc-500 gap-4">
+          {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
+          <div className="max-w-7xl mx-auto mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col items-center text-sm text-zinc-300 gap-4">
              <div className="flex gap-6">
-               <button onClick={() => setActivePolicy('privacy')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Privacy Policy</button>
-               <button onClick={() => setActivePolicy('terms')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Terms of Service</button>
-               <button onClick={() => setActivePolicy('cookie')} className="hover:text-zinc-300 transition-colors focus:text-zinc-300">Cookie Policy</button>
+               {/* Updated hover/focus color for accessibility: text-zinc-300 -> text-zinc-100 */}
+               <button onClick={() => setActivePolicy('privacy')} className="hover:text-zinc-100 transition-colors focus:text-zinc-100">Privacy Policy</button>
+               <button onClick={() => setActivePolicy('terms')} className="hover:text-zinc-100 transition-colors focus:text-zinc-100">Terms of Service</button>
+               <button onClick={() => setActivePolicy('cookie')} className="hover:text-zinc-100 transition-colors focus:text-zinc-100">Cookie Policy</button>
              </div>
              <span>© 2024 Little Giant Society. All rights reserved.</span>
           </div>
