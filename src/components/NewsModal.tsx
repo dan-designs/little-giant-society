@@ -10,6 +10,7 @@ export interface NewsItem {
   preview: string;
   content: string;
   image: string;
+  imageAlt?: string;
   link?: string;
 }
 
@@ -84,7 +85,7 @@ const NewsModal: React.FC<NewsModalProps> = ({ isOpen, onClose, newsItem }) => {
                     <div className="w-full aspect-video rounded-xl overflow-hidden mb-8 border border-zinc-100 shadow-sm">
                         <img 
                             src={newsItem.image} 
-                            alt={newsItem.title} 
+                            alt={newsItem.imageAlt || newsItem.title} 
                             className="w-full h-full object-cover"
                         />
                     </div>

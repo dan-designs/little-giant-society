@@ -42,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
             {/* Logo Image */}
             <img 
               src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
-              alt="Little Giant Society" 
+              alt="Dark metal emblem featuring a robed female figure holding a sword and wheat, alongside an eagle within a wreath." 
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Fallback if image missing: hide image, show placeholder

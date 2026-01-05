@@ -21,6 +21,13 @@ const CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/plan-2_rclxza.avif"
 ];
 
+const PARK_ALT_TEXTS = [
+  "Rendering of the Manchester Art Park under the bridge, featuring visitors viewing colorful murals on freestanding walls.",
+  "Aerial map of the James River and Manchester Bridge, with a yellow circle highlighting the proposed park site underneath.",
+  "Architectural site plan showing the layout of proposed zig-zag art walls arranged between the existing bridge support columns.",
+  "3D LiDAR terrain scan of the bridge site, with a yellow circle highlighting the specific project location."
+];
+
 const PARK_LABELS = [
   "Render",
   "Loc. 1",
@@ -34,6 +41,12 @@ const BUS_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766451468/Installed_q7npit.png"
 ];
 
+const BUS_ALT_TEXTS = [
+  "Front view of the 'Sticker Bus' with its hood completely covered in a sticker mosaic forming a large skull shape.",
+  "People applying stickers to the yellow school bus outside Gallery 5, framed by a bright rainbow overhead.",
+  "Front of the sticker bus featuring a skull mosaic, parked before a brick building topped with large white milk bottle sculptures."
+];
+
 const BUS_LABELS = [
   "SB Supply",
   "SB FF 1",
@@ -41,31 +54,31 @@ const BUS_LABELS = [
 ];
 
 const PARTNER_LOGOS = [
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/FallLine_zh1gia.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Gallery5_frdtns.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Manchester_Alliance_kfpqog.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Supply_fbkorw.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Veil_w4myou.avif"
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/FallLine_zh1gia.avif", alt: "Fall Line logo rendered in white, stylized architectural lettering." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Gallery5_frdtns.avif", alt: "Gallery 5 logo rendered in white sans-serif text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Manchester_Alliance_kfpqog.avif", alt: "Manchester Alliance logo rendered in white, featuring the organization name and monogram." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Supply_fbkorw.avif", alt: "Supply logo rendered in white, featuring a stylized letter 'S' inside a circular emblem." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276531/Veil_w4myou.avif", alt: "The Veil logo rendered in white, featuring the name inside a circular floral border." }
 ];
 
 const SPONSOR_LOGOS = [
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/AndDimSum_meazig.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Atlantic_Union_Bank_logoSQ_wqyvmg.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Bombolini_uqkk7h.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/CNTR_oqgdwl.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/communityfoundation_rrd2rx.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/Dawnstar_jhh6fu.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/Envelope_p0tagc.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766278510/FoyerGallery_nvpbww.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/ILYSM_ecg3zl.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/LivelyHarper_b51lnh.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/RPAA_hvtuke.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/RVA_dzxgvt.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/ShockoeArts_un1kc5.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/Tarrants_cqfagk.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/TrialandError_hetr2z.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/ViragoSpirits_arrtin.avif",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Waxmoon_vvidks.avif"
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/AndDimSum_meazig.avif", alt: "& Dim Sum logo rendered in white, featuring vertically stacked stylized typography." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Atlantic_Union_Bank_logoSQ_wqyvmg.avif", alt: "Atlantic Union Bank logo rendered in white text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Bombolini_uqkk7h.avif", alt: "Bombolini Pasta logo rendered in white, featuring a vintage western-style font." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/CNTR_oqgdwl.avif", alt: "CNTR logo rendered in white, featuring stylized text below a geometric peak icon." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/communityfoundation_rrd2rx.avif", alt: "Community Foundation logo rendered in white serif text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/Dawnstar_jhh6fu.avif", alt: "Dawnstar Video Games logo rendered in white, featuring a stylized sunrise icon." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/Envelope_p0tagc.avif", alt: "ENVELOPE logo rendered in white sans-serif text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766278510/FoyerGallery_nvpbww.avif", alt: "Foyer Gallery logo rendered in white, featuring large lowercase serif lettering." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/ILYSM_ecg3zl.avif", alt: "ILYSM Books logo rendered in white, featuring stylized bubble-letter typography." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/LivelyHarper_b51lnh.avif", alt: "Lively Harper logo rendered in white, featuring the text 'environmental sculpture' and an abstract icon." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/RPAA_hvtuke.avif", alt: "Richmond Performing Arts Alliance logo rendered in white, featuring the acronym RPAA." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/RVA_dzxgvt.avif", alt: "RVA logo rendered in white, featuring large interconnected block letters." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/ShockoeArts_un1kc5.avif", alt: "Shockoe Artspace logo rendered in white sans-serif text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276534/Tarrants_cqfagk.avif", alt: "Tarrant's logo rendered in white, featuring a distressed serif font." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/TrialandError_hetr2z.avif", alt: "Trial & Error logo rendered in white, featuring a vintage-style badge design with 'Hand Crafted' and 'Small Batch' text." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276533/ViragoSpirits_arrtin.avif", alt: "Virago Spirits logo rendered in white, featuring a central monogram." },
+  { src: "https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Waxmoon_vvidks.avif", alt: "Wax Moon logo rendered in white, featuring the name above a row of moon phases." }
 ];
 
 const TEAM_MEMBERS = [
@@ -73,19 +86,22 @@ const TEAM_MEMBERS = [
     name: "Ian C. Hess",
     role: "President/Director",
     modelSrc: "https://little-giant-society.sirv.com/model.glb",
-    blurb: "Ian C. Hess is the business owner of SUPPLY, Richmond's only locally owned Art Supply Store. He is also the President and Director of Little Giant Society and an internationally exhibiting Fine Art painter who has shown work in Rome, Amsterdam, Philadelphia, and at Art Basel in Miami. Ian is a native Richmonder who is wholly dedicated to creating a flourishing arts community in Richmond."
+    blurb: "Ian C. Hess is the business owner of SUPPLY, Richmond's only locally owned Art Supply Store. He is also the President and Director of Little Giant Society and an internationally exhibiting Fine Art painter who has shown work in Rome, Amsterdam, Philadelphia, and at Art Basel in Miami. Ian is a native Richmonder who is wholly dedicated to creating a flourishing arts community in Richmond.",
+    alt: "Full-body 3D scan of Ian standing in a high-visibility orange jacket, holding a cup of coffee."
   },
   {
     name: "Kathleen Cortez",
     role: "Vice President/Treasurer",
     modelSrc: "https://little-giant-society.sirv.com/Katie.glb",
-    blurb: "If we have eyes to see, our spaces illustrate for us the dialog between beauty, place, and culture. Katie operates her own Architecture practice with a focus on emphasizing the power of design, space, and place. A native of Pennsylvania, Katie studied Architecture at Lehigh University, and moved to Richmond 15 years ago after earning her Master's Degree in Architecture at the University of Virginia."
+    blurb: "If we have eyes to see, our spaces illustrate for us the dialog between beauty, place, and culture. Katie operates her own Architecture practice with a focus on emphasizing the power of design, space, and place. A native of Pennsylvania, Katie studied Architecture at Lehigh University, and moved to Richmond 15 years ago after earning her Master's Degree in Architecture at the University of Virginia.",
+    alt: "Full-body 3D scan of Kathleen in a hard hat and patterned cardigan, holding a tall wooden surveyor's rod."
   },
   {
     name: "Ben White",
     role: "Secretary/Marketing Director",
     modelSrc: "https://little-giant-society.sirv.com/Ben.glb",
-    blurb: "Benjamin White, a Richmond, Virginia native, works as a commercial photographer, continually looking for new avenues to progress his vision through the lens. Utilizing digital and film mediums, Ben focuses on commercial portrait, product, and event photography."
+    blurb: "Benjamin White, a Richmond, Virginia native, works as a commercial photographer, continually looking for new avenues to progress his vision through the lens. Utilizing digital and film mediums, Ben focuses on commercial portrait, product, and event photography.",
+    alt: "Full-body 3D scan of Ben in a white button-down shirt, holding a bouquet of red flowers."
   }
 ];
 
@@ -108,6 +124,7 @@ With continued efforts and growing community involvement, the Manchester Art Par
 
 To learn more about the initiative, click here. To watch more episodes of 8Arts & Culture and other WRIC NOW livestreams, head to the webpage.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545723/Article10_ruj7qy.avif",
+  imageAlt: "Split-screen news interview featuring Kendal McAuley and Ian C. Hess on an ABC 8 Arts & Culture segment.",
   link: "https://www.wric.com/news/8arts-culture-ian-hess-speaks-on-the-future-of-manchester-art-park/"
 };
 
@@ -154,7 +171,7 @@ The city of Richmond said that it is considering the project.
 
 He said he’s also shopped his idea to the Department of Public Utilities and the Public Arts Commission.
 
-For Hess, the lack of support is frustrating but it isn’t new in the arts community. Richmond mixed media artist, Todd Hale, earned a bachelors degree in painting and printmaking from Virginia Commonwealth University in 1996.
+For Hess, the lack of support is frustrating but it isn’t new in the arts community. Richmond mixed media artist, Todd Hale, earned a bachelor’s degree in painting and printmaking from Virginia Commonwealth University in 1996.
 
 After graduation, Hale moved into an apartment above what was formerly Artspace, a gallery instrumental in starting the First Friday Art Walk in Richmond. Hale chose the location specifically because of its connection to Richmond’s growing art scene.
 
@@ -168,6 +185,7 @@ Hess believes a public arts park will allow Richmond to develop into a thriving 
 
 “It doesn’t have to be here [in the Arts District] but it needs to be somewhere. It’s creating touchstones where Richmond can foster its already vibrant art community and it doesn’t need a miracle,” Hess said.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545720/Article9_hu5xpy.avif",
+  imageAlt: "Portrait of Ian C. Hess smiling while leaning on a wooden ladder in front of a wall of colorful spray paint cans.",
   link: "https://richmond.com/life-entertainment/local/art-theater/article_a5ac41ee-f7f4-11ee-8537-3363f8daa91f.html"
 };
 
@@ -220,6 +238,7 @@ He says the last and biggest yes needed is from the Department of Public Works.
 
 “We could have a huge impact with very small cost and maximum outreach, and also bridge the divide between the creative community and the city government in a very significant and tangible way. So that, to me, is worth chasing it down.”`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545720/Article8_qioq1x.avif",
+  imageAlt: "Wooden architectural scale model of the art park, displaying the bridge structure and miniature graffiti walls.",
   link: "https://richmond.com/news/local/article_b05a43c8-a799-4385-910e-23d47f1052c1.html"
 };
 
@@ -266,6 +285,7 @@ There will be another chance to add stickers to the bus Friday during the exhibi
 
 Stickers featured in “Hello My Name Is” are available for sale at littlegiantsociety.org/donate. Smaller pieces are $120 and large pieces are $500. Some of the proceeds will go toward raising funds for the art park, which is still awaiting approval from the city.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545723/Article7_snxzot.avif",
+  imageAlt: "Front view of the 'Sticker Bus' with its hood completely covered in a sticker mosaic forming a large skull shape.",
   link: "https://richmond.com/news/local/article_6b168d4b-68a5-49a1-ac12-6b4bdb2b5eb0.html"
 };
 
@@ -282,6 +302,7 @@ The series “Hello My Name Is,” which kicks off at Gallery5 during the First 
 
 Hess, known for his work with Little Giant Society, Supply RVA, and the development of the Manchester Art Park (for which he was named one of Style Weekly’s people to watch in the arts in last year’s Fall Arts Preview), saw the similarities of name tags at office parties and networking events to the artistic ways of sticker making. Click here to keep reading on Style Weekly.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545722/Article6_asem0y.avif",
+  imageAlt: "Portrait of Ian smiling next to the open door of the yellow school bus, backed by a large colorful mural.",
   link: "https://www.wtvr.com/news/local-news/hello-my-name-is-sticker-art-sept-3-2025"
 };
 
@@ -304,6 +325,7 @@ The exhibition and activations are the latest projects from Hess, known for his 
 
 With “Hello My Name Is,” Hess said the goal is to highlight repetition, distinctness, collectability and longevity — all central to sticker culture — while creating opportunities for the Richmond community to engage with a global movement.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545721/Article5_rambse.avif",
+  imageAlt: "Multilingual 'Hello My Name Is' sticker design featuring Spanish, Arabic, Hindi, and fantasy scripts on colorful bands.",
   link: "https://www.wric.com/news/local-news/richmond/richmond-artist-launches-sticker-themed-exhibition-public-art-project/"
 };
 
@@ -326,6 +348,7 @@ As a companion event, the 2023 documentary “The Sticker Movie” will be scree
 
 Which all goes to show that no matter how small or large an art form may be, there is no royal road to accomplishment. Bringing the work to completion requires sheer stick-to-itiveness.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545720/Article4_scjsbb.avif",
+  imageAlt: "Stacks of die-cut stickers on a yellow surface, featuring designs of a blue toad, skeleton turtle, and alien.",
   link: "https://richmondmagazine.com/arts-entertainment/galleries/hello-my-name-is-gallery5/"
 };
 
@@ -376,6 +399,7 @@ Hess hopes that this exhibition will expose people to stickers as an emergent ar
 
 “Hello My Name Is” kicks off Sept. 5 from 5-11 p.m. at Gallery5 featuring music performances by Solace Sovay, Ducttape Jesus, Snack Truck, and Dropheads. The screening of “Sticker Movie” takes place Sept. 13 at the Byrd Theatre. More information can be found at littlegiantsociety.org.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545720/Article3_cmgo9d.avif",
+  imageAlt: "Yellow school bus superimposed over a colorful background pattern reading 'HELLO MY NAME IS'.",
   link: "https://www.styleweekly.com/stuck-on-you/"
 };
 
@@ -394,6 +418,7 @@ Richmond has branded itself as an arts city for years — and a public Art Park 
 
 These things are tangible and quantifiable. They affect everyone in Richmond, every day. How does it feel to walk on our sidewalks? Why is there a 16-building dead zone on one of the city’s main roads? Why weren’t the water filtration systems fixed for years, even after they were flagged as needing repair? There’s a general sense of fiscal corruption — not just palpable, but almost casually accepted as destiny. And for good reason.`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545719/Article2_j15evd.avif",
+  imageAlt: "Graphic of a lightbulb containing a ballot box with a dollar sign, surrounded by lightning bolts and currency symbols.",
   link: "https://rvamag.com/opinion-editorial/letters-to-the-editor/letter-to-the-editor-democracy-on-a-budget.html"
 };
 
@@ -406,6 +431,7 @@ const ARTICLE_10: NewsItem = {
   preview: "Back in January, our President and Director, Ian C. Hess sat down for an interview with RVA Mag to discuss his work, his career as an artist, and to dive into the details and goals he has for Little Giant Society and Richmonds first Public Art Park!",
   content: `Back in January, our President and Director, Ian C. Hess sat down for an interview with RVA Mag to discuss his work, his career as an artist, and to dive into the details and goals he has for Little Giant Society and Richmonds first Public Art Park!`,
   image: "https://res.cloudinary.com/datad8tms/image/upload/v1767545723/Article1_uleejt.avif",
+  imageAlt: "Split image: Black and white profile of Ian C. Hess alongside a painting of a blue, starry-hooded classical bust.",
   link: "https://rvamag.com/art/ian-hess-on-painting-myths-selling-dreams-and-surviving-richmond.html"
 };
 
@@ -640,7 +666,7 @@ const Website: React.FC = () => {
             <div className="lg:order-1 relative w-full h-[320px] md:h-[400px] lg:h-[600px] bg-zinc-200 rounded-3xl overflow-hidden border-2 border-black group shadow-xl">
                <img 
                  src="https://res.cloudinary.com/datad8tms/image/upload/v1766276535/Art-Park-Render_rgklby.png" 
-                 alt="Art Park Render" 
+                 alt="Rendering of the Manchester Art Park under the bridge, featuring visitors viewing colorful murals on freestanding walls." 
                  className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
                />
                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-500"></div>
@@ -661,7 +687,7 @@ const Website: React.FC = () => {
             <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] bg-zinc-100 rounded-full mb-8 flex items-center justify-center border-2 border-zinc-200 overflow-hidden shrink-0">
                <img 
                   src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
-                  alt="Little Giant Society Logo" 
+                  alt="Dark metal emblem featuring a robed female figure holding a sword and wheat, alongside an eagle within a wreath." 
                   className="w-full h-full object-cover"
                />
             </div>
@@ -728,7 +754,7 @@ const Website: React.FC = () => {
                     <motion.img 
                       key={currentImageIndex}
                       src={CAROUSEL_IMAGES[currentImageIndex]} 
-                      alt={`Render view ${currentImageIndex + 1}`} 
+                      alt={PARK_ALT_TEXTS[currentImageIndex]} 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -874,7 +900,7 @@ const Website: React.FC = () => {
                     <motion.img 
                       key={busImageIndex}
                       src={BUS_IMAGES[busImageIndex]} 
-                      alt={`Render view ${busImageIndex + 1}`} 
+                      alt={BUS_ALT_TEXTS[busImageIndex]} 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -1003,7 +1029,7 @@ const Website: React.FC = () => {
                       
                       {/* 3D Element */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                         <Model3D src={member.modelSrc} alt={`3D Scan of ${member.name}`} />
+                         <Model3D src={member.modelSrc} alt={member.alt} />
                       </div>
 
                       {/* Hover Overlay */}
@@ -1041,9 +1067,9 @@ const Website: React.FC = () => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                   {PARTNER_LOGOS.map((logo, i) => (
+                   {PARTNER_LOGOS.map((partner, i) => (
                      <div key={i} className="group w-[calc(50%-0.5rem)] md:w-[calc(20%-1.6rem)] aspect-[4/3] bg-[#105CB3] flex items-center justify-center transition-all duration-500 hover:bg-blue-950 hover:shadow-lg border border-transparent hover:border-black/5 rounded-lg p-1">
-                        <img src={logo} alt={`Partner Logo ${i + 1}`} className="w-full h-full object-contain transition-all duration-500" />
+                        <img src={partner.src} alt={partner.alt} className="w-full h-full object-contain transition-all duration-500" />
                      </div>
                    ))}
                 </div>
@@ -1059,12 +1085,12 @@ const Website: React.FC = () => {
 
                 {/* Changed to Flex for centering the last row items */}
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                   {SPONSOR_LOGOS.map((logo, i) => (
+                   {SPONSOR_LOGOS.map((sponsor, i) => (
                      <div 
                         key={i} 
                         className="group w-[calc(50%-0.5rem)] md:w-[calc(20%-1.6rem)] aspect-[4/3] bg-zinc-900 flex items-center justify-center transition-all duration-500 hover:bg-black hover:shadow-lg border border-transparent hover:border-zinc-800 rounded-lg p-1"
                      >
-                        <img src={logo} alt={`Sponsor Logo ${i + 1}`} className="w-full h-full object-contain transition-all duration-500" />
+                        <img src={sponsor.src} alt={sponsor.alt} className="w-full h-full object-contain transition-all duration-500" />
                      </div>
                    ))}
                 </div>
@@ -1096,7 +1122,7 @@ const Website: React.FC = () => {
                     <div className="w-full aspect-video bg-zinc-200 rounded-lg overflow-hidden mb-6 border border-black/5">
                         <img 
                             src={item.image} 
-                            alt={item.title} 
+                            alt={item.imageAlt || item.title} 
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                         />
                     </div>
@@ -1209,7 +1235,7 @@ const Website: React.FC = () => {
                   <div className="relative w-8 h-8 flex items-center justify-center rounded-full overflow-hidden bg-white">
                     <img 
                       src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
-                      alt="LGS Logo" 
+                      alt="Dark metal emblem featuring a robed female figure holding a sword and wheat, alongside an eagle within a wreath." 
                       className="w-full h-full object-cover" 
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
@@ -1282,7 +1308,7 @@ const Website: React.FC = () => {
                <button onClick={() => setActivePolicy('terms')} className="hover:text-zinc-100 transition-colors focus:text-zinc-100">Terms of Service</button>
                <button onClick={() => setActivePolicy('cookie')} className="hover:text-zinc-100 transition-colors focus:text-zinc-100">Cookie Policy</button>
              </div>
-             <span>© 2024 Little Giant Society. All rights reserved.</span>
+             <span>© 2026 Little Giant Society. All rights reserved.</span>
           </div>
         </footer>
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, LocateFixed, X, Map as MapIcon } from 'lucide-react';
+import { Plus, Minus, LocateFixed, X, Map as MapIcon, Maximize2 } from 'lucide-react';
 import { MAP_SECTIONS, NAV_LINKS } from '../constants';
 
 interface MiniMapProps {
@@ -8,13 +8,10 @@ interface MiniMapProps {
   onSectionSelect: (id: string) => void;
 }
 
-const VIEWPORT_WIDTH = 320;
-const VIEWPORT_HEIGHT = 240;
+const BASE_WIDTH = 320;
+const BASE_HEIGHT = 240;
 const MAP_WIDTH = 1200;
 const MAP_HEIGHT = 900;
-
-// Calculate minimum scale to ensure map covers viewport (approx 0.27)
-const MIN_SCALE = Math.max(VIEWPORT_WIDTH / MAP_WIDTH, VIEWPORT_HEIGHT / MAP_HEIGHT);
 
 interface StylizedMapContentProps {
   activeSection: string;
@@ -23,8 +20,8 @@ interface StylizedMapContentProps {
 
 const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, onPinClick }) => {
   const pins = [
-    { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' }, // Changed from THE FAN
-    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' }, // Moved above Team (490,237) and above Fall Line
+    { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' },
+    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' },
     { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
     { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
     { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
@@ -61,20 +58,18 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
 
       {/* BELLE ISLE */}
       <ellipse cx="400" cy="540" rx="70" ry="35" fill="#D4E6CB" opacity="0.9"/>
-      {/* Static Belle Isle Label */}
       <g transform="translate(400, 540)" style={{ pointerEvents: 'none' }}>
         <text y="4" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#3A5A35" letterSpacing="0.5px" fontFamily="'Space Grotesk', sans-serif" opacity="0.9">BELLE ISLE</text>
       </g>
 
       {/* MAJOR ARTERIES */}
-      {/* Broad Street */}
       <path d="M0,257 L1200,187" stroke="#E0E0E0" strokeWidth="10"/>
       <path d="M850,0 L800,900" stroke="#E0E0E0" strokeWidth="12"/>
 
-      {/* MANCHESTER BRIDGE (Dark Line) - Extended from top to bottom */}
+      {/* MANCHESTER BRIDGE */}
       <path d="M633,0 L573,900" stroke="#333333" strokeWidth="16"/>
 
-      {/* FALL LINE TRAIL (Green Line) - Reversed path direction to flip text */}
+      {/* FALL LINE TRAIL */}
       <path 
         id="fallLinePath"
         d="M350,0 L350,160 L720,160 Q680,350 640,540 L620,900" 
@@ -97,23 +92,13 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
       {pins.map((pin) => {
         const isActive = activeSection === pin.id;
         
-        // Colors
-        const textActiveColor = '#105CB3'; // Keep text blue
-        
-        // Custom active color logic for News and Partners as requested
         const isDarkerPin = pin.id === 'news' || pin.id === 'sponsors';
         const pinActiveColor = isDarkerPin ? '#105CB3' : '#388AE8';
-        
         const pulseColor = '#C77517';
-        
-        // Unified display color logic
         const displayColor = isActive ? pinActiveColor : '#333';
-
-        // Unified Size Logic
         const fontSize = 12;
         const pinRadius = isActive ? 18 : 14;
 
-        // Box Calculations
         const charWidth = fontSize * 0.65;
         const paddingX = 16;
         const paddingY = 8;
@@ -129,32 +114,21 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
               e.stopPropagation();
               onPinClick(pin.id);
             }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onPinClick(pin.id);
-              }
-            }}
             role="button"
             tabIndex={0}
-            aria-label={`Navigate to ${pin.label}`}
-            aria-current={isActive ? 'location' : undefined}
           >
             {isActive && (
               <>
-                {/* Pulse Ring */}
                 <motion.circle
                   initial={{ r: 10, opacity: 0.6 }}
                   animate={{ r: 50, opacity: 0 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                   fill={pulseColor}
                 />
-                {/* Inner Glow */}
                 <circle r="25" fill={pulseColor} opacity="0.2" filter="blur(4px)" />
               </>
             )}
 
-            {/* Render Custom Icons or Standard Pins */}
             {pin.id === 'sticker-bus' ? (
               <g transform="translate(-16, -16)">
                 <svg 
@@ -166,7 +140,6 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
                   strokeWidth={isActive ? 1.5 : 0}
                   className="transition-all duration-300"
                 >
-                   {/* Custom Left-Facing Bus Profile */}
                    <path d="M1 12 L3 7 L21 7 C22.1 7 23 7.9 23 9 L23 18 L21 18 C21 19.66 19.66 21 18 21 C16.34 21 15 19.66 15 18 L10 18 C10 19.66 8.66 21 7 21 C5.34 21 4 19.66 4 18 L1 18 Z" />
                    <path d="M4 8 L6 11 H9 V8 H4 Z" fill="white" fillOpacity="0.2"/>
                    <path d="M10 8 V11 H14 V8 H10 Z" fill="white" fillOpacity="0.2"/>
@@ -175,7 +148,6 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
               </g>
             ) : pin.id === 'sponsors' ? (
               <g transform="translate(0, 5) scale(0.7)"> 
-                 {/* Government Building Icon - Replaces Dot */}
                  <path 
                     d="M-20,20 L20,20 L20,10 L14,10 L14,-5 L22,-5 L0,-25 L-22,-5 L-14,-5 L-14,10 L-20,10 Z" 
                     fill={displayColor}
@@ -199,24 +171,14 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
               </g>
             ) : (
               <>
-                {/* Pin Body - Consistent Sizes */}
-                <circle 
-                  r={pinRadius} 
-                  fill={displayColor} 
-                  className="transition-all duration-300"
-                />
-                
-                {/* Center Dot (White) */}
+                <circle r={pinRadius} fill={displayColor} className="transition-all duration-300" />
                 {isActive && (
                   <circle r={8} fill="white" className="transition-all duration-300" />
                 )}
               </>
             )}
 
-            {/* Label Container */}
             <g transform={`translate(0, ${isActive ? -40 : -32})`} className="transition-all duration-300">
-              
-              {/* Translucent White Box */}
               <rect 
                 x={-boxWidth / 2}
                 y={-boxHeight / 2}
@@ -227,15 +189,13 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
                 fillOpacity="0.95"
                 className="shadow-sm"
               />
-
-              {/* Text - Always Blue as requested */}
               <text 
-                y={fontSize * 0.35} // Optical center
+                y={fontSize * 0.35}
                 textAnchor="middle"
                 fontFamily="'Space Grotesk', sans-serif" 
                 fontSize={fontSize} 
                 fontWeight="bold" 
-                fill={textActiveColor}
+                fill={'#105CB3'}
                 className="pointer-events-none"
               >
                 {pin.label}
@@ -250,31 +210,42 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
 
 const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => {
   const [zoomMultiplier, setZoomMultiplier] = useState(1);
-  const [dragKey, setDragKey] = useState(0); // Used to force reset drag position
+  const [dragKey, setDragKey] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  
+  // Widget Resize State (Default 1.2x)
+  const [resizeScale, setResizeScale] = useState(1.2);
 
-  // Get target configuration or default to hero if something goes wrong
+  // Reset widget scale on toggle
+  useEffect(() => {
+    if (!isVisible) {
+      setResizeScale(1.2);
+    }
+  }, [isVisible]);
+
+  // Derived Dimensions
+  const currentWidth = BASE_WIDTH * resizeScale;
+  const currentHeight = BASE_HEIGHT * resizeScale;
+
   const targetConfig = MAP_SECTIONS[activeSection] || MAP_SECTIONS['hero'];
   
-  // 1. Calculate effective scale, ensuring we never go below the size of the viewport
+  // Calculate minimum scale to ensure map covers the potentially resized viewport
+  const MIN_SCALE = Math.max(currentWidth / MAP_WIDTH, currentHeight / MAP_HEIGHT);
+
   const rawScale = targetConfig.scale * zoomMultiplier;
   const currentScale = Math.max(rawScale, MIN_SCALE);
 
-  // 2. Calculate Boundaries
-  const minX = VIEWPORT_WIDTH - (MAP_WIDTH * currentScale);
-  const minY = VIEWPORT_HEIGHT - (MAP_HEIGHT * currentScale);
+  const minX = currentWidth - (MAP_WIDTH * currentScale);
+  const minY = currentHeight - (MAP_HEIGHT * currentScale);
   const maxX = 0;
   const maxY = 0;
 
-  // 3. Calculate Default Centered Position
-  let targetX = (VIEWPORT_WIDTH / 2) - (targetConfig.x * currentScale);
-  let targetY = (VIEWPORT_HEIGHT / 2) - (targetConfig.y * currentScale);
+  let targetX = (currentWidth / 2) - (targetConfig.x * currentScale);
+  let targetY = (currentHeight / 2) - (targetConfig.y * currentScale);
 
-  // 4. Clamp the target position to the boundaries
   targetX = Math.max(minX, Math.min(maxX, targetX));
   targetY = Math.max(minY, Math.min(maxY, targetY));
 
-  // Get the display label from NAV_LINKS based on the active section ID
   const locationLabel = NAV_LINKS.find(link => link.id === activeSection)?.label || activeSection;
 
   const handleZoomIn = (e: React.MouseEvent) => {
@@ -290,7 +261,38 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
   const handleSnapToLocation = (e: React.MouseEvent) => {
     e.stopPropagation();
     setZoomMultiplier(1);
-    setDragKey(prev => prev + 1); // Forces component remount to reset drag offset
+    setDragKey(prev => prev + 1);
+  };
+
+  const handleResizeStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startScale = resizeScale;
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+        // Dragging Top-Left towards Top-Left corner (negative delta) increases size
+        const deltaX = startX - moveEvent.clientX; 
+        const deltaY = startY - moveEvent.clientY;
+        const delta = (deltaX + deltaY) / 2;
+
+        const newWidth = (BASE_WIDTH * startScale) + delta;
+        let newScale = newWidth / BASE_WIDTH;
+        
+        // Clamp between 0.75x and 2.0x
+        newScale = Math.min(Math.max(newScale, 0.75), 2.0);
+        
+        setResizeScale(newScale);
+    };
+
+    const onMouseUp = () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   };
 
   return (
@@ -299,14 +301,17 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
         <motion.div 
           key="minimap"
           initial={{ opacity: 0, scale: 0.5, originY: 1, originX: 1 }}
-          animate={{ opacity: 1, scale: 0.75 }}
+          animate={{ opacity: 1, scale: 0.75 }} // Note: This animation scale is independent of our internal resizeScale
           exit={{ opacity: 0, scale: 0.5 }}
           className="fixed bottom-8 right-8 z-50 hidden lg:block origin-bottom-right"
         >
-          {/* Outer Device Frame */}
-          <div className="w-[320px] h-[240px] bg-white rounded-xl shadow-2xl border-4 border-black overflow-hidden relative group">
+          {/* Outer Device Frame - Dynamic Size */}
+          <div 
+            style={{ width: currentWidth, height: currentHeight }}
+            className="bg-white rounded-xl shadow-2xl border-4 border-black overflow-hidden relative group transition-all duration-75 ease-out"
+          >
             
-            {/* Map Container - The "Camera" */}
+            {/* Map Container */}
             <motion.div
               key={dragKey}
               className="absolute origin-top-left cursor-grab active:cursor-grabbing"
@@ -317,7 +322,7 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
                 top: minY,
                 bottom: maxY
               }}
-              dragElastic={0.05} // Minimal elasticity to avoid pulling edges into view
+              dragElastic={0.05}
               animate={{
                 x: targetX,
                 y: targetY,
@@ -333,58 +338,68 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
               <StylizedMapContent activeSection={activeSection} onPinClick={onSectionSelect} />
             </motion.div>
 
-            {/* Overlay UI on top of Map */}
+            {/* Overlay UI */}
             <div className="absolute inset-0 pointer-events-none border-[6px] border-black/5 rounded-lg z-20"></div>
             
-            {/* Snap/Location Button - MOVED TO TOP LEFT */}
-            <button 
-                onClick={handleSnapToLocation}
-                className="absolute top-4 left-4 z-30 w-12 h-12 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                aria-label="Snap to Current Location"
-                title="Snap to Current Location"
+            {/* RESIZE HANDLE - Top Left */}
+            <div 
+               onMouseDown={handleResizeStart}
+               className="absolute top-0 left-0 z-40 cursor-nwse-resize w-12 h-12 group"
+               title="Drag to resize map"
             >
-                <LocateFixed size={24} />
-            </button>
+                {/* Visual Triangle */}
+                <div className="absolute top-0 left-0 w-0 h-0 border-t-[48px] border-r-[48px] border-t-white border-r-transparent drop-shadow-sm transition-colors group-hover:border-t-zinc-100"></div>
+                {/* Icon */}
+                <div className="absolute top-1.5 left-1.5 text-zinc-400 group-hover:text-black transition-colors">
+                    <Maximize2 size={16} className="-rotate-90" />
+                </div>
+            </div>
             
-            {/* Zoom Controls - MOVED TO BOTTOM LEFT */}
+            {/* CONTROLS STACK - Bottom Left */}
             <div className="absolute bottom-4 left-4 z-30 flex flex-col gap-2">
+                 {/* Snap Button */}
+                <button 
+                    onClick={handleSnapToLocation}
+                    className="w-11 h-11 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
+                    title="Snap to Current Location"
+                >
+                    <LocateFixed size={20} />
+                </button>
+                {/* Zoom In */}
                 <button 
                     onClick={handleZoomIn}
-                    className="w-12 h-12 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    aria-label="Zoom In"
+                    className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
                     title="Zoom In"
                 >
-                    <Plus size={24} />
+                    <Plus size={20} />
                 </button>
+                {/* Zoom Out */}
                 <button 
                     onClick={handleZoomOut}
-                    className="w-12 h-12 bg-[#105CB3] text-white rounded-full flex items-center justify-center hover:bg-[#0c4a91] transition-colors shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    aria-label="Zoom Out"
+                    className="w-11 h-11 bg-white text-black border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
                     title="Zoom Out"
                 >
-                    <Minus size={24} />
+                    <Minus size={20} />
                 </button>
             </div>
 
-            {/* Hint for dragging - MOVED TO TOP RIGHT */}
-            <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-white/90 backdrop-blur px-4 py-2 rounded-md text-sm font-black uppercase tracking-widest text-zinc-600 border border-black/10 shadow-sm" aria-hidden="true">
+            {/* Hint - Top Right */}
+            <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-white/90 backdrop-blur px-4 py-2 rounded-md text-sm font-black uppercase tracking-widest text-zinc-600 border border-black/10 shadow-sm">
                 Drag to pan
             </div>
 
-            {/* Collapse Button - BOTTOM RIGHT */}
+            {/* Collapse Button - Bottom Right */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setIsVisible(false);
               }}
-              className="absolute bottom-4 right-4 z-30 w-12 h-12 bg-white text-zinc-600 border-2 border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 hover:text-black hover:border-zinc-300 transition-colors shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-400"
+              className="absolute bottom-4 right-4 z-30 w-11 h-11 bg-white text-zinc-600 border-2 border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-100 hover:text-black hover:border-zinc-300 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.3)] active:scale-95 focus:outline-none"
               aria-label="Hide Mini Map"
-              title="Hide Mini Map"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
 
-            {/* Active Section Label - Visually Hidden but Accessible */}
             <div className="sr-only" aria-live="polite">
                Current Location: {locationLabel}
             </div>
