@@ -1,7 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, LocateFixed, X, Map as MapIcon, Maximize2 } from 'lucide-react';
+import gsap from 'gsap';
 import { MAP_SECTIONS, NAV_LINKS } from '../constants';
+
+// --- CONFIGURATION ---
+
+// 1. Hardcoded Coordinates (Fallback & Off-Path Locations)
+// These serve as the base truth for items not on the physical trail line.
+const PIN_DEFINITIONS = [
+  { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' },
+  { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' },
+  { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
+  { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
+  { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
+  { id: 'events', x: 560, y: 225, label: 'GALLERY 5' },
+  { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' },
+  { id: 'news', x: 920, y: 380, label: 'LITTLE GIANT NEWS' },
+];
+
+// 2. Path Percentages (The "Stops" on the Trail)
+// If an ID exists here, we will calculate its X/Y using path.getPointAtLength()
+// This overrides the hardcoded values above to ensure the pin sits perfectly on the green line.
+const TRAIL_STOPS: Record<string, number> = {
+  'hero': 0.0,       // Start of trail
+  'sticker-bus': 0.15,
+  'mission': 0.35,   // Curve near top
+  'proposal': 0.88,  // Near the end (The Park)
+};
 
 interface MiniMapProps {
   activeSection: string;
@@ -19,16 +45,107 @@ interface StylizedMapContentProps {
 }
 
 const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, onPinClick }) => {
-  const pins = [
-    { id: 'hero', x: 150, y: 220, label: 'RICHMOND, VA' },
-    { id: 'mission', x: 490, y: 90, label: 'THE ARTS DISTRICT' },
-    { id: 'proposal', x: 590, y: 660, label: 'THE PARK' },
-    { id: 'sticker-bus', x: 390, y: 241, label: 'STICKER BUS' }, 
-    { id: 'about', x: 490, y: 237, label: 'SUPPLY' },
-    { id: 'events', x: 560, y: 225, label: 'GALLERY 5' },
-    { id: 'sponsors', x: 796, y: 250, label: 'CITY HALL' },
-    { id: 'news', x: 920, y: 380, label: 'LITTLE GIANT NEWS' },
-  ];
+  // GSAP Refs
+  const markerGroupRef = useRef<SVGGElement>(null);
+  const markerInnerRef = useRef<SVGGElement>(null);
+  const pathRef = useRef<SVGPathElement>(null); 
+  
+  // Step 1: The Lookup Dictionary
+  const locationsRef = useRef<Record<string, { x: number, y: number }>>({});
+  const isSetupComplete = useRef(false);
+
+  // === SETUP PHASE: CALCULATE STOPS ===
+  useEffect(() => {
+    if (isSetupComplete.current) return;
+
+    const calculatedLocations: Record<string, { x: number, y: number }> = {};
+    const trailPath = pathRef.current;
+
+    // Load base definitions first
+    PIN_DEFINITIONS.forEach(pin => {
+      calculatedLocations[pin.id] = { x: pin.x, y: pin.y };
+    });
+
+    // Overwrite with exact path coordinates if defined in TRAIL_STOPS
+    if (trailPath) {
+       const totalLength = trailPath.getTotalLength();
+       
+       Object.entries(TRAIL_STOPS).forEach(([id, percentage]) => {
+          const point = trailPath.getPointAtLength(totalLength * percentage);
+          // Update the lookup table with the precise SVG coordinate
+          calculatedLocations[id] = { x: point.x, y: point.y };
+       });
+    }
+
+    locationsRef.current = calculatedLocations;
+    isSetupComplete.current = true;
+    
+    // Set initial position instantly (no animation on mount)
+    const initialPos = calculatedLocations[activeSection] || calculatedLocations['hero'];
+    if (markerGroupRef.current && initialPos) {
+       gsap.set(markerGroupRef.current, { x: initialPos.x, y: initialPos.y });
+    }
+
+  }, []); 
+
+  // === ANIMATION PHASE: THE "FIRE-AND-FORGET" MOVER ===
+  useEffect(() => {
+    const group = markerGroupRef.current;
+    const inner = markerInnerRef.current;
+    
+    // Retrieve destination from our Lookup Dictionary
+    const target = locationsRef.current[activeSection] || locationsRef.current['hero'];
+    
+    if (!group || !inner || !target) return;
+
+    // Trigger the Movement
+    // CRITICAL: overwrite: 'auto' kills any previous travel tween, allowing for 
+    // "Smart Retargeting" if the user scrolls quickly past multiple sections.
+    gsap.to(group, {
+      x: target.x,
+      y: target.y,
+      duration: 1.2,
+      ease: "power3.inOut", // Smooth drone acceleration
+      overwrite: "auto",
+      onStart: () => {
+        // Add "Flight Wobble" while moving
+        gsap.to(inner, {
+          x: "random(-3, 3)",
+          y: "random(-3, 3)",
+          rotation: "random(-10, 10)",
+          scale: 1.1,
+          duration: 0.15,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          overwrite: "auto"
+        });
+      },
+      onComplete: () => {
+        // Landing / Idle State
+        gsap.to(inner, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "back.out(1.5)",
+          overwrite: "auto"
+        });
+
+        // Resume gentle hover
+        gsap.to(inner, {
+          y: -4,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 0.1
+        });
+      }
+    });
+
+  }, [activeSection]);
 
   return (
     <svg 
@@ -69,8 +186,9 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
       {/* MANCHESTER BRIDGE */}
       <path d="M633,0 L573,900" stroke="#333333" strokeWidth="16"/>
 
-      {/* FALL LINE TRAIL */}
+      {/* FALL LINE TRAIL (The Path used for calculations) */}
       <path 
+        ref={pathRef}
         id="fallLinePath"
         d="M350,0 L350,160 L720,160 Q680,350 640,540 L620,900" 
         stroke="#36D36E" 
@@ -88,8 +206,22 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
       {/* FLOOD WALL */}
       <path d="M450,650 C550,680 650,670 750,620" stroke="#777777" strokeWidth="8" strokeDasharray="15 8"/>
 
-      {/* --- PINS --- */}
-      {pins.map((pin) => {
+      {/* --- THE TRAVELER (ANIMATED DRONE) --- */}
+      {/* 
+         Group 1 (markerGroupRef): Handles the macro X/Y translation (The direct line flight)
+         Group 2 (markerInnerRef): Handles the micro wobble/shake/hover (The organic life)
+      */}
+      <g ref={markerGroupRef} style={{ pointerEvents: 'none' }}>
+        <g ref={markerInnerRef}>
+          {/* Outer Glow */}
+          <circle r="16" fill="#105CB3" fillOpacity="0.2" />
+          {/* Solid Core */}
+          <circle r="7" fill="#105CB3" stroke="white" strokeWidth="2.5" />
+        </g>
+      </g>
+
+      {/* --- STATIC PINS --- */}
+      {PIN_DEFINITIONS.map((pin) => {
         const isActive = activeSection === pin.id;
         
         const isDarkerPin = pin.id === 'news' || pin.id === 'sponsors';
@@ -162,13 +294,16 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
                  />
               </g>
             ) : pin.id === 'news' ? (
-              <g transform="translate(-12, -12)">
-                 <foreignObject width="24" height="24">
-                   <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                     <span className="material-symbols-outlined" style={{ fontSize: '24px', color: displayColor }}>newspaper</span>
-                   </div>
-                 </foreignObject>
-              </g>
+              <>
+                <circle r="12" fill="#F4F4F4" />
+                <g transform="translate(-12, -12)">
+                   <foreignObject width="24" height="24">
+                     <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                       <span className="material-symbols-outlined" style={{ fontSize: '24px', color: displayColor }}>newspaper</span>
+                     </div>
+                   </foreignObject>
+                </g>
+              </>
             ) : (
               <>
                 <circle r={pinRadius} fill={displayColor} className="transition-all duration-300" />
@@ -296,7 +431,7 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
   };
 
   return (
-    <aside aria-label="Mini Map">
+    <aside id="mini-map" aria-label="Mini Map">
       <AnimatePresence mode="wait">
         {isVisible ? (
           <motion.div 
@@ -401,7 +536,7 @@ const MiniMap: React.FC<MiniMapProps> = ({ activeSection, onSectionSelect }) => 
                 <X size={20} />
               </button>
 
-              <div className="sr-only" aria-live="polite">
+              <div className="sr-only" role="status" aria-live="polite">
                  Current Location: {locationLabel}
               </div>
             </div>

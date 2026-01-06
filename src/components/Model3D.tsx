@@ -119,6 +119,7 @@ const Model3D: React.FC<Model3DProps> = ({ src, alt }) => {
       ref={viewerRef}
       src={src}
       alt={alt}
+      aria-label={`Interactive 3D view of ${alt}`}
       auto-rotate="false"
       camera-controls
       disable-zoom
