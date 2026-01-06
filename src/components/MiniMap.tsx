@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, LocateFixed, X, Map as MapIcon, Maximize2 } from 'lucide-react';
+import { Plus, Minus, LocateFixed, X, Map as MapIcon, Maximize2, Newspaper } from 'lucide-react';
 import { MAP_SECTIONS, NAV_LINKS } from '../constants';
 
 interface MiniMapProps {
@@ -163,11 +163,8 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
               </g>
             ) : pin.id === 'news' ? (
               <g transform="translate(-12, -12)">
-                 <foreignObject width="24" height="24">
-                   <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                     <span className="material-symbols-outlined" style={{ fontSize: '24px', color: displayColor }}>newspaper</span>
-                   </div>
-                 </foreignObject>
+                 {/* Removed fill="currentColor" */}
+                 <Newspaper width={24} height={24} color={displayColor} strokeWidth={2} />
               </g>
             ) : (
               <>

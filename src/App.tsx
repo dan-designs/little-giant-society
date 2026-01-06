@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MapPin, Calendar, Users, Handshake, ChevronLeft, ChevronRight, ChevronUp, Play, Pause, Quote, DoorOpen, Sprout, HandHeart } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, Users, Handshake, ChevronLeft, ChevronRight, ChevronUp, Play, Pause, Quote, DoorOpen, Sprout, HandHeart, Flag, Newspaper } from 'lucide-react';
 import Navigation from './components/Navigation';
 import MiniMap from './components/MiniMap';
 import MobileNavControls from './components/MobileNavControls';
@@ -292,7 +292,7 @@ Stickers featured in “Hello My Name Is” are available for sale at littlegian
 // Fifth Specific News Item
 const ARTICLE_5: NewsItem = {
   id: 5,
-  title: "(ARTICLE) CBS 6 - RICHMOND ARTIST'S 'HELLO MY NAME IS' PROJECT SPOTLIGHTS STICKER CULTURE",
+  title: "(ARTICLE) CBS 6 - RICHMOND ARTIST''S 'HELLO MY NAME IS' PROJECT SPOTLIGHTS STICKER CULTURE",
   author: "Andrew Cothern",
   date: "Sep 03, 2025 | 7:53 AM EST",
   preview: "RICHMOND, Va. — Richmond artist Ian Hess is kicking off a month-long, multi-layered art project that puts sticker culture in the spotlight.",
@@ -680,27 +680,38 @@ const Website: React.FC = () => {
         </section>
 
         {/* 2. MISSION SECTION */}
-        <section id="mission" className="min-h-screen flex items-center px-6 py-16 md:py-24 bg-white border-b border-black scroll-mt-20">
-          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+        <section id="mission" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-white border-b border-black scroll-mt-20">
+          <div className="max-w-4xl mx-auto w-full">
             
-            {/* Logo Placeholder - Updated to correct Logo */}
-            <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] bg-zinc-100 rounded-full mb-8 flex items-center justify-center border-2 border-zinc-200 overflow-hidden shrink-0">
-               <img 
-                  src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
-                  alt="Dark metal emblem featuring a robed female figure holding a sword and wheat, alongside an eagle within a wreath." 
-                  className="w-full h-full object-cover"
-               />
+            {/* 1. SEPARATE LEFT-ALIGNED LABEL CONTAINER */}
+            <div className="w-full text-left mb-8">
+               <div className="flex items-center gap-2 text-zinc-900 font-bold uppercase tracking-widest">
+                 <Flag size={20} fill="currentColor" />
+                 <span>OUR MISSION</span>
+               </div>
             </div>
 
-            <h2 className="text-3xl md:text-6xl font-bold tracking-tight mb-6 md:mb-8">
-              THROUGH LITTLE ACTIONS.<br/>WE CREATE GIANTS.
-            </h2>
-            
-            <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-10 md:mb-16">
-              Little Giant Society's main purpose is to cultivate and scale Richmond's thriving arts community by providing essential support, resources, and training for emerging talent and established artists.
-            </p>
+            {/* 2. CENTERED CONTENT CONTAINER (Logo, Title, Body) */}
+            <div className="w-full flex flex-col items-center text-center">
+              {/* Logo Placeholder - Updated to correct Logo */}
+              <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] bg-zinc-100 rounded-full mb-8 flex items-center justify-center border-2 border-zinc-200 overflow-hidden shrink-0">
+                 <img 
+                    src="https://res.cloudinary.com/datad8tms/image/upload/v1766276532/Logo_gezcwn.png" 
+                    alt="Dark metal emblem featuring a robed female figure holding a sword and wheat, alongside an eagle within a wreath." 
+                    className="w-full h-full object-cover"
+                 />
+              </div>
 
-            {/* 3 Rectangles */}
+              <h2 className="text-3xl md:text-6xl font-bold tracking-tight mb-6 md:mb-8">
+                THROUGH LITTLE ACTIONS.<br/>WE CREATE GIANTS.
+              </h2>
+              
+              <p className="text-lg md:text-xl text-zinc-600 max-w-2xl leading-relaxed mb-10 md:mb-16">
+                Little Giant Society's main purpose is to cultivate and scale Richmond's thriving arts community by providing essential support, resources, and training for emerging talent and established artists.
+              </p>
+            </div>
+
+            {/* 3 Rectangles (Left Aligned Text Grid) */}
             <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-left w-full">
               <div className="p-6 bg-[#EFF4F9] rounded-xl">
                  <h3 className="text-xl font-bold mb-4 uppercase flex items-center gap-3">
@@ -994,7 +1005,13 @@ const Website: React.FC = () => {
           </div>
 
           <div className="max-w-7xl mx-auto w-full relative z-10">
-            <div className="mb-10 md:mb-16">
+            <div className="mb-10 md:mb-16 space-y-6 md:space-y-8">
+               {/* TEAM LABEL - Replaced Icon with Users */}
+               <div className="flex items-center gap-2 text-[#2994FF] font-bold uppercase tracking-widest">
+                  <Users size={20} />
+                  <span>THE TEAM</span>
+               </div>
+               
                {/* Updated Header: Removed Icon, removed period, changed color to white */}
                <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
                  Team
@@ -1087,7 +1104,7 @@ const Website: React.FC = () => {
             <div className="flex items-end justify-between mb-10 md:mb-16 border-b-2 border-white/20 pb-8">
                <div>
                  <div className="flex items-center gap-2 text-white/80 font-bold uppercase tracking-widest mb-4">
-                    <span className="material-symbols-outlined text-[20px]">newspaper</span>
+                    <Newspaper size={20} />
                     <span>News</span>
                   </div>
                   <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">

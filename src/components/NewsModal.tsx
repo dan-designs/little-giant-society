@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink } from 'lucide-react';
+import { X, ExternalLink, Newspaper } from 'lucide-react';
 
 export interface NewsItem {
   id: number;
@@ -65,7 +65,7 @@ const NewsModal: React.FC<NewsModalProps> = ({ isOpen, onClose, newsItem }) => {
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-black/5 bg-[#EFF4F9] shrink-0">
                 <div className="flex items-center gap-2 text-[#105CB3] font-bold uppercase tracking-widest">
-                  <span className="material-symbols-outlined text-[24px]">newspaper</span>
+                  <Newspaper size={24} />
                   <span id="news-modal-title">News Article</span>
                 </div>
                 <button 
