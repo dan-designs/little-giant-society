@@ -39,8 +39,9 @@ const MobileNavControls: React.FC<MobileNavControlsProps> = ({ activeSection, se
   const disabledClass = "bg-zinc-100 border-zinc-200 text-zinc-300 shadow-none cursor-not-allowed";
 
   // Only render on screens smaller than lg
+  // Updated z-index to 30 so it sits below the Navigation (z-40) but above content (z-10)
   return (
-    <nav aria-label="Mobile Page Controls" className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 lg:hidden">
+    <nav id="mobile-page-controls" aria-label="Mobile Page Controls" className="fixed bottom-6 right-6 z-30 flex flex-col gap-4 lg:hidden">
       <button
         onClick={handlePrev}
         disabled={isFirst}
