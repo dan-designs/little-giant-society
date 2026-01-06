@@ -279,7 +279,7 @@ It also features a skull made of stickers by Scalin on the hood.
 
 Hess said he’s been thinking about ways to use the bus, such as activating it into a mini-mobile shop on First Fridays, and hopefully field trips to the Manchester Art Park — an outdoor gallery under the Manchester Bridge proposed by Hess last year.
 
-Folks were able to add stickers to the bus outside of the Byrd Theatre earlier this month for the premiere of the “Sticker Movie,” which dives into the history and culture of sticker making.
+Folks were also able to add stickers to the bus outside of the Byrd Theatre earlier this month for the premiere of the “Sticker Movie,” which dives into the history and culture of sticker making.
 
 There will be another chance to add stickers to the bus Friday during the exhibit’s closing reception and free jazz night at Gallery5.
 
@@ -721,7 +721,7 @@ const Website: React.FC = () => {
                    <HandHeart size={24} className="shrink-0" />
                    <span>Give back</span>
                  </h3>
-                 <p className="text-zinc-600">Providing mentorship and programs that equip local youth to lead the next generation of art.</p>
+                 <p className="text-zinc-600">Providing mentorship and programs that equip the local artists to lead the next generation of talent.</p>
               </div>
             </div>
 
