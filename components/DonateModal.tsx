@@ -107,7 +107,7 @@ const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => {
                        Along the journey we have many sub goals and events that all are in service of our greater mission and the first project.
                      </p>
                      <p>
-                       Thanks so much for visiting our donation page, we would be unable to achieve our goals if it was not for the support from the beautiful people in our city so thank you so much for anything you can contribute! We will be providing a series of tiered gifts in response to your support!
+                       Thanks so much for visiting our donation page, we would be unable to achieve our goals if it was not for the support from the beautiful people in our city so thank you so much for anything you can contribute!
                      </p>
                      <p className="font-medium text-black">
                        We thank you in advance for your contribution!
