@@ -475,7 +475,7 @@ const EVENTS_DATA: EventDetail[] = [
     ],
     music: [
       "Dan Knots (3:20 - 5:00)",
-      "High Club (1:40 - 3:20)",
+      "Jon Jar (1:40 - 3:20)",
       "Southern Brothers (12:00 - 1:40)"
     ],
     audio: "RVA Soundsystems"
