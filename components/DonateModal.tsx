@@ -107,7 +107,7 @@ const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => {
                        Along the journey we have many sub goals and events that all are in service of our greater mission and the first project.
                      </p>
                      <p>
-                        Thank you for visiting our donation page. This project would not be possible without the generosity and support of the Richmond community!
+                       Thank you for visiting our donation page. This project would not be possible without the generosity and support of the Richmond community!
                      </p>
 
                      {/* Tax Info Block */}

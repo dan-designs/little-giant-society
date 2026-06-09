@@ -22,6 +22,25 @@ const CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/plan-2_rclxza.avif"
 ];
 
+const HOME_CAROUSEL_IMAGES = [
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039571/DSC_3127_reooza.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039571/DSC_3629_fv9fws.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039567/DSC_1249_v8e3d4.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039570/DSC_3767_rokgki.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039567/IMG_7875_eiqrrs.jpg"
+];
+
+const PROOF_CAROUSEL_IMAGES = [
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039572/DSC_2617_rjcepo.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039569/DSC_1141_c2djki.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039572/DSC_3210_l2d0le.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039569/IMG_7892_htxeos.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039573/DSC_3942_zwsewr.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039568/IMG_7877_eyzllr.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039568/DSC_1379_zilgqe.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039567/IMG_7894_wywzo1.jpg"
+];
+
 const PARK_ALT_TEXTS = [
   "Rendering of the Manchester Art Park under the bridge, featuring visitors viewing colorful murals on freestanding walls.",
   "Aerial map of the James River and Manchester Bridge, with a yellow circle highlighting the proposed park site underneath.",
@@ -436,11 +455,211 @@ const ARTICLE_10: NewsItem = {
   link: "https://rvamag.com/art/ian-hess-on-painting-myths-selling-dreams-and-surviving-richmond.html"
 };
 
+const ARTICLE_11: NewsItem = {
+  id: 11,
+  title: "(ARTICLE) NON-PROFIT PROPOSES VISION FOR RICHMOND’S FIRST PUBLIC ART PARK",
+  author: "Lindsey West",
+  date: "May 25, 2026 | 06:53 PM EST",
+  preview: "RICHMOND, Va. (WRIC) — Hiding below the hustle and bustle of the Manchester Bridge, an explosion of creativity, eye to eye with the serenity of the James River — Richmond’s proposed public art park is waiting to be discovered.",
+  content: `RICHMOND, Va. (WRIC) — Hiding below the hustle and bustle of the Manchester Bridge, an explosion of creativity, eye to eye with the serenity of the James River — Richmond’s proposed public art park is waiting to be discovered.
+
+Richmond non-profit Little Giant Society is behind the project three years in the making.
+
+Inspiration came to Ian C. Hess, Little Giant Society’s president, when he visited a public art park beneath a bridge in Amsterdam. Hess, an artist himself, said he “could not believe that it wasn’t in Richmond.”
+
+When Hess returned home, he came to Katie Cortez, vice president of Little Giant Society, and they agreed to “figure it out.”
+
+“Who do we even reach out to? Where do you start? Who do you talk to, to do something like this?” Hess said.
+
+The style of the art park is called Hall of Fame, meaning best piece stays the longest.
+
+“Obviously that’s up for interpretation but if someone does a really wild, goes in all day and it stays up for like a month or two months, that’s a high honor,” Hess said.
+
+The culture of the public art park is an understanding that your work could be painted over, and you are welcome to paint over other artists’ work.
+
+As a way to prove to Richmond City Council that the project was viable, and to bring the community together, Little Giant Society hosted a ‘Proof in the Park’ event. It was an open call for artists to paint on nine walls beneath the Manchester Bridge.
+
+Hess said the forecasted rain held off for hundreds of people to flock to the proposed location on April 25.
+
+Some notable artists that came to paint at “Proof in the Park” include Emily Herr, Eli McMullen, Jon Murrill, Nils Westergard, Earl Mack and more.
+
+Richmond Mayor Danny Avula also attended the event, even asking for a skinny cap when encouraged to throw his own tag on the walls.
+
+“I don’t think it can be overstated the significance of the mayor coming underneath the bridge and giving a speech and grabbing a spray paint can and being willing to get up there,” Hess said.
+
+Cortez said the space is not just for artists, but “also for people who might not necessarily intersect with something like this to sort of immerse them into something they wouldn’t normally do.”
+
+For artists, Richmond may feel like a steppingstone city, according to Cortez. However, a project like the public art park could expand the River City’s influence.
+
+“There’s this glass ceiling that you just feel like you can’t get beyond,” Cortez said, “We feel like something like this might just help take Richmond into the next tier, where this is actually some place people want to come and stay.”
+
+Next steps, Hess said Little Giant Society has been given permission to submit the full scope of their plan to the city.
+
+“The ways in which it’s going to grow and foster and be generative is like, it’s out of our hands,” Hess said, “You just give people this huge canvas and Richmond is so made of color and creative that they’re just going to take off with it.”`,
+  image: "https://www.wric.com/wp-content/uploads/sites/74/2026/05/IMG_7875.jpeg?resize=768,1015",
+  imageAlt: "Photo from Proof in the Park event",
+  link: "https://www.wric.com/news/local-news/richmond/non-profit-proposes-vision-for-richmonds-first-public-art-park/"
+};
+
+const ARTICLE_12: NewsItem = {
+  id: 12,
+  title: "(ARTICLE) RICHMOND ART PARK PROPOSED UNDER MANCHESTER BRIDGE",
+  author: "Amaya Mitchell",
+  date: "May 22, 2026 | 1:08 PM EST",
+  preview: "RICHMOND, Va. (WWBT) - A group of Richmond artists is working to create a permanent art park under the Manchester Bridge near the floodwall.",
+  content: `RICHMOND, Va. (WWBT) - A group of Richmond artists is working to create a permanent art park under the Manchester Bridge near the floodwall.
+
+Artist Ian Hess recently hosted “Proof in the Park,” a temporary installation to demonstrate the concept to city officials. The walls filled with artwork were up for a few days.
+
+“It’s been like nothing else I’ve ever done in my life. It was crazy. There were hundreds of people here,” said Hess, an artist and president of the Little Giant Society.
+
+Hess said the setup and location are similar to what the actual design would be.
+
+“So reminiscent of like under the bridge, I came to the spot all the time. Anyways, I would always bike around. It’s like my favorite view in the city. And it was just like this makes the most sense here,” Hess said.
+
+The idea came after Hess visited a public art park in Amsterdam. When he returned to Richmond, he took the concept to architect Katie Cortez.
+
+“So after Ian got back from Amsterdam and sort of had this amazing experience over there, he came to me and was like, I think we need to do this in Richmond. How do we get there?” said Cortez, vice president of Little Giant Society.
+
+“I think something like this is pivotal for Richmond, because I think Richmond needs to understand the value and the importance of the arts,” Cortez said.
+
+The group is talking with the city before getting approval on a formal park plan.
+
+“So when we submit the park plan, it’s going to be back and forth. There’s going to be discussions. There’s going to be negotiations. But ultimately, what we’re trying to do is put in place concrete walls in the space that are of the same design as the proof in the park temporary walls,” Hess said.
+
+Mayor Danny Avula stopped by the “Proof in the Park” event. In a statement, his spokesperson wrote, “The Mayor went to the Arts Park event on April 25th, and loved it. He was blown away by the energy and creativity. There are always various planning efforts for anything like this to become official but Mayor Avula is extremely excited to see more public art become a reality in Richmond.”
+
+Hess said they will continue working on the plans and hope to get the art park up “very soon.”`,
+  image: "https://gray-wwbt-prod.gtv-cdn.com/resizer/v2/B4RX2QHS45DINKKYBMVBHUBK5E.jpeg?auth=95296f841a6fb7b906127556205d55d01c122edb1f5d18b219908831e5568ade&width=1300&height=1732&smart=true",
+  imageAlt: "Richmond art park proposed under Manchester Bridge",
+  link: "https://www.12onyourside.com/2026/05/22/richmond-art-park-proposed-under-manchester-bridge/"
+};
+
+const ARTICLE_13: NewsItem = {
+  id: 13,
+  title: "(ARTICLE) RICHMOND APPROVED A PUBLIC ART PARK PILOT. NOW IT'S STUCK",
+  author: "Sabrina Moreno",
+  date: "May 8, 2026",
+  preview: "Richmond officials won't say whether a temporary public art experiment under the Manchester Bridge has a future — but organizers say the city wants it taken down.",
+  content: `Richmond officials won't say whether a temporary public art experiment under the Manchester Bridge has a future — but organizers say the city wants it taken down.
+
+Why it matters: Richmond asked artists to test whether a dedicated public art park could work. And while organizers say they delivered, the city hasn't decided what comes next.
+
+State of play: This past fall, city officials recommended the Little Giant Society — the group behind the proposed park — test the concept on a smaller scale first.
+
+They did on April 25, transforming the unused stretch beneath the bridge into an open-air art space with 500-pound rotating murals, thanks to a special permit from Parks & Recreation and about $16,000 in fundraising.
+The event even got Mayor Avula out to paint, Ian Hess, the nonprofit's president, tells Axios.
+And according to Hess, who says Avula put his signature on one of the murals, the mayor personally told him he'd call members within his administration to discuss making the project permanent.
+The mayor's office didn't confirm or deny Hess' account.
+
+"If we want to build a project like this, in this specific location, it will require aligning a lot of different pieces and stakeholders," Avula said in a statement to Axios.
+"It's definitely worth exploring — if not this location, [then] somewhere else in the city."
+
+Friction point: The permit only covered the one-day event, and required the park to be taken down that same day.
+
+Weeks later, the murals remain standing — which Hess attributed to logistical challenges and weather.
+But Hess emphasized the group is "not battling the city" and still hopes to work together to make the project permanent.
+Zoom out: Supporters say the park could turn city-owned land into a tourist attraction and year-round showcase for Richmond artists.
+
+Hess says the roughly $500,000 proposal has been caught between overlapping agencies and unresolved questions over site control, maintenance, liability and graffiti.
+City agencies didn't respond to Axios' requests for comment.
+Meanwhile in Petersburg: City officials tell Axios they're planning a similar art walk beneath the MLK Jr. Bridge, which is estimated to take 6 months to create and cost $300,000-$350,000. A private developer would cover most of the cost.
+
+"The city sees it as a win-win for the entire community," Petersburg councilman W. Howard Myers, who has helped shepherd the project, tells Axios.
+Dave McCormack, the Petersburg project's developer, noted that "we don't have a lot of bureaucracy to overcome."
+"It's really just implementation and funding."
+What's next: Hess said organizers plan to reuse some of the temporary walls for future public events and donate at least one mural piece to the city "as a token of good faith."`,
+  image: "https://images.axios.com/XqG7wemi4Gz3x5X7qM8-GDCUhkY=/0x0:1920x1080/1920x1080/2026/05/07/1778179938531.jpeg?w=3840",
+  imageAlt: "Richmond approved a public art park pilot. Now it's stuck",
+  link: "https://www.axios.com/local/richmond/2026/05/08/richmond-public-art-park-manchester-bridge-limbo"
+};
+
+const ARTICLE_14: NewsItem = {
+  id: 14,
+  title: "(ARTICLE) AFTER STRONG TURNOUT, RICHMOND ARTS PARK ENTERS HOLDING PATTERN",
+  author: "R. Anthony Harris",
+  date: "May 7, 2026",
+  preview: "Under the Manchester Bridge, what had been an idea for years turned into something tangible, at least for a day.",
+  content: `Under the Manchester Bridge, what had been an idea for years turned into something tangible, at least for a day.
+
+Hundreds of people moved through the space as muralists painted, DJs played, and passersby stopped mid-bike ride or walk to figure out what was going on. By the end of the afternoon, the one-day test of a proposed arts park felt less like a trial and more like a preview.
+
+“I don’t know how it could have gone better,” said artist Ian C. Hess, an event organizer with Little Giant Society and owner of Supply Art Store. “It was crazy. People showed up from pretty much the moment it started to the moment it ended. All types of Richmond were out there.”
+
+For Hess, the scale of the turnout didn’t fully register until midway through the event, when Richmond Mayor Danny Avula stepped up to paint.
+
+“I was talking to him about the spray paint, a German brand called Molotow, telling him, ‘I swear this isn’t going to explode, you’re good,’” Hess said, laughing. “We went over to one of the walls and he agreed to throw up a tag. Then he turned to me and asked, ‘Can I get a skinny cap?’ I was like, ‘Yes, sir.’”
+
+“I was just focused on talking to him, not really thinking about anything else,” he said. “Then I turned around, and it was just a wall of phones. I was like, ‘Oh shit.’”
+
+“That’s when it hit me how many people were actually out there,” he said. “It kind of stuck in my brain what it is that we’re actually doing.”
+
+The event was designed as a proof of concept for a permanent “vibrant arts park,” an open, artist-led space built around rotating mural walls and public use. After more than three years of pushing the idea forward, Hess said the response answered the central question.
+
+“Richmond is such a colorful place,” he added. “You give people a blank canvas, and they just make it their own and go crazy with it in the most beautiful way.”
+
+The Activity Didn’t Stop
+Although the event itself lasted only one afternoon, the space didn’t go quiet when it ended.
+
+Temporary walls remained in place, and in the days that followed, artists continued to return, adding new pieces and drawing more visitors. What had been framed as a test continued to function as an active space.
+
+“The thing about it being there a little bit longer is that it actually proves the concept works even more,” said organizer Ian Hess. “People have respected the murals. Graffiti hasn’t spread in mass to the surrounding area, which was one of the city government’s main concerns.”
+
+Instead, he said, the activity has stayed largely contained to the walls themselves, with different types of use emerging naturally.
+
+“I think thousands more people have come down there since,” Hess said. “The amount we’ve seen it shared and the new murals that have gone up, it’s crazy. You’ve got people spending time on big murals, and then you’ve got more community walls where people are just putting a couple things up. That separation is kind of baked in. It’s already there.”
+
+The continued activity has also extended the reach of the project well beyond the initial crowd.
+
+“Even after, with everything flying around on social media, people are still coming down there, seeking it out, making it a reason they love Richmond. It’s very special.”
+
+Waiting on the City
+Following the event, Hess said organizers have had direct conversations with city leadership about what it would take to move forward. According to Hess, Mayor Danny Avula expressed support and asked what obstacles remain.
+
+He said those conversations reflect an effort to keep momentum going while also giving the city something visible in the short term.
+
+“After the mayor gave his speech, he came to us and basically said, ‘Where are the roadblocks and how do we make this happen?’” Hess said.
+
+The remaining hurdles are largely procedural, involving coordination between departments such as Parks and Recreation and the Department of Public Works, along with formal approval to use the land for a permanent installation.
+
+“He said he heard us and that this is something that needs to happen,” Hess said. “But we’ve gotten nothing in the black. Nothing is seemingly written down.”
+
+That has left organizers in what he described as a holding pattern, despite what they see as a clear public response.
+
+“We just had an overwhelmingly successful event,” he said. “The mayor came down and painted at the same time that little kids were, professionals were, and every type of artist in between. It was everyone together as a community. It’s a win for the city. It’s a win for artists. It’s a win for everyone who loves art.”
+
+“After almost four years, I don’t believe in waiting when working with the government,” Hess added. “I just don’t know what there is to wait for. I kind of don’t know, and that’s not a great answer, and it’s not a good feeling either.”
+
+What Happens Next
+In the short term, organizers are working with the city on what to do with the temporary infrastructure used for the event. Options under discussion include donating some of the walls to the city, placing others in community spaces, or reusing them for future activations.
+
+“I think right now we’re trying to figure out what to do with the walls,” Hess said. “One of them we want to donate to the city. Another might go to a community center through Parks and Rec, and we’re talking about possibly placing a few on Broad Street during the upcoming tourism conference.”
+
+At the same time, interest in the concept is beginning to extend beyond Richmond.
+
+“There’s interest in a public art park in Petersburg,” said organizer Ian Hess. “And if something like that ends up happening there before it’s built here, that would be a tragedy. We’ve been at this for three and a half years now. It would be best to start it here in Richmond,” he said.
+
+Hess said the response to the event has only reinforced his belief that the idea has broader potential.
+
+“Every city with a creative scene is going to recognize how good this is for artists, and for people to actually experience the arts and meet the artists,” he said. “I don’t think there’s a better way. I think it becomes something pretty regular, in the same way there’s a playground outside of a school. It kind of just works, and the ways you can use it are unlimited.”
+
+After three and a half years of planning, the project has now moved from concept to a real-world test, with visible public participation and continued use after the event ended.
+
+“It’s just time to build,” he said. “It’s time to build it and stop talking about it.”`,
+  image: "https://rvamag.com/wp-content/uploads/2026/05/Richmond-Art-Park-by-R-Anthony-Harris_RVA-Magazine-2026-3-",
+  imageAlt: "After Strong Turnout, Richmond Arts Park Enters Holding Pattern",
+  link: "https://rvamag.com/art/after-strong-turnout-richmond-arts-park-enters-holding-pattern.html"
+};
+
 // Mock Data for remaining items
 const MOCK_NEWS_DATA: NewsItem[] = [];
 
 // Combine them
 const NEWS_DATA: NewsItem[] = [
+    ARTICLE_11,
+    ARTICLE_12,
+    ARTICLE_13,
+    ARTICLE_14,
     ARTICLE_4, // Sep 22 2025 4:29 PM
     ARTICLE_8, // Sep 22 2025 10:58 AM
     ARTICLE_7, // Sep 4 2025
@@ -454,33 +673,7 @@ const NEWS_DATA: NewsItem[] = [
     ...MOCK_NEWS_DATA
 ];
 
-const EVENTS_DATA: EventDetail[] = [
-  {
-    id: "proof-in-the-park",
-    date: "April 25th 2026",
-    time: "12:00PM - 5:00 PM",
-    title: "PROOF IN THE PARK",
-    tagLine: "A one day open call to paint underneath the 9th street bridge along the James River.",
-    description: "Little Giant Society is inviting Richmond to taste and see the power of Public Art!",
-    fullDescription: [
-      "On April 25, Little Giant Society is holding an open call for all Artists, makers, and supporters of the Arts to an immersive experience of Public Art. We are gathering at the location of the proposed Public Art Park, where wall panels are prepared for attendees to participate in the creation of Public Art alongside others in the Richmond community. Live music and food trucks will also be in attendance to highlight the music and culinary arts of Richmond.",
-      "The power of Art is inherent in the making and experience of it; the impact of its power is undeniable. Come to create, teach, and enrich the culture of Richmond. Or, come to learn, grow in your craft, and witness the impact of Arts.",
-      "Little Giant Society is grateful to have collaborated with Bike Walk RVA on Proof in Park, which is serving as a forerunner to RVA Bike Month’s art-themed events throughout May."
-    ],
-    image: "https://res.cloudinary.com/datad8tms/image/upload/v1774897954/Poster_for_Proof_fljjwh.jpg",
-    imageAlt: "Poster for Proof in the Park",
-    foodTrucks: [
-      "1115 Mobile Kitchen",
-      "Ninja Kombucha"
-    ],
-    music: [
-      "Dan Knots (3:20 - 5:00)",
-      "Jon Jar (1:40 - 3:20)",
-      "Southern Brothers (12:00 - 1:40)"
-    ],
-    audio: "RVA Soundsystems"
-  }
-];
+const EVENTS_DATA: EventDetail[] = [];
 
 // Custom Left-Facing School Bus Profile Icon
 const CustomBusProfileIcon = ({ size = 24, className = "" }) => (
@@ -533,13 +726,32 @@ const Website: React.FC = () => {
     }
   }, []);
 
+  // Carousel State for Home
+  const [homeImageIndex, setHomeImageIndex] = useState(0);
+  const [isHomePlaying, setIsHomePlaying] = useState(true);
+
   // Carousel State for The Park
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  // Carousel State for Proof in the Park
+  const [proofImageIndex, setProofImageIndex] = useState(0);
+  const [isProofPlaying, setIsProofPlaying] = useState(true);
+
   // Carousel State for Sticker Bus
   const [busImageIndex, setBusImageIndex] = useState(0);
   const [isBusPlaying, setIsBusPlaying] = useState(true);
+
+  // Home Carousel Effect
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isHomePlaying) {
+      timer = setInterval(() => {
+        setHomeImageIndex((prev) => (prev + 1) % HOME_CAROUSEL_IMAGES.length);
+      }, 5000);
+    }
+    return () => clearInterval(timer);
+  }, [isHomePlaying, homeImageIndex]);
 
   // Main Carousel Effect
   useEffect(() => {
@@ -552,6 +764,17 @@ const Website: React.FC = () => {
     return () => clearInterval(timer);
   }, [isPlaying, currentImageIndex]);
 
+  // Proof Carousel Effect
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isProofPlaying) {
+      timer = setInterval(() => {
+        setProofImageIndex((prev) => (prev + 1) % PROOF_CAROUSEL_IMAGES.length);
+      }, 5000);
+    }
+    return () => clearInterval(timer);
+  }, [isProofPlaying, proofImageIndex]);
+
   // Bus Carousel Effect
   useEffect(() => {
     let timer: ReturnType<typeof setInterval>;
@@ -563,6 +786,15 @@ const Website: React.FC = () => {
     return () => clearInterval(timer);
   }, [isBusPlaying, busImageIndex]);
 
+  // Home Carousel Handlers
+  const handleHomeNext = () => {
+    setHomeImageIndex((prev) => (prev + 1) % HOME_CAROUSEL_IMAGES.length);
+  };
+  const handleHomePrev = () => {
+    setHomeImageIndex((prev) => (prev === 0 ? HOME_CAROUSEL_IMAGES.length - 1 : prev - 1));
+  };
+  const toggleHomePlay = () => setIsHomePlaying(!isHomePlaying);
+
   // Main Carousel Handlers
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
@@ -571,6 +803,15 @@ const Website: React.FC = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? CAROUSEL_IMAGES.length - 1 : prev - 1));
   };
   const togglePlay = () => setIsPlaying(!isPlaying);
+
+  // Proof Carousel Handlers
+  const handleProofNext = () => {
+    setProofImageIndex((prev) => (prev + 1) % PROOF_CAROUSEL_IMAGES.length);
+  };
+  const handleProofPrev = () => {
+    setProofImageIndex((prev) => (prev === 0 ? PROOF_CAROUSEL_IMAGES.length - 1 : prev - 1));
+  };
+  const toggleProofPlay = () => setIsProofPlaying(!isProofPlaying);
 
   // Bus Carousel Handlers
   const handleBusNext = () => {
@@ -707,15 +948,89 @@ const Website: React.FC = () => {
 
             {/* IMAGE BLOCK (Left on Desktop, Bottom on Mobile) */}
             <div className="lg:order-1 relative w-full h-[320px] md:h-[400px] lg:h-[600px] bg-zinc-200 rounded-3xl overflow-hidden border-2 border-black group shadow-xl">
-               <img 
-                 src="https://res.cloudinary.com/datad8tms/image/upload/v1766276535/Art-Park-Render_rgklby.png" 
-                 alt="Rendering of the Manchester Art Park under the bridge, featuring visitors viewing colorful murals on freestanding walls." 
-                 className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
-               />
-               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-500"></div>
-               
-               <div className="absolute bottom-6 left-6 bg-white px-4 py-2 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                  <span className="font-bold text-xs uppercase tracking-widest">Art Park Render</span>
+               <AnimatePresence mode="wait">
+                 <motion.img 
+                   key={homeImageIndex}
+                   src={HOME_CAROUSEL_IMAGES[homeImageIndex]} 
+                   alt={`Presentation slide ${homeImageIndex + 1}`} 
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   exit={{ opacity: 0 }}
+                   transition={{ duration: 0.8 }}
+                   className="absolute inset-0 w-full h-full object-cover" 
+                 />
+               </AnimatePresence>
+
+               {/* Controls Overlay - Gradient for visibility */}
+               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
+
+               {/* Bottom Controls Row */}
+               <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-20">
+                 
+                 {/* Left: Play/Pause, Nav Buttons & Indicators */}
+                 <div className="flex items-center gap-6">
+                   
+                   {/* Controls Group */}
+                   <div className="flex items-center gap-3">
+                       <button 
+                         onClick={toggleHomePlay}
+                         className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                         aria-label={isHomePlaying ? "Pause Slideshow" : "Play Slideshow"}
+                       >
+                         {isHomePlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                       </button>
+
+                       <button 
+                         onClick={handleHomePrev}
+                         className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                         aria-label="Previous Image"
+                       >
+                         <ChevronLeft size={22} />
+                       </button>
+
+                       <button 
+                         onClick={handleHomeNext}
+                         className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                         aria-label="Next Image"
+                       >
+                         <ChevronRight size={22} />
+                       </button>
+                   </div>
+
+                   {/* Divider */}
+                   <div className="w-px h-6 bg-white/20"></div>
+
+                   {/* Indicators */}
+                   <div className="flex gap-2" role="tablist" aria-label="Slideshow indicators">
+                     {HOME_CAROUSEL_IMAGES.map((_, idx) => (
+                       <button
+                         key={idx} 
+                         onClick={() => setHomeImageIndex(idx)}
+                         className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${idx === homeImageIndex ? 'w-8 bg-white/40' : 'w-1.5 bg-white/40 hover:bg-white/60'}`}
+                         aria-label={`Go to slide ${idx + 1}`}
+                         aria-selected={idx === homeImageIndex}
+                         role="tab"
+                       >
+                          {/* Animated Progress Bar (Only visible when active) */}
+                          {idx === homeImageIndex && (
+                            <motion.div 
+                              initial={{ width: "0%" }}
+                              animate={{ width: isHomePlaying ? "100%" : "0%" }}
+                              transition={{ duration: 5, ease: "linear" }}
+                              className="absolute top-0 left-0 h-full bg-white"
+                            />
+                          )}
+                       </button>
+                     ))}
+                   </div>
+                 </div>
+
+                 {/* Right: Label */}
+                 <div className="bg-white px-4 py-2 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <span className="font-bold text-xs uppercase tracking-widest text-black">
+                      {`IMAGE ${homeImageIndex + 1}/${HOME_CAROUSEL_IMAGES.length}`}
+                    </span>
+                 </div>
                </div>
             </div>
 
@@ -911,6 +1226,140 @@ const Website: React.FC = () => {
                   </p>
                   <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#105CB3] pl-6 italic">
                     This is why we are proposing a Public Arts Park (to be officially named by the public) and installed underneath the Manchester Bridge on the south side of the river, adjacent to the Flood Wall. Working alongside architect Katie Cortez, we have formally proposed this project to every single relevant department in the entire city and have gained support from the sitting Mayor, Danny Avula. NOW IS THE TIME!
+                  </p>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3.25 PROOF IN THE PARK SECTION (Duplicated from The Park) */}
+        <section id="proof-in-the-park" className="min-h-screen flex flex-col justify-center px-6 py-16 md:py-24 bg-[#101011] text-white relative overflow-hidden scroll-mt-20 border-t border-zinc-900">
+          
+          <div className="max-w-7xl mx-auto w-full relative z-10">
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+               <div className="space-y-6 md:space-y-8">
+                  {/* Reuse MapPin as it was requested to be identical structure */}
+                  <div className="flex items-center gap-2 text-green-400 font-bold uppercase tracking-widest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 21H2M2 9h20M5 9v12M19 9v12M9 14.5a3 3 0 0 1 6 0" />
+                    </svg>
+                    <span>Proof In The Park</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter">
+                    Proof In The<br/>Park
+                  </h2>
+                  <p className="text-lg md:text-xl text-zinc-300 leading-relaxed">
+                    On April 25, hundreds of Richmonders came down under the Manchester Bridge to paint, dance, and prove that a Public Arts Park belongs here. Mayor Danny Avula grabbed a can himself, and the city has now invited us to submit our full plan. The proof is in: Richmond wants this park.
+                  </p>
+               </div>
+
+               {/* Carousel */}
+               <div className="aspect-square w-full rounded-2xl overflow-hidden relative group shadow-xl">
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={proofImageIndex}
+                      src={PROOF_CAROUSEL_IMAGES[proofImageIndex]} 
+                      alt={`Proof in the park photo ${proofImageIndex + 1}`} 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="absolute inset-0 w-full h-full object-cover" 
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Controls Overlay - Gradient for visibility */}
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
+
+                  {/* Bottom Controls Row */}
+                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-20">
+                    
+                    {/* Left: Play/Pause, Nav Buttons & Indicators */}
+                    <div className="flex items-center gap-6">
+                      
+                      {/* Controls Group */}
+                      <div className="flex items-center gap-3">
+                          <button 
+                            onClick={toggleProofPlay}
+                            className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                            aria-label={isProofPlaying ? "Pause Slideshow" : "Play Slideshow"}
+                          >
+                            {isProofPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                          </button>
+
+                          <button 
+                            onClick={handleProofPrev}
+                            className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                            aria-label="Previous Image"
+                          >
+                            <ChevronLeft size={22} />
+                          </button>
+
+                          <button 
+                            onClick={handleProofNext}
+                            className="text-white hover:text-[#105CB3] transition-colors focus:outline-none focus:text-[#105CB3] focus-visible:ring-2"
+                            aria-label="Next Image"
+                          >
+                            <ChevronRight size={22} />
+                          </button>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="w-px h-6 bg-white/20"></div>
+
+                      {/* Indicators */}
+                      <div className="flex gap-2" role="tablist" aria-label="Slideshow indicators">
+                        {PROOF_CAROUSEL_IMAGES.map((_, idx) => (
+                          <button
+                            key={idx} 
+                            onClick={() => setProofImageIndex(idx)}
+                            className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${idx === proofImageIndex ? 'w-8 bg-white/40' : 'w-1.5 bg-white/40 hover:bg-white/60'}`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                            aria-selected={idx === proofImageIndex}
+                            role="tab"
+                          >
+                             {/* Animated Progress Bar (Only visible when active) */}
+                             {idx === proofImageIndex && (
+                               <motion.div 
+                                 initial={{ width: "0%" }}
+                                 animate={{ width: isProofPlaying ? "100%" : "0%" }}
+                                 transition={{ duration: 5, ease: "linear" }}
+                                 className="absolute top-0 left-0 h-full bg-white"
+                               />
+                             )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right: Label */}
+                    <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
+                       <span className="font-mono text-xs uppercase tracking-wider text-white">
+                         {`IMAGE ${proofImageIndex + 1}/${PROOF_CAROUSEL_IMAGES.length}`}
+                       </span>
+                    </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Extended Detailed Copy */}
+            <div className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-zinc-800 w-full">
+               <div className="text-base md:text-lg text-zinc-300 leading-relaxed md:columns-2 gap-16">
+                  <p className="mb-8 break-inside-avoid">
+                    <span className="text-white font-bold">On Saturday, April 25</span>, we got our shot: a one-day, city-sanctioned trial run of the Public Arts Park, and Richmond showed up. From 12 to 5pm, hundreds of people flooded the space under the Manchester Bridge on the south side of the river, adjacent to the Flood Wall, to experience exactly what this park can and will be. The forecast called for rain. Richmond didn't care. The rain held off and the people came anyway.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    We built nine 8ft x 12ft walls and threw the doors open to everyone. This was a true open call: all artists, all makers, all skill levels, bring your own paint and your own ideas. Alongside the public, roughly ten of Richmond's heaviest hitters came to put in work, including Emily Herr, Eli McMullen, Nils Westergard, Jon Murrill, Earl Mack, Catie Lewis, Erek Jones, Jered Fykes, LOBOS, Steve Lahaye, George Arturo, and Tedi Kuma. DJs Dan Knots, JON JAR, Ran, and Profound79 kept the energy up all afternoon. Pros painted next to first-timers. Kids painted next to legends. This is the third place we have been talking about, and for one day, it was real.
+                  </p>
+                  <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#22C55E] pl-6 italic">
+                    And then the moment that says everything: Mayor Danny Avula came underneath the bridge, gave a speech, and when we handed him a can, he asked for a skinny cap and threw his own tag on the wall. It cannot be overstated what it means for the sitting Mayor of Richmond to stand in this space, see the vision, and literally put paint on it. Our city's leadership didn't just endorse this from a podium; they participated.
+                  </p>
+                  <p className="mb-8 break-inside-avoid">
+                    None of this happened by accident. This event was three years in the making, built in collaboration with the Fall Line Trail, Bike Walk RVA, and the Manchester Alliance, with walls constructed by local carpenters Alé Melgar, Philip Meyer, and James Loving. The site sits at the crossroads of the Flood Wall, the Buttermilk Trail, and the Potterfield Bridge connections: thousands of Richmonders already pass through this space every week. On April 25, they finally had a reason to stop.
+                  </p>
+                  <p className="mb-8 break-inside-avoid text-white font-bold">
+                    So what happens now? The big news: the city has formally given Little Giant Society permission to submit the full scope of our plan. Proof in the Park did exactly what it was designed to do. It proved to City Council, to city departments, and to every skeptic that this project is viable, safe, and wanted. The walls are painted. The community has spoken. <span className="text-green-400">NOW WE FINISH THE JOB!</span>
                   </p>
                </div>
             </div>
