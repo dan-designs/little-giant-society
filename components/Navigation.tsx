@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, ChevronDown } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
 
 interface NavigationProps {
@@ -65,6 +65,40 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
         {/* Centered Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {NAV_LINKS.map((link) => {
+            if (link.subItems) {
+              const isSubActive = link.subItems.some(sub => activeSection === sub.id) || activeSection === link.id;
+              return (
+                <div key={link.id} className="relative group">
+                  <a
+                    href={`#${link.id}`}
+                    onClick={handleScrollTo(link.id)}
+                    className={`flex items-center gap-1 text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors decoration-2 underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded px-2 py-1 ${
+                      isSubActive 
+                        ? 'text-[#105CB3] underline' 
+                        : 'text-black hover:text-[#105CB3] hover:underline'
+                    }`}
+                  >
+                    {link.label}
+                    <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                  </a>
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-black/10 shadow-xl rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    {link.subItems.map((sub) => (
+                      <a
+                        key={sub.id}
+                        href={`#${sub.id}`}
+                        onClick={handleScrollTo(sub.id)}
+                        className={`block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-zinc-100 ${
+                          activeSection === sub.id ? 'text-[#105CB3]' : 'text-black'
+                        }`}
+                      >
+                        {sub.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             const isActive = activeSection === link.id;
             return (
               <a
@@ -108,8 +142,40 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6">
+        <nav aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
           {NAV_LINKS.map((link) => {
+             if (link.subItems) {
+               const isSubActive = link.subItems.some(sub => activeSection === sub.id) || activeSection === link.id;
+               return (
+                 <div key={link.id} className="flex flex-col gap-3">
+                   <a
+                     href={`#${link.id}`}
+                     onClick={handleScrollTo(link.id)}
+                     className={`flex items-center justify-between text-2xl font-bold uppercase tracking-tight cursor-pointer decoration-2 underline-offset-4 ${
+                       isSubActive ? 'text-[#105CB3] underline' : 'text-black'
+                     }`}
+                   >
+                     {link.label}
+                     <ChevronDown size={24} className="opacity-50" />
+                   </a>
+                   <div className="flex flex-col gap-3 pl-4 border-l-2 border-black/10">
+                     {link.subItems.map((sub) => (
+                       <a
+                         key={sub.id}
+                         href={`#${sub.id}`}
+                         onClick={handleScrollTo(sub.id)}
+                         className={`text-xl font-bold uppercase tracking-tight cursor-pointer ${
+                           activeSection === sub.id ? 'text-[#105CB3]' : 'text-black/70'
+                         }`}
+                       >
+                         {sub.label}
+                       </a>
+                     ))}
+                   </div>
+                 </div>
+               );
+             }
+
              const isActive = activeSection === link.id;
              return (
               <a

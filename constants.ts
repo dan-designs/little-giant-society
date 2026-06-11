@@ -9,6 +9,7 @@ export const MAP_SECTIONS: Record<string, MapViewConfig> = {
   hero: { x: 150, y: 220, scale: 1.4 },       // THE FAN (Home)
   mission: { x: 490, y: 90, scale: 1.4 },     // THE ARTS DISTRICT (Mission) - Moved Up to 90
   proposal: { x: 590, y: 660, scale: 1.4 },   // THE PARK (The Proposal)
+  'proof-in-the-park': { x: 590, y: 660, scale: 1.4 }, // Same location as The Park
   'sticker-bus': { x: 390, y: 241, scale: 1.4 }, // THE BUS (Sticker Bus) - Moved down to 241
   about: { x: 490, y: 237, scale: 1.4 },      // SUPPLY (Team)
   sponsors: { x: 796, y: 250, scale: 1.4 },   // DOWNTOWN (Partners/Sponsors) - Moved left to 796
@@ -20,8 +21,15 @@ export const MAP_SECTIONS: Record<string, MapViewConfig> = {
 export const NAV_LINKS = [
   { id: 'hero', label: 'Home' },
   { id: 'mission', label: 'Mission' },
-  { id: 'proposal', label: 'The Park' },
-  { id: 'sticker-bus', label: 'Sticker Bus' },
+  { 
+    id: 'proposal', 
+    label: 'Projects',
+    subItems: [
+      { id: 'proposal', label: 'The Park' },
+      { id: 'proof-in-the-park', label: 'Proof In The Park' },
+      { id: 'sticker-bus', label: 'Sticker Bus' }
+    ]
+  },
   { id: 'about', label: 'Team' },
   { id: 'sponsors', label: 'Partners' },
   { id: 'news', label: 'News' },

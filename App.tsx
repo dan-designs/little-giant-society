@@ -25,7 +25,7 @@ const CAROUSEL_IMAGES = [
 const HOME_CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1781039571/DSC_3127_reooza.jpg",
   "https://res.cloudinary.com/datad8tms/image/upload/v1781039571/DSC_3629_fv9fws.jpg",
-  "https://res.cloudinary.com/datad8tms/image/upload/v1781039567/DSC_1249_v8e3d4.jpg",
+  "https://res.cloudinary.com/datad8tms/image/upload/v1781039573/DSC_3942_zwsewr.jpg",
   "https://res.cloudinary.com/datad8tms/image/upload/v1781039570/DSC_3767_rokgki.jpg",
   "https://res.cloudinary.com/datad8tms/image/upload/v1781039567/IMG_7875_eiqrrs.jpg"
 ];
@@ -697,7 +697,7 @@ const CustomBusProfileIcon = ({ size = 24, className = "" }) => (
 const Website: React.FC = () => {
   // Define section IDs in the order they appear on the page for correct scroll spying
   // Added 'news' between sponsors and events
-  const sectionIds = ['hero', 'mission', 'proposal', 'sticker-bus', 'about', 'sponsors', 'news', 'events', 'footer'];
+  const sectionIds = ['hero', 'mission', 'proposal', 'proof-in-the-park', 'sticker-bus', 'about', 'sponsors', 'news', 'events', 'footer'];
   const activeSection = useScrollSpy(sectionIds, -200);
   
   // Modals
@@ -1026,8 +1026,8 @@ const Website: React.FC = () => {
                  </div>
 
                  {/* Right: Label */}
-                 <div className="bg-white px-4 py-2 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                    <span className="font-bold text-xs uppercase tracking-widest text-black">
+                 <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded border border-white/10">
+                    <span className="font-mono text-xs uppercase tracking-wider text-white">
                       {`IMAGE ${homeImageIndex + 1}/${HOME_CAROUSEL_IMAGES.length}`}
                     </span>
                  </div>
@@ -1350,7 +1350,7 @@ const Website: React.FC = () => {
                     <span className="text-white font-bold">On Saturday, April 25</span>, we got our shot: a one-day, city-sanctioned trial run of the Public Arts Park, and Richmond showed up. From 12 to 5pm, hundreds of people flooded the space under the Manchester Bridge on the south side of the river, adjacent to the Flood Wall, to experience exactly what this park can and will be. The forecast called for rain. Richmond didn't care. The rain held off and the people came anyway.
                   </p>
                   <p className="mb-8 break-inside-avoid">
-                    We built nine 8ft x 12ft walls and threw the doors open to everyone. This was a true open call: all artists, all makers, all skill levels, bring your own paint and your own ideas. Alongside the public, roughly ten of Richmond's heaviest hitters came to put in work, including Emily Herr, Eli McMullen, Nils Westergard, Jon Murrill, Earl Mack, Catie Lewis, Erek Jones, Jered Fykes, LOBOS, Steve Lahaye, George Arturo, and Tedi Kuma. DJs Dan Knots, JON JAR, Ran, and Profound79 kept the energy up all afternoon. Pros painted next to first-timers. Kids painted next to legends. This is the third place we have been talking about, and for one day, it was real.
+                    We built nine 8ft x 12ft walls and threw the doors open to everyone. This was a true open call: all artists, all makers, all skill levels, bring your own paint and your own ideas. Alongside the public, roughly ten of Richmond's heaviest hitters came to put in work, including Emily Herr, Eli McMullen, Nils Westergard, Jon Murrill, Earl Mack, Catie Lewis, Erek Jones, Jered Fykes, LOBOS, Steve Lahaye, George Arturo, and Tedi Kuma. DJs Dan Knots, JON JAR, Ran, and Profound79 kept the energy up all afternoon. Pros painted next to first-timers. Kids painted next to legends. This park is the place we have been talking about, and for one day, it was real.
                   </p>
                   <p className="mb-8 break-inside-avoid text-white font-medium border-l-2 border-[#22C55E] pl-6 italic">
                     And then the moment that says everything: Mayor Danny Avula came underneath the bridge, gave a speech, and when we handed him a can, he asked for a skinny cap and threw his own tag on the wall. It cannot be overstated what it means for the sitting Mayor of Richmond to stand in this space, see the vision, and literally put paint on it. Our city's leadership didn't just endorse this from a podium; they participated.
@@ -1790,8 +1790,14 @@ const Website: React.FC = () => {
               <ul className="space-y-4 text-zinc-300">
                 <li><a href="#hero" className="hover:text-white transition-colors focus:text-white">Home</a></li>
                 <li><a href="#mission" className="hover:text-white transition-colors focus:text-white">Mission</a></li>
-                <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white">The Park</a></li>
-                <li><a href="#sticker-bus" className="hover:text-white transition-colors focus:text-white">Sticker Bus</a></li>
+                <li>
+                  <a href="#proposal" className="hover:text-white transition-colors focus:text-white block mb-2">Projects</a>
+                  <ul className="pl-4 space-y-2 border-l border-white/20">
+                    <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white text-sm">The Park</a></li>
+                    <li><a href="#proof-in-the-park" className="hover:text-white transition-colors focus:text-white text-sm">Proof In The Park</a></li>
+                    <li><a href="#sticker-bus" className="hover:text-white transition-colors focus:text-white text-sm">Sticker Bus</a></li>
+                  </ul>
+                </li>
                 <li><a href="#about" className="hover:text-white transition-colors focus:text-white">Team</a></li>
                 <li><a href="#sponsors" className="hover:text-white transition-colors focus:text-white">Partners</a></li>
                 <li><a href="#news" className="hover:text-white transition-colors focus:text-white">News</a></li>
