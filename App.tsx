@@ -651,11 +651,57 @@ After three and a half years of planning, the project has now moved from concept
   link: "https://rvamag.com/art/after-strong-turnout-richmond-arts-park-enters-holding-pattern.html"
 };
 
+const ARTICLE_15: NewsItem = {
+  id: 15,
+  title: "(ARTICLE) ‘WET WALLS’ EVENT IN RICHMOND SPARKS CREATIVITY ON BROAD STREET",
+  author: "Vanessa Wigfall",
+  date: "Jun 23, 2026 | 6:15 PM EST",
+  preview: "RICHMOND, Va. — Broad Street is getting a burst of color this week as the Little Giant Society hosts “Wet Walls,\" a two-day community street art event aimed at re-imagining a long-blighted block in the city’s Arts District.",
+  content: `RICHMOND, Va. — Broad Street is getting a burst of color this week as the Little Giant Society hosts “Wet Walls," a two-day community street art event aimed at re-imagining a long-blighted block in the city’s Arts District.
+
+Four walls installed by Proof on the Park are being transformed by four main muralists: Eli McMullen, George Arturo, Ian C. Hess and Jadon Rowsom. An additional four walls are open for the public for community members to add their creativity, either by submitting a design in advance or simply arriving with paint in hand.
+
+“This is a crazy experimental project,” said Hess, president of the nonprofit Little Giant Society and one of the event’s featured artists. “We wanted to show the best side of Richmond with creativity, even in a space that’s seen decades of decay. I think art is a sincere way to bridge that gap.”
+
+The event overlaps with the Travel Bloggers Exchange (TBEX) conference, drawing visitors from around the world. Organizers hope the event will highlight the small businesses, galleries and partnerships that are in the heart of Richmond’s Arts District.
+
+“We’re experimenting with adding more vibrancy to the area,” said Liz Kincaid, president of the Arts District Business Alliance. “This is a meaningful step forward showcasing to visitors and residents alike what RVA is capable of when we come together as a community.”
+
+Located between 1st and 2nd streets on the north side of Broad, the event will run from 10 a.m. to 6 p.m. Tuesday and Wednesday, featuring live mural painting, community participation, music performances and local food offerings.
+
+Afternoon music sets from Tristan Dougherty and the Heart Pines on Tuesday to Kassia Arbabi performing with guitarist on Wednesday aim to provide live music to the art-making festivities. The event is open to the public and free to attend.
+
+Food offerings on Tuesday include complimentary pizza from Tarrant’s Cafe, with the first 50 slices free for attendees, and drinks from The Daily Coffee Co. and dishes from 1115 Mobile Kitchen on Wednesday.
+
+Hess said the painted panels will eventually be auctioned off in September during a community fundraiser.
+
+“We’ll frame these huge eight-by-12-foot pieces and make them available for auction,” he said. “I hope it leads to more murals, a lush, massive arts district that everybody wants to partake in and celebrate — right in the middle of the chaos.”
+
+The event is supported by Richmond Economic Development and marks Little Giant Society’s first official partnership with the city. Founded in 2023, the nonprofit works to cultivate Richmond’s arts community and provide resources for both emerging and established artists.`,
+  image: "https://ewscripps.brightspotcdn.com/dims4/default/c0ff506/2147483647/strip/true/crop/1920x1080+0+0/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fc0%2Fa0%2F484bfe6347b6a870bdf0e363dc76%2Femily-new-article-thumbnails-38.png",
+  imageAlt: "Wet Walls event in Richmond sparks creativity on Broad Street",
+  link: "https://www.wtvr.com/news/local-news/richmond/wet-walls-june-23-2026?shem=dsdf,sharefoc,agadiscoversdl,,sh/x/discover/m1/4"
+};
+
+const ARTICLE_16: NewsItem = {
+  id: 16,
+  title: "(ARTICLE) PHOTOS: WET WALLS ON BROAD STREET",
+  author: "Richard Hayes",
+  date: "June 25, 2026 | 12:00 PM EST",
+  preview: "For the past two days artists have been making a little stretch of Broad Street more colorful. Little Giant Society and the Richmond Arts District brought together a group of artists to a vacant stretch of Broad Street for a little artification.",
+  content: `For the past two days artists have been making a little stretch of Broad Street more colorful. Little Giant Society and the Richmond Arts District brought together a group of artists to a vacant stretch of Broad Street for a little artification.`,
+  image: "https://s3.us-east-2.amazonaws.com/largefs.rvahubmedia/rvahub/wp-content/uploads/2026/06/wet_walls-15-768x614.jpg",
+  imageAlt: "Photos: Wet Walls on Broad Street",
+  link: "https://rvahub.com/2026/06/25/photos-wet-walls-on-broad-street/"
+};
+
 // Mock Data for remaining items
 const MOCK_NEWS_DATA: NewsItem[] = [];
 
 // Combine them
 const NEWS_DATA: NewsItem[] = [
+    ARTICLE_16,
+    ARTICLE_15,
     ARTICLE_11,
     ARTICLE_12,
     ARTICLE_13,
