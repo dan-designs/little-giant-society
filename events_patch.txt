@@ -1,0 +1,48 @@
+[diff_block_start]
+@@ -719,25 +719,53 @@
+     ...MOCK_NEWS_DATA
+ ];
+ 
+ const EVENTS_DATA: EventDetail[] = [
+   {
+     id: "park-raiser",
+-    date: "TBD",
+-    time: "TBD",
++    date: "September 4, 2026",
++    time: "12:00 PM to 12:00 AM",
+     title: "Park Raiser",
+-    description: "Details coming soon for Park Raiser.",
+-    fullDescription: ["More details will be provided soon for the Park Raiser event."],
+-    image: "https://res.cloudinary.com/datad8tms/image/upload/v1781039572/DSC_3210_l2d0le.jpg",
++    tagLine: "313 W. Broad St",
++    description: "This upcoming First Friday September 4th from noon to midnight — we are hosting a huge, one day event right on Broad Street.",
++    fullDescription: [
++      "ANNOUNCING: 𝑷𝒂𝒓𝒌 𝑹𝒂𝒊𝒔𝒆𝒓!",
++      "This upcoming First Friday September 4th from noon to midnight — we are hosting a huge, one day event right on Broad Street in between Field @fieldfloral & Uptown Cheapskate @uptownbroadstreet right next to the new Greetings From Richmond mural. The space known as “The Galley” provided courtesy of Black Iris @black.iris.social.club !",
++      "That means live music all day, massive art pieces for auction, live murals, the Sticker Bus, open walls to paint, & drinks.",
++      "While the Art will be on display & up for auction — new work will be made live during the event by these incredible Artists:",
++      "Jesse Smith\nJ Ford\nTedi Kuma\nBarry O’Keefe\nAnna Perdue",
++      "Music Curated by: Tight Knit",
++      "Music by:\nBen Logik\nCraunic\nDan Knots\nDavid Goza\nErin Go Harp\nMichael Quest\nRiffa\nTedi\nStretch Radio",
++      "There’s only one way for this park to happen & it’s collectively creating a sustainable & prosperous Arts Community. We are building a transformative Art Park where all skill levels are welcome without fear of safety or persecution. A place that muralists, graffiti Artists, & the countless creatives of Richmond can gather to create & hone our craft. With your help — this becomes Richmond’s reality.",
++      "See you on First Fridays!"
++    ],
++    image: "https://res.cloudinary.com/datad8tms/image/upload/v1787605810/PARKRAISER_jjorbn.png",
+     imageAlt: "Park Raiser Event Placeholder"
+   },
+   {
+     id: "park-raiser-2",
+-    date: "TBD",
+-    time: "TBD",
++    date: "October 3, 2026",
++    time: "TBB",
+     title: "Park Raiser 2",
++    tagLine: "TBD",
+     description: "Details coming soon for Park Raiser 2.",
+     fullDescription: ["More details will be provided soon for the Park Raiser 2 event."],
+-    image: "https://res.cloudinary.com/datad8tms/image/upload/v1781039571/DSC_3127_reooza.jpg",
++    image: "https://res.cloudinary.com/datad8tms/image/upload/e_blur:1000/v1787605810/PARKRAISER_jjorbn.png",
+     imageAlt: "Park Raiser 2 Event Placeholder"
+   }
+ ];
+[diff_block_end]

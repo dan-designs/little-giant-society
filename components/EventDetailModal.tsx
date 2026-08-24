@@ -82,12 +82,17 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, ev
               {/* Content Area */}
               <div className="flex-1 overflow-y-auto p-0 bg-white">
                 {event.image && (
-                  <div className="w-full h-64 md:h-96 relative bg-zinc-900">
+                  <div className="w-full h-64 md:h-96 relative bg-zinc-900 flex items-center justify-center">
                     <img 
                       src={event.image} 
                       alt={event.imageAlt || event.title} 
-                      className="w-full h-full object-contain"
+                      className={`w-full h-full object-contain ${event.id === 'park-raiser-2' ? 'opacity-50 blur-md' : ''}`}
                     />
+                    {event.id === 'park-raiser-2' && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-white text-4xl md:text-6xl font-black uppercase tracking-widest drop-shadow-lg text-center transform -rotate-12">Coming Soon!</span>
+                      </div>
+                    )}
                   </div>
                 )}
                 

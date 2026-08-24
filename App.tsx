@@ -719,7 +719,39 @@ const NEWS_DATA: NewsItem[] = [
     ...MOCK_NEWS_DATA
 ];
 
-const EVENTS_DATA: EventDetail[] = [];
+const EVENTS_DATA: EventDetail[] = [
+  {
+    id: "park-raiser",
+    date: "September 4, 2026",
+    time: "12:00 PM to 12:00 AM",
+    title: "Park Raiser",
+    tagLine: "313 W. Broad St",
+    description: "This upcoming First Friday September 4th from noon to midnight — we are hosting a huge, one day event right on Broad Street.",
+    fullDescription: [
+      "ANNOUNCING: 𝑷𝒂𝒓𝒌 𝑹𝒂𝒊𝒔𝒆𝒓!",
+      "This upcoming First Friday September 4th from noon to midnight — we are hosting a huge, one day event right on Broad Street in between Field & Uptown Cheapskate right next to the new Greetings From Richmond mural. The space known as “The Galley” provided courtesy of Black Iris Social Club!",
+      "That means live music all day, massive art pieces for auction, live murals, the Sticker Bus, open walls to paint, & drinks.",
+      "While the Art will be on display & up for auction — new work will be made live during the event by these incredible Artists: Jesse Smith, J Ford, Tedi Kuma, Barry O’Keefe, & Anna Perdue",
+      "Music Curated by: Tight Knit",
+      "Music by: Ben Logik, Craunic, Dan Knots, David Goza, Erin Go Harp, Michael Quest, Riffa, Tedi, & Stretch Radio",
+      "There’s only one way for this park to happen & it’s collectively creating a sustainable & prosperous Arts Community. We are building a transformative Art Park where all skill levels are welcome without fear of safety or persecution. A place that muralists, graffiti Artists, & the countless creatives of Richmond can gather to create & hone our craft. With your help — this becomes Richmond’s reality.",
+      "See you on First Fridays!"
+    ],
+    image: "https://res.cloudinary.com/datad8tms/image/upload/v1787605810/PARKRAISER_jjorbn.png",
+    imageAlt: "Park Raiser Event Placeholder"
+  },
+  {
+    id: "park-raiser-2",
+    date: "October 3, 2026",
+    time: "TBD",
+    title: "Park Raiser 2",
+    tagLine: "TBD",
+    description: "Details coming soon for Park Raiser 2.",
+    fullDescription: ["More details will be provided soon for the Park Raiser 2 event."],
+    image: "https://res.cloudinary.com/datad8tms/image/upload/v1787605810/PARKRAISER_jjorbn.png",
+    imageAlt: "Park Raiser 2 Event Placeholder"
+  }
+];
 
 // Custom Left-Facing School Bus Profile Icon
 const CustomBusProfileIcon = ({ size = 24, className = "" }) => (
@@ -1740,15 +1772,20 @@ const Website: React.FC = () => {
                       <div 
                         key={i} 
                         onClick={() => setSelectedEvent(event)}
-                        className="group bg-[#EFF4F9] border border-black/10 p-8 rounded-xl hover:shadow-2xl hover:shadow-black/20 transition-all hover:-translate-y-2 flex flex-col h-full cursor-pointer"
+                        className="group bg-[#EFF4F9] border border-black/10 p-8 rounded-3xl hover:shadow-2xl hover:shadow-black/20 transition-all hover:-translate-y-2 flex flex-col h-full cursor-pointer"
                       >
                         {event.image && (
-                          <div className="w-full aspect-video bg-zinc-200 rounded-lg overflow-hidden mb-6 border border-black/5">
+                          <div className="w-full aspect-video bg-zinc-200 rounded-2xl overflow-hidden mb-6 border border-black/5 relative flex items-center justify-center">
                             <img 
                               src={event.image} 
                               alt={event.imageAlt || "Event image"} 
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                              className={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ${event.id === 'park-raiser-2' ? 'blur-md opacity-75' : ''}`}
                             />
+                            {event.id === 'park-raiser-2' && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                                <span className="text-white text-2xl md:text-3xl font-black uppercase tracking-widest drop-shadow-md text-center transform -rotate-12">Coming Soon!</span>
+                              </div>
+                            )}
                           </div>
                         )}
                         <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#105CB3] mb-4">
