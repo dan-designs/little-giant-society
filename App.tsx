@@ -720,6 +720,7 @@ const NEWS_DATA: NewsItem[] = [
 ];
 
 const EVENTS_DATA: EventDetail[] = [
+  /*
   {
     id: "park-raiser",
     date: "September 4, 2026",
@@ -740,6 +741,7 @@ const EVENTS_DATA: EventDetail[] = [
     image: "https://res.cloudinary.com/datad8tms/image/upload/v1787605810/PARKRAISER_jjorbn.png",
     imageAlt: "Park Raiser Event Placeholder"
   },
+  */
   {
     id: "park-raiser-2",
     date: "October 3, 2026",
@@ -998,7 +1000,7 @@ const Website: React.FC = () => {
               <div className="inline-flex items-center justify-center bg-black text-white px-4 py-2 text-sm font-bold uppercase tracking-widest mb-2 md:mb-4 leading-none">
                 <span className="pt-[2px]">THROUGH LITTLE ACTIONS WE CREATE GIANTS.</span>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase">
+              <h1 className="text-5xl md:text-[51px] lg:text-[82px] font-black leading-[0.9] tracking-tighter uppercase">
                 Richmond's<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#388AE8] to-[#105CB3]">First Public</span><br/>
                 Art Park.
@@ -1015,11 +1017,11 @@ const Website: React.FC = () => {
                    <span className="pt-[2px]">Learn More</span>
                  </button>
                  <button 
-                   onClick={() => window.open('https://www.change.org/p/it-s-time-to-build-richmond-s-1st-public-art-park?recruiter=1336850517&recruited_by_id=87f77e80-fe65-11ee-9f75-3ba1adb818af', '_blank')}
+                   onClick={() => window.open('PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAacHtw_9UZJ4qT9W4vzlJelR2SqAFtgq7WUSZ02EBD4GZissizWYmSYL_qyhhw_aem_FE5KHo_X0Dearpwnq_', '_blank', 'noopener,noreferrer')}
                    className="border-2 border-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors flex items-center justify-center leading-none focus:ring-4 focus:ring-zinc-300 focus:outline-none focus-visible:ring-4"
-                   aria-label="Sign the petition on Change.org (opens in new tab)"
+                   aria-label="View the auction (opens in new tab)"
                  >
-                   <span className="pt-[2px]">Sign Petition</span>
+                   <span className="pt-[2px]">View Auction</span>
                  </button>
               </div>
             </div>

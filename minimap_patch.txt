@@ -1,0 +1,15 @@
+[diff_block_start]
+@@ -120,11 +120,10 @@
+             {isActive && (
+               <>
+                 <motion.circle
+-                  initial={{ r: 10, opacity: 0.6 }}
+-                  animate={{ r: 50, opacity: 0 }}
++                  animate={{ r: [10, 50], opacity: [0.6, 0] }}
+                   transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                   fill={pulseColor}
+                 />
+                 <circle r="25" fill={pulseColor} opacity="0.2" filter="blur(4px)" />
+               </>
+             )}
+[diff_block_end]
