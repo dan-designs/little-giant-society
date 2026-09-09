@@ -120,8 +120,9 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
             {isActive && (
               <>
                 <motion.circle
-                  initial={{ r: 10, opacity: 0.6 }}
-                  animate={{ r: 50, opacity: 0 }}
+                  r="20"
+                  initial={{ scale: 0.5, opacity: 0.8 }}
+                  animate={{ scale: 2.5, opacity: 0 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                   fill={pulseColor}
                 />
