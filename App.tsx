@@ -1141,7 +1141,7 @@ const Website: React.FC = () => {
               </div>
 
               <h2 className="text-3xl md:text-6xl font-bold tracking-tight mb-6 md:mb-8">
-                THROUGH LITTLE ACTIONS.<br/>WE CREATE GIANTS.
+                Mission
               </h2>
               
               <p className="text-lg md:text-xl text-zinc-600 max-w-2xl leading-relaxed mb-10 md:mb-16">
@@ -1893,7 +1893,7 @@ const Website: React.FC = () => {
               {/* Corrected heading hierarchy: h4 -> h3 */}
               <h3 className="font-bold uppercase tracking-widest mb-6 text-white">Connect</h3>
               {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
-              <ul className="space-y-4 text-zinc-300">
+              <ul className="space-y-4 text-zinc-300 mb-8">
                 <li><a href="https://www.instagram.com/little.giant.society/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors focus:text-white" aria-label="Instagram">Instagram</a></li>
                 <li>
                   <button onClick={() => setIsContactModalOpen(true)} className="hover:text-white transition-colors focus:text-white text-left">
@@ -1901,6 +1901,12 @@ const Website: React.FC = () => {
                   </button>
                 </li>
               </ul>
+              <div className="text-zinc-300 space-y-1">
+                <p>Little Giant Society</p>
+                <p>320 W Broad St</p>
+                <p>Richmond, VA 23220</p>
+                <p>EIN: 99-0441095</p>
+              </div>
             </div>
           </div>
           {/* Updated text color: text-zinc-400 -> text-zinc-300 */}

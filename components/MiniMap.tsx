@@ -119,13 +119,26 @@ const StylizedMapContent: React.FC<StylizedMapContentProps> = ({ activeSection, 
           >
             {isActive && (
               <>
-                <motion.circle
-                  r="20"
-                  initial={{ scale: 0.5, opacity: 0.8 }}
-                  animate={{ scale: 2.5, opacity: 0 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                  fill={pulseColor}
-                />
+                <circle fill={pulseColor}>
+                  <animate 
+                    attributeName="r" 
+                    values="10; 50" 
+                    dur="2s" 
+                    calcMode="spline"
+                    keySplines="0 0 0.2 1"
+                    keyTimes="0; 1"
+                    repeatCount="indefinite" 
+                  />
+                  <animate 
+                    attributeName="opacity" 
+                    values="0.8; 0" 
+                    dur="2s" 
+                    calcMode="spline"
+                    keySplines="0 0 0.2 1"
+                    keyTimes="0; 1"
+                    repeatCount="indefinite" 
+                  />
+                </circle>
                 <circle r="25" fill={pulseColor} opacity="0.2" filter="blur(4px)" />
               </>
             )}

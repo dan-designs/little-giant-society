@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Heart, ChevronDown } from 'lucide-react';
+import { Menu, X, Heart, ChevronDown, Mail } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
 
 interface NavigationProps {
@@ -118,7 +118,18 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick })
         </div>
 
         {/* Right Side: Donate & Mobile Toggle */}
-        <div className="flex items-center gap-4 relative z-20">
+        <div className="flex items-center gap-2 md:gap-4 relative z-20">
+          {/* Contact Button */}
+          <a
+            href="#footer"
+            onClick={handleScrollTo('footer')}
+            className="hidden md:flex border-2 border-black text-black w-11 h-11 rounded-full items-center justify-center hover:bg-black hover:text-white transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-300"
+            aria-label="Contact us"
+            title="Contact us"
+          >
+            <Mail size={16} />
+          </a>
+
           {/* Desktop Donate Button */}
           <button 
             onClick={handleDonate}
