@@ -18,20 +18,66 @@ export const MAP_SECTIONS: Record<string, MapViewConfig> = {
   footer: { x: 600, y: 450, scale: 0.8 },     // Center wide view
 };
 
-export const NAV_LINKS = [
-  { id: 'hero', label: 'Home' },
-  { id: 'mission', label: 'Mission' },
+export interface NavSubItem {
+  id: string;
+  label: string;
+  slug: string;
+}
+
+export interface NavLinkItem {
+  id: string;
+  label: string;
+  slug: string;
+  subItems?: NavSubItem[];
+}
+
+export const SECTION_SLUGS: Record<string, string> = {
+  hero: 'home',
+  mission: 'mission',
+  proposal: 'the-park',
+  'proof-in-the-park': 'proof-in-the-park',
+  'sticker-bus': 'sticker-bus',
+  about: 'team',
+  sponsors: 'partners',
+  news: 'news',
+  events: 'events',
+  footer: 'contact',
+};
+
+export const SLUG_TO_SECTION: Record<string, string> = {
+  home: 'hero',
+  hero: 'hero',
+  mission: 'mission',
+  projects: 'proposal',
+  'the-park': 'proposal',
+  proposal: 'proposal',
+  'proof-in-the-park': 'proof-in-the-park',
+  'sticker-bus': 'sticker-bus',
+  team: 'about',
+  about: 'about',
+  partners: 'sponsors',
+  sponsors: 'sponsors',
+  news: 'news',
+  events: 'events',
+  contact: 'footer',
+  footer: 'footer',
+};
+
+export const NAV_LINKS: NavLinkItem[] = [
+  { id: 'hero', label: 'Home', slug: 'home' },
+  { id: 'mission', label: 'Mission', slug: 'mission' },
   { 
     id: 'proposal', 
     label: 'Projects',
+    slug: 'projects',
     subItems: [
-      { id: 'proposal', label: 'The Park' },
-      { id: 'proof-in-the-park', label: 'Proof In The Park' },
-      { id: 'sticker-bus', label: 'Sticker Bus' }
+      { id: 'proposal', label: 'The Park', slug: 'the-park' },
+      { id: 'proof-in-the-park', label: 'Proof In The Park', slug: 'proof-in-the-park' },
+      { id: 'sticker-bus', label: 'Sticker Bus', slug: 'sticker-bus' }
     ]
   },
-  { id: 'about', label: 'Team' },
-  { id: 'sponsors', label: 'Partners' },
-  { id: 'news', label: 'News' },
-  { id: 'events', label: 'Events' },
+  { id: 'about', label: 'Team', slug: 'team' },
+  { id: 'sponsors', label: 'Partners', slug: 'partners' },
+  { id: 'news', label: 'News', slug: 'news' },
+  { id: 'events', label: 'Events', slug: 'events' },
 ];

@@ -13,7 +13,7 @@ import NewsModal, { NewsItem } from './components/NewsModal';
 import EventDetailModal, { EventDetail } from './components/EventDetailModal';
 import Model3D from './components/Model3D';
 import { useScrollSpy } from './hooks/useScrollSpy';
-import { MAP_SECTIONS } from './constants';
+import { MAP_SECTIONS, SECTION_SLUGS, SLUG_TO_SECTION } from './constants';
 
 const CAROUSEL_IMAGES = [
   "https://res.cloudinary.com/datad8tms/image/upload/v1766276535/Art-Park-Render_rgklby.png",
@@ -796,6 +796,7 @@ const Website: React.FC = () => {
 
   // Deep linking for events
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get('event');
     if (eventId) {
@@ -805,6 +806,50 @@ const Website: React.FC = () => {
       }
     }
   }, []);
+
+  // Slug-based routing & scroll-to on initial load / popstate
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (rawPath) {
+      const targetId = SLUG_TO_SECTION[rawPath];
+      if (targetId) {
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 150);
+      }
+    }
+
+    const handlePopState = () => {
+      const currentPath = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      const targetId = SLUG_TO_SECTION[currentPath] || 'hero';
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Synchronize active section with URL path slug as user scrolls
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const currentPath = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (currentPath === '' || SLUG_TO_SECTION[currentPath]) {
+      if (SLUG_TO_SECTION[currentPath] !== activeSection) {
+        const newSlug = SECTION_SLUGS[activeSection];
+        if (newSlug) {
+          window.history.replaceState({ sectionId: activeSection }, '', `/${newSlug}`);
+        }
+      }
+    }
+  }, [activeSection]);
 
   // Carousel State for Home
   const [homeImageIndex, setHomeImageIndex] = useState(0);
@@ -902,10 +947,16 @@ const Website: React.FC = () => {
   };
   const toggleBusPlay = () => setIsBusPlaying(!isBusPlaying);
 
-  const handleScrollToSection = (id: string) => {
+  const handleScrollToSection = (id: string, slug?: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      if (typeof window !== 'undefined') {
+        const targetSlug = slug || SECTION_SLUGS[id];
+        if (targetSlug) {
+          window.history.pushState({ sectionId: id }, '', `/${targetSlug}`);
+        }
+      }
     }
   };
 
@@ -948,7 +999,11 @@ const Website: React.FC = () => {
 
   return (
     <div className="min-h-screen relative selection:bg-[#105CB3] selection:text-white">
-      <Navigation activeSection={activeSection} onDonateClick={() => setIsDonateModalOpen(true)} />
+      <Navigation 
+        activeSection={activeSection} 
+        onDonateClick={() => setIsDonateModalOpen(true)} 
+        onContactClick={() => setIsContactModalOpen(true)} 
+      />
       
       {/* Map Widget (Desktop Only) */}
       <MiniMap activeSection={activeSection} onSectionSelect={handleScrollToSection} />
@@ -1873,20 +1928,20 @@ const Website: React.FC = () => {
               <h3 className="font-bold uppercase tracking-widest mb-6 text-white">Sitemap</h3>
               {/* Updated text color: text-zinc-400 -> text-zinc-300 */}
               <ul className="space-y-4 text-zinc-300">
-                <li><a href="#hero" className="hover:text-white transition-colors focus:text-white">Home</a></li>
-                <li><a href="#mission" className="hover:text-white transition-colors focus:text-white">Mission</a></li>
+                <li><a href="/home" onClick={(e) => { e.preventDefault(); handleScrollToSection('hero', 'home'); }} className="hover:text-white transition-colors focus:text-white">Home</a></li>
+                <li><a href="/mission" onClick={(e) => { e.preventDefault(); handleScrollToSection('mission', 'mission'); }} className="hover:text-white transition-colors focus:text-white">Mission</a></li>
                 <li>
-                  <a href="#proposal" className="hover:text-white transition-colors focus:text-white block mb-2">Projects</a>
+                  <a href="/projects" onClick={(e) => { e.preventDefault(); handleScrollToSection('proposal', 'projects'); }} className="hover:text-white transition-colors focus:text-white block mb-2">Projects</a>
                   <ul className="pl-4 space-y-2 border-l border-white/20">
-                    <li><a href="#proposal" className="hover:text-white transition-colors focus:text-white text-sm">The Park</a></li>
-                    <li><a href="#proof-in-the-park" className="hover:text-white transition-colors focus:text-white text-sm">Proof In The Park</a></li>
-                    <li><a href="#sticker-bus" className="hover:text-white transition-colors focus:text-white text-sm">Sticker Bus</a></li>
+                    <li><a href="/the-park" onClick={(e) => { e.preventDefault(); handleScrollToSection('proposal', 'the-park'); }} className="hover:text-white transition-colors focus:text-white text-sm">The Park</a></li>
+                    <li><a href="/proof-in-the-park" onClick={(e) => { e.preventDefault(); handleScrollToSection('proof-in-the-park', 'proof-in-the-park'); }} className="hover:text-white transition-colors focus:text-white text-sm">Proof In The Park</a></li>
+                    <li><a href="/sticker-bus" onClick={(e) => { e.preventDefault(); handleScrollToSection('sticker-bus', 'sticker-bus'); }} className="hover:text-white transition-colors focus:text-white text-sm">Sticker Bus</a></li>
                   </ul>
                 </li>
-                <li><a href="#about" className="hover:text-white transition-colors focus:text-white">Team</a></li>
-                <li><a href="#sponsors" className="hover:text-white transition-colors focus:text-white">Partners</a></li>
-                <li><a href="#news" className="hover:text-white transition-colors focus:text-white">News</a></li>
-                <li><a href="#events" className="hover:text-white transition-colors focus:text-white">Events</a></li>
+                <li><a href="/team" onClick={(e) => { e.preventDefault(); handleScrollToSection('about', 'team'); }} className="hover:text-white transition-colors focus:text-white">Team</a></li>
+                <li><a href="/partners" onClick={(e) => { e.preventDefault(); handleScrollToSection('sponsors', 'partners'); }} className="hover:text-white transition-colors focus:text-white">Partners</a></li>
+                <li><a href="/news" onClick={(e) => { e.preventDefault(); handleScrollToSection('news', 'news'); }} className="hover:text-white transition-colors focus:text-white">News</a></li>
+                <li><a href="/events" onClick={(e) => { e.preventDefault(); handleScrollToSection('events', 'events'); }} className="hover:text-white transition-colors focus:text-white">Events</a></li>
               </ul>
             </div>
             <div>
