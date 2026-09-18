@@ -5,21 +5,17 @@ import { NAV_LINKS } from '../constants';
 interface NavigationProps {
   activeSection: string;
   onDonateClick: () => void;
-  onContactClick: () => void;
+  onContactClick?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, onContactClick }) => {
+const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Helper to ensure clicking a link strictly scrolls to that section and updates URL slug
-  const handleScrollTo = (id: string, slug?: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  // Helper to ensure clicking a link strictly scrolls to that section
+  const handleScrollTo = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsOpen(false); // Close mobile menu if open
     
-    if (slug && typeof window !== 'undefined') {
-      window.history.pushState({ sectionId: id }, '', `/${slug}`);
-    }
-
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -36,8 +32,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
       <nav className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative" aria-label="Main Navigation">
         {/* Logo - Linked to Hero */}
         <a 
-          href="/home" 
-          onClick={handleScrollTo('hero', 'home')}
+          href="#hero" 
+          onClick={handleScrollTo('hero')}
           className="flex items-center gap-2 group md:relative z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded-lg p-1"
           aria-label="Little Giant Society Home"
         >
@@ -69,14 +65,13 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
         {/* Centered Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {NAV_LINKS.map((link) => {
-            const slug = link.slug || link.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
             if (link.subItems) {
               const isSubActive = link.subItems.some(sub => activeSection === sub.id) || activeSection === link.id;
               return (
                 <div key={link.id} className="relative group">
                   <a
-                    href={`/${slug}`}
-                    onClick={handleScrollTo(link.id, slug)}
+                    href={`#${link.id}`}
+                    onClick={handleScrollTo(link.id)}
                     className={`flex items-center gap-1 text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors decoration-2 underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded px-2 py-1 ${
                       isSubActive 
                         ? 'text-[#105CB3] underline' 
@@ -87,21 +82,18 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
                     <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                   </a>
                   <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-black/10 shadow-xl rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                    {link.subItems.map((sub) => {
-                      const subSlug = sub.slug || sub.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                      return (
-                        <a
-                          key={sub.id}
-                          href={`/${subSlug}`}
-                          onClick={handleScrollTo(sub.id, subSlug)}
-                          className={`block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-zinc-100 ${
-                            activeSection === sub.id ? 'text-[#105CB3]' : 'text-black'
-                          }`}
-                        >
-                          {sub.label}
-                        </a>
-                      );
-                    })}
+                    {link.subItems.map((sub) => (
+                      <a
+                        key={sub.id}
+                        href={`#${sub.id}`}
+                        onClick={handleScrollTo(sub.id)}
+                        className={`block px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-zinc-100 ${
+                          activeSection === sub.id ? 'text-[#105CB3]' : 'text-black'
+                        }`}
+                      >
+                        {sub.label}
+                      </a>
+                    ))}
                   </div>
                 </div>
               );
@@ -111,8 +103,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
             return (
               <a
                 key={link.id}
-                href={`/${slug}`}
-                onClick={handleScrollTo(link.id, slug)}
+                href={`#${link.id}`}
+                onClick={handleScrollTo(link.id)}
                 className={`text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors decoration-2 underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#105CB3] rounded px-2 py-1 ${
                   isActive 
                     ? 'text-[#105CB3] underline' 
@@ -128,9 +120,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
         {/* Right Side: Donate & Mobile Toggle */}
         <div className="flex items-center gap-2 md:gap-4 relative z-20">
           {/* Contact Button */}
-          <button
-            type="button"
-            onClick={onContactClick}
+          <a
+            href="#footer"
+            onClick={handleScrollTo('footer')}
             className="hidden md:flex border-2 border-black text-black w-11 h-11 rounded-full items-center justify-center hover:bg-black hover:text-white transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-300 cursor-pointer"
             aria-label="Contact us"
             title="Contact us"
@@ -144,9 +136,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
                 className="stroke-[#EFF4F9] group-hover:stroke-black transition-colors"
               />
             </Mail>
-          </button>
+          </a>
 
-          {/* Desktop Donate Button (44px height matching mail icon) */}
+          {/* Desktop Donate Button */}
           <button 
             type="button"
             onClick={handleDonate}
@@ -172,14 +164,13 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
       {isOpen && (
         <nav aria-label="Mobile Navigation" className="md:hidden absolute top-20 left-0 w-full bg-[#EFF4F9] border-b border-black/10 shadow-xl p-6 flex flex-col gap-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
           {NAV_LINKS.map((link) => {
-             const slug = link.slug || link.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
              if (link.subItems) {
                const isSubActive = link.subItems.some(sub => activeSection === sub.id) || activeSection === link.id;
                return (
                  <div key={link.id} className="flex flex-col gap-3">
                    <a
-                     href={`/${slug}`}
-                     onClick={handleScrollTo(link.id, slug)}
+                     href={`#${link.id}`}
+                     onClick={handleScrollTo(link.id)}
                      className={`flex items-center justify-between text-2xl font-bold uppercase tracking-tight cursor-pointer decoration-2 underline-offset-4 ${
                        isSubActive ? 'text-[#105CB3] underline' : 'text-black'
                      }`}
@@ -188,21 +179,18 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
                      <ChevronDown size={24} className="opacity-50" />
                    </a>
                    <div className="flex flex-col gap-3 pl-4 border-l-2 border-black/10">
-                     {link.subItems.map((sub) => {
-                       const subSlug = sub.slug || sub.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                       return (
-                         <a
-                           key={sub.id}
-                           href={`/${subSlug}`}
-                           onClick={handleScrollTo(sub.id, subSlug)}
-                           className={`text-xl font-bold uppercase tracking-tight cursor-pointer ${
-                             activeSection === sub.id ? 'text-[#105CB3]' : 'text-black/70'
-                           }`}
-                         >
-                           {sub.label}
-                         </a>
-                       );
-                     })}
+                     {link.subItems.map((sub) => (
+                       <a
+                         key={sub.id}
+                         href={`#${sub.id}`}
+                         onClick={handleScrollTo(sub.id)}
+                         className={`text-xl font-bold uppercase tracking-tight cursor-pointer ${
+                           activeSection === sub.id ? 'text-[#105CB3]' : 'text-black/70'
+                         }`}
+                       >
+                         {sub.label}
+                       </a>
+                     ))}
                    </div>
                  </div>
                );
@@ -212,8 +200,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
              return (
               <a
                 key={link.id}
-                href={`/${slug}`}
-                onClick={handleScrollTo(link.id, slug)}
+                href={`#${link.id}`}
+                onClick={handleScrollTo(link.id)}
                 className={`text-2xl font-bold uppercase tracking-tight cursor-pointer decoration-2 underline-offset-4 ${
                     isActive ? 'text-[#105CB3] underline' : 'text-black'
                 }`}
@@ -229,25 +217,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onDonateClick, o
               className="bg-[#105CB3] text-white w-full py-4 rounded-lg text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300 cursor-pointer"
             >
               Donate Now <Heart size={18} className="fill-current" />
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setIsOpen(false);
-                onContactClick();
-              }}
-              className="border-2 border-black text-black w-full py-3.5 rounded-lg text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-black hover:text-white transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-300 cursor-pointer"
-            >
-              <span>Contact Us</span>
-              <Mail size={20} fill="currentColor" className="fill-current">
-                <path
-                  d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
-                  fill="none"
-                  stroke="#EFF4F9"
-                  strokeWidth={2}
-                  className="stroke-[#EFF4F9] group-hover:stroke-black transition-colors"
-                />
-              </Mail>
             </button>
           </div>
         </nav>
